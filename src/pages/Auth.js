@@ -2,7 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {useLoginUserMutation} from '../services/authApi'
-import { useAppDispatch } from '../app/hooks'
+
+import  {useDispatch}  from 'react-redux'
 import { setUser } from '../features/authSlice'
 import { setUserDatos } from '../features/authDatosSlice'
 
@@ -18,7 +19,7 @@ export const Auth = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const  dispatch = useAppDispatch()
+    const dispatch = useDispatch()
 
     const [loginUser,{data:loginData,isSuccess:isLoginSuccess,isError:isLoginError,error:loginError}]=useLoginUserMutation()
 
@@ -33,7 +34,7 @@ export const Auth = () => {
             dispatch(setUser({refresh:loginData.refresh, access:loginData.access, time_token:Date.now()}))
             navigate('/dashboard')
         }
-    },[])
+    })
 
     return (
         <div>

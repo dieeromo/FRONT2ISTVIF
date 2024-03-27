@@ -5,10 +5,6 @@ import Auth from './pages/Auth';
 
 import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom'
 
-// import {useGetUserQuery} from './services/authDatosApi'
-// import { setUserDatos } from './features/authDatosSlice'
-// import { useAppDispatch } from './app/hooks'
-//  import SessionExpirationNotifier from './services/SessionExpirationNotifier'
 
 
 function App() {
