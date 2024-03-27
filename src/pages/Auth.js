@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import {useLoginUserMutation} from '../services/authApi'
 import { useAppDispatch } from '../app/hooks'
 import { setUser } from '../features/authSlice'
+import { setUserDatos } from '../features/authDatosSlice'
 
 
 const initialState = {
@@ -13,7 +14,7 @@ const initialState = {
 
 export const Auth = () => {
     const navigate = useNavigate()
-    const [formValue, setFormValue] = useState(initialState)
+    //const [formValue, setFormValue] = useState(initialState)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -32,7 +33,7 @@ export const Auth = () => {
             dispatch(setUser({refresh:loginData.refresh, access:loginData.access, time_token:Date.now()}))
             navigate('/dashboard')
         }
-    })
+    },[])
 
     return (
         <div>
