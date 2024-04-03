@@ -12,9 +12,11 @@ const Dashboard = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('user') || "{}")
+    const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
     //console.log(user)
 
    const {data, isSuccess, isError,isLoading} = useGetUserQuery(user.access)
+  
   
    const [render, setRender] = useState(false)
     useEffect(()=>{
@@ -46,11 +48,25 @@ const Dashboard = () => {
     
     return (
         <div>
-            {render ? <Navbar_dashboard/>:<>Cargando...</>}
+            {render ? 
+            <div>
+                <Navbar_dashboard/>
+                <div className='ml-20 mt-10'>
+                <h1 className='text-xl '> Bienvenido {userDatos.first_name}</h1>
+                <p>Este es el sistema de gestión del ISTVIF</p>
+                
+                </div>
+                </div>
             
-            Dashboard
+            :<>Cargando...</>
+            }
+            
+            
             
         </div>
     )
 }
 export default Dashboard
+
+
+// reporte 4 marzo 0,5 dias

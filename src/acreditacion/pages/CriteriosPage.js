@@ -30,8 +30,8 @@ const CriteriosPage = () => {
                                 <tr className='text-center'>
                                     <th>Numero</th>
                                     <th>Criterio</th>
-                                    <th>Fceha creación</th>
-                                    <th>Responsable</th>
+                                 
+                              
                                     <th></th>
                                     {/* <th></th> */}
                                     <td></td>
@@ -41,11 +41,11 @@ const CriteriosPage = () => {
                                 {
                                     data.map((item, index) => (
                                         <tr key={index} className='border px-4 py-2 text-center'>
-                                            <td>  {item.numeracion} </td>
-                                            <td>{item.criterio}  </td>
-                                            <td>{item.fecha_creacion}</td>
-                                            <td>{item.responsable}</td>
-                                            <td> <a href={`/acreditacion/subcriterios/${item.id}`}><GrLinkNext /></a></td>
+                                            <td className='text-sm'>  {item.numeracion} </td>
+                                            <td className='text-sm'>{item.criterio}  </td>
+                                        
+                                      
+                                            <td className='text-sm'> <a href={`/acreditacion/subcriterios/${item.id}`}><GrLinkNext /></a></td>
                                             {/* <td> <button onClick={() => { deleteCriterio([user.access, item.id]) }}>Delete</button> </td> */}
                                             <td>
 

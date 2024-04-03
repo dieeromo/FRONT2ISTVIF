@@ -24,7 +24,7 @@ export default function Navbar_dashboard(){
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
-            <a href="#" className="flex items-center text-white font-bold text-xl">
+            <a href="/dashboard" className="flex items-center text-white font-bold text-xl">
               <img src="https://institutovicentefierro.edu.ec/wp-content/uploads/2024/01/cropped-Sin-titulo-1.png" 
               alt="Logo" 
               className="w-30 h-10" />

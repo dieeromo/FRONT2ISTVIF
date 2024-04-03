@@ -11,12 +11,12 @@ const DashboardAcreditacion = ({children}) => {
                 {/* Sidebar */}
                 <div className="bg-gray-800 text-white w-30 flex-shrink-0">
                     <div className="p-3">
-                        <h1 className=" font-bold">Acreditación</h1>
+                        <h1 className=" font-bold"><a href='/acreditacion/landing'>Acreditación </a></h1>
                     </div>
                     <ul>
                         <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="/acreditacion/criterios" >Criterios</a></li>
                         <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/acreditacion/documentos/todos" >Todo</a></li>
-                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/acreditacion/criterios" >Mis pendientes</a></li>
+                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/acreditacion/mispendientes" >Mis pendientes</a></li>
                         
                         {/* Agrega más elementos de menú según sea necesario */}
                     </ul>

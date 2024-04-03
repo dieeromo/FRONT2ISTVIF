@@ -14,6 +14,7 @@ import EvidenciaPage from './acreditacion/pages/EvidenciaPage'
 import DocumentosTodos from './acreditacion/pages/DocumentosTodos'
 import DocumentosPage from './acreditacion/pages/DocumentosPage'
 import DocumentosCreatePage from './acreditacion/pages/DocumentosCreatePage'
+import PendientesDocumentos from './acreditacion/pages/PendientesDocumentos'
 import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom'
 
 
@@ -39,6 +40,7 @@ function App() {
           <Route path='/acreditacion/documentos/:id' element={<DocumentosPage />} />
           <Route path='/acreditacion/documentos/todos' element={<DocumentosTodos />} />
           <Route path='/acreditacion/documentos/create/:id' element={<DocumentosCreatePage />} />
+          <Route path='/acreditacion/mispendientes' element={<PendientesDocumentos />} />
 
           
         </Routes>

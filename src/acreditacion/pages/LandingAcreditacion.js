@@ -8,7 +8,7 @@ const LandingAcreditacion = () => {
         <div>
             <DashboardAcreditacion>
                 <p>
-                    lalalalalalalala
+                    Este es el módulo de aseguramiento interno de la calidad del ISTVIF.
                 </p>
            
             </DashboardAcreditacion>

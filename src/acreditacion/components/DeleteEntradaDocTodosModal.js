@@ -26,13 +26,13 @@ const DeleteEntradaDocTodosModal = ({id}) => {
 
     return (
         <div className="relative">
-            <button className="bg-blue-100 hover:bg-blue-700  text-xs font-bold py-1 px-1 rounded" onClick={openModal}>
+            <button className="bg-blue-00  hover:bg-blue-700  text-xs font-bold py-1 px-1 rounded" onClick={openModal}>
             <FaRegTrashAlt />
             </button>
 
             {isOpen && (
            
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-60">
                     <div className="bg-white p-6 rounded-lg">
                     
                             <form>

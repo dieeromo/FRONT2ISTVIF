@@ -1,5 +1,5 @@
 import DashboardAcreditacion from './components/DashboardAcreditacion'
-import { useGetDocumentosQuery } from '../services/criteriosApi'
+import { useGetDocumentosDocenteQuery} from '../services/criteriosApi'
 
 
 import DocTodosModal from '../components/DocTodosModal'
@@ -9,15 +9,17 @@ import DeleteEntradaDocTodosModal from '../components/DeleteEntradaDocTodosModal
 import { RUTA_SERVIDOR } from '../../ApiRoutes';
 
 import { IoReaderOutline } from "react-icons/io5"
-import { MdUpload } from "react-icons/md"
+
+
 import CargaDocumentoModal from '../components/CargaDocumentoModal'
 
 
-export default function DocumentosTodos() {
+export default function PendientesDocumentos() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
 
-    const { data, isSuccess, isLoading, isError, error } = useGetDocumentosQuery(user.access)
+
+    const { data, isSuccess, isLoading, isError, error } = useGetDocumentosDocenteQuery([user.access,userDatos.id])
     console.log(data)
 
 
@@ -176,7 +178,7 @@ export default function DocumentosTodos() {
                         <div >
                             {
                                 value ?
-                                    <a href={RUTA_SERVIDOR + `${value}`} target="_blank"> < IoReaderOutline  className='h-5 w-5' /> </a>
+                                    <a href={RUTA_SERVIDOR + `${value}`} target="_blank"> < IoReaderOutline className='h-4 w-5' /> </a>
                                     :
                                     <div>
 
@@ -244,10 +246,10 @@ export default function DocumentosTodos() {
 
     return (
         <DashboardAcreditacion>
-            TODOS LOS DOCUMENTOS
+           
 
             <MUIDataTable
-                title={'all'}
+                title={`Documentos asignados a ${userDatos.first_name} ${userDatos.last_name}`}
                 data={data}
                 columns={columns}
                 options={options}

@@ -121,7 +121,7 @@ export const criteriosApi = createApi({
 
         //////
 
-        getDocumentos: builder.query({
+        getDocumentos: builder.query({    // PARA PEDIR TODOS LOS DOCUMENTOS
             query: (access) => {
                 return {
                     url: `/documentos_acreditacion/list/all/`,
@@ -129,11 +129,25 @@ export const criteriosApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
+            providesTags:['getDocumetos_todo']
       
         }),
   
         /////
-        deleteEntradaDocumento:builder.mutation({
+        getDocumentosDocente: builder.query({    // GET DOCUMENTOS POR DOCENTE
+            query: (parametros) => {
+                return {
+                    url: `/documentos_acreditacion/list/filter/docente/${parametros[1]}/`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+      
+        }),
+  
+        /////
+        ///////
+        deleteEntradaDocumento:builder.mutation({  // 
             query:(parametros) => {
                 return {
                     url : '/documentos_acreditacion/delete/entrada/',
@@ -142,6 +156,7 @@ export const criteriosApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
+            invalidatesTags:['getDocumetos_evidencia','getDocumetos_todo']
            
         }),
 
@@ -158,6 +173,7 @@ export const criteriosApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
+            invalidatesTags:['getDocumetos_evidencia','getDocumetos_todo']
         
         }),
         //////
@@ -187,6 +203,7 @@ export const criteriosApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
+            invalidatesTags:['getDocumetos_evidencia','getDocumetos_todo']
         
         }),
         //////
@@ -237,6 +254,7 @@ export const {
     usePostDocumentoEntradaMutation,
     useGetDocumentosQuery,              // pedir todos los documentos
     useGetDocumentos_evidenciaQuery,
+    useGetDocumentosDocenteQuery,
     useCargaDocumentoMutation,
     useDeleteArchivoMutation,
 

@@ -15,27 +15,33 @@ const DocTodosModal = ({ id, nombre_doc_default }) => {
 
     const [updDocumento, { data, isSuccess }] = usePutNombreDocumentoMutation()
 
-    const closeModal = (e) => {
+    const guardarCambios= (e) => {
         updDocumento([user.access,id, documento])
+        closeModal()
+        
+    };
+
+    const closeModal = (e) => {
+        //updDocumento([user.access,id, documento])
         setIsOpen(false)
     };
 
     return (
         <div className="relative">
-            <button className="bg-blue-100 hover:bg-blue-700  text-xs font-bold py-1 px-1 rounded" onClick={openModal}>
+            <button className="bg-blue-00 hover:bg-blue-700  text-xs font-bold py-1 px-1 rounded" onClick={openModal}>
             <CiEdit />
             </button>
 
             {isOpen && (
            
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-60">
                     <div className="bg-white p-6 rounded-lg">
                     
                             <form>
                             <input type="text" rows={2} name="criterio" defaultValue={nombre_doc_default} onChange={(e) => setDocumento(e.target.value)} className='rounded bg-gray-100 pr-2 mr-3 ' />
                             
                    
-                            <button className=" bg-gray-200 p-2 rounded mr-2 hover:text-blue-600" onClick={closeModal}>
+                            <button className=" bg-gray-200 p-2 rounded mr-2 hover:text-blue-600" onClick={guardarCambios}>
                                 Guardar
                             </button>
                             <button onClick={closeModal} className=" bg-gray-200 p-2 rounded mr-2 hover:text-blue-600">

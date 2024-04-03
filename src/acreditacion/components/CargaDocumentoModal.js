@@ -8,15 +8,15 @@ import { RUTA_SERVIDOR } from '../../ApiRoutes';
 import { useNavigate } from 'react-router-dom';
 
 
-const CargaDocumentoModal= ({id, indicador_id}) => {
+const CargaDocumentoModal = ({ id, indicador_id }) => {
     const navigate = useNavigate()
-   
+
     const user = JSON.parse(localStorage.getItem('user') || "{}")  // para [asar las credenciales]
 
 
     const [isOpen, setIsOpen] = useState(false);
 
-  
+
 
     const openModal = () => { setIsOpen(true) };
 
@@ -26,7 +26,6 @@ const CargaDocumentoModal= ({id, indicador_id}) => {
         const formData = new FormData()
         formData.append('archivo', file)
         formData.append('id', id)
-
         try {
             const config = {
                 headers: {
@@ -35,10 +34,8 @@ const CargaDocumentoModal= ({id, indicador_id}) => {
                 }
             }
             const { data } = await axios.put(RUTA_SERVIDOR + `/documentos_acreditacion/subir_archivo/`, formData, config);
-          
-            
-            if(data){
-                closeModal()
+            if (data) {
+                closeModal2()
             }
 
         } catch (error) {
@@ -46,27 +43,29 @@ const CargaDocumentoModal= ({id, indicador_id}) => {
         }
     };
 
-    const closeModal = (e) => {
-        
+    const closeModal2 = (e) => {
         setIsOpen(false)
         navigate(`/acreditacion/evidencia/${indicador_id}`)
+    };
+    const closeModal = (e) => {
+        setIsOpen(false)
     };
 
     return (
         <div className="relative">
-            <button className="bg-blue-100 hover:bg-blue-700  text-xs font-bold py-1 px-1 rounded" onClick={openModal}>
-            <MdFileUpload  />
+            <button className="bg-blue-00 hover:bg-blue-700  text-xs font-bold py-1 px-1 rounded" onClick={openModal}>
+                <MdFileUpload />
             </button>
 
             {isOpen && (
-           
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg">
-                    
-                            <form>
-                           <p>Seleccione el documento</p>
 
-                           <input type="file"  onChange={handleFileSave} />
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-60">
+                    <div className="bg-white p-6 rounded-lg">
+
+                        <form className="">
+                            <p>Seleccione el documento</p>
+
+                            <input type="file" onChange={handleFileSave} className='rounded bg-gray-100 pr-2 mr-3 ' />
                             <button onClick={closeModal} className=" bg-gray-200 p-2 rounded mr-2 hover:text-blue-600">
                                 X
                             </button>

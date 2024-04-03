@@ -32,12 +32,12 @@ const EvidenciaPage = () => {
                             {
                                 data.map((item, index) => (
                                     <tr key={index} className='border px-4 py-2 text-center'>
-                                        <td>  {item.criterio} </td>
-                                        <td>{item.subCriterio}</td>
-                                        <td>{item.indicador}  </td>
-                                        <td>{item.numeracion}  </td>
-                                        <td>{item.evidencia}  </td>
-                                        <td> <a href={`/acreditacion/documentos/${item.id}`}><GrLinkNext /></a></td>
+                                        <td className='text-sm'>  {item.criterio} </td>
+                                        <td className='text-sm'>{item.subCriterio}</td>
+                                        <td className='text-sm'>{item.indicador}  </td>
+                                        <td className='text-sm'>{item.numeracion}  </td>
+                                        <td className='text-sm'>{item.evidencia}  </td>
+                                        <td className='text-sm'> <a href={`/acreditacion/documentos/${item.id}`}><GrLinkNext /></a></td>
                                     </tr>
                                 ))
                             }
