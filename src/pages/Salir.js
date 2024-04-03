@@ -18,7 +18,22 @@ export default function Salir() {
     return (
         <>
             <Navbar_dashboard />
-            <button onClick={logoutHandler}> Salir</button>
+            <div className="fixed inset-0 flex items-center justify-center ">
+                <div>
+                    <p>Esta seguro de salir de la App?</p>
+
+                </div>
+                <div>
+                    <button onClick={logoutHandler} className="bg-gray-200 p-2 rounded-sm m-3"> Salir</button>
+                    <button className="bg-gray-200 p-2 rounded-sm m-3"> <a href="/dashboard"> Cancelar</a></button>
+
+                </div>
+
+
+
+
+            </div>
+
 
         </>
     )

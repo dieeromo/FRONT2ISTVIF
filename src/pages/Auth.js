@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {useLoginUserMutation} from '../services/authApi'
+import { useLoginUserMutation } from '../services/authApi'
 
-import  {useDispatch}  from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setUser } from '../features/authSlice'
 import { setUserDatos } from '../features/authDatosSlice'
 
@@ -21,27 +21,34 @@ export const Auth = () => {
 
     const dispatch = useDispatch()
 
-    const [loginUser,{data:loginData,isSuccess:isLoginSuccess,isError:isLoginError,error:loginError}]=useLoginUserMutation()
+    const [loginUser, { data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError }] = useLoginUserMutation()
 
     const submitHandler = (e) => {
         e.preventDefault();
-        loginUser({email,password})
+        loginUser({ email, password })
     };
 
 
-    useEffect(()=>{
-        if(isLoginSuccess){
-            dispatch(setUser({refresh:loginData.refresh, access:loginData.access, time_token:Date.now()}))
+    useEffect(() => {
+        if (isLoginSuccess) {
+            dispatch(setUser({ refresh: loginData.refresh, access: loginData.access, time_token: Date.now() }))
             navigate('/dashboard')
         }
     })
 
     return (
-        <div>
-            <div>
+        <div className="">
+            <div className=" flex  justify-center mt-20 ">
+             
+                    <img src="https://institutovicentefierro.edu.ec/wp-content/uploads/2024/01/cropped-Sin-titulo-1.png"
+                        alt="Logo"
+                        className=" h-14 w-34 mt-30"/>
+            </div>
+            <div className='fixed inset-0 flex items-center justify-center  bg-opacity-60'>
+
                 <form onSubmit={submitHandler}>
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="email" className="block text-xs font-medium text-gray-700">
                             Correo electrónico
                         </label>
                         <input
@@ -52,13 +59,14 @@ export const Auth = () => {
                             type="email"
                             autoComplete="email"
                             placeholder="Ingresar correo"
+                            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
                             required
 
                         />
                     </div>
 
                     <div className="mb-4">
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="password" className="block text-xs font-medium text-gray-700">
                             Contraseña
                         </label>
                         <input
@@ -93,8 +101,8 @@ export const Auth = () => {
                 </form>
 
             </div>
-        </div> 
-  )
+        </div>
+    )
 }
 
 
