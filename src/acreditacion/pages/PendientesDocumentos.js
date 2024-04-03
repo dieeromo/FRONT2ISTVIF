@@ -246,15 +246,22 @@ export default function PendientesDocumentos() {
 
     return (
         <DashboardAcreditacion>
-           
+            {isLoading ?
+            <div><p>Cargando...</p></div>
+            :
 
             <MUIDataTable
-                title={`Documentos asignados a ${userDatos.first_name} ${userDatos.last_name}`}
-                data={data}
-                columns={columns}
-                options={options}
+            title={`Documentos asignados a ${userDatos.first_name} ${userDatos.last_name}`}
+            data={data}
+            columns={columns}
+            options={options}
 
-            />
+        />
+
+            }
+           
+
+
 
         </DashboardAcreditacion>
 

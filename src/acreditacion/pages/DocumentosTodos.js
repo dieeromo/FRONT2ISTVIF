@@ -34,7 +34,7 @@ export default function DocumentosTodos() {
                         </div>
                     )
                 },
-                
+
             }
         },
         {
@@ -61,7 +61,7 @@ export default function DocumentosTodos() {
                     <p className='text-blue-600 text-xs'>{tableMeta.rowData[2]}</p>
                 )
             },
-            filter:false,
+            filter: false,
 
         },
         {
@@ -111,11 +111,11 @@ export default function DocumentosTodos() {
                                 :
                                 <p className='text-red-700 text-[9px]'>{value}</p>
                             }
-                            
+
                         </div>
                     )
                 },
-                filter:false,
+                filter: false,
             }
         },
         {
@@ -130,7 +130,7 @@ export default function DocumentosTodos() {
                         </div>
                     )
                 },
-                filter:false,
+                filter: false,
             }
         },
         {
@@ -162,7 +162,7 @@ export default function DocumentosTodos() {
                         </div>
                     )
                 },
-                filter:false,
+                filter: false,
             }
         },
         {
@@ -176,7 +176,7 @@ export default function DocumentosTodos() {
                         <div >
                             {
                                 value ?
-                                    <a href={RUTA_SERVIDOR + `${value}`} target="_blank"> < IoReaderOutline  className='h-5 w-5' /> </a>
+                                    <a href={RUTA_SERVIDOR + `${value}`} target="_blank"> < IoReaderOutline className='h-5 w-5' /> </a>
                                     :
                                     <div>
 
@@ -185,7 +185,7 @@ export default function DocumentosTodos() {
                         </div>
                     )
                 },
-                filter:false,
+                filter: false,
             }
         },
         {
@@ -205,27 +205,27 @@ export default function DocumentosTodos() {
         {
             name: 'id',
             label: 'id doc',
-            options:{
-                filter:false,
-                display:false
-                
+            options: {
+                filter: false,
+                display: false
+
             }
         },
         {
             name: 'responsable_id',
             label: 'id responsable',
-            options:{
-                filter:false,
-                display:false
-                
+            options: {
+                filter: false,
+                display: false
+
             }
         },
         {
             name: 'evidencia_id',
             label: 'id evidencia',
-            options:{
-                filter:false,
-                display:false
+            options: {
+                filter: false,
+                display: false
             }
         },
 
@@ -245,14 +245,19 @@ export default function DocumentosTodos() {
     return (
         <DashboardAcreditacion>
             TODOS LOS DOCUMENTOS
+            {isLoading ?
+                <div> <p className=''>Cargando...</p></div>
+                :
 
-            <MUIDataTable
-                title={'all'}
-                data={data}
-                columns={columns}
-                options={options}
 
-            />
+                <MUIDataTable
+                    title={'all'}
+                    data={data}
+                    columns={columns}
+                    options={options}
+
+                />
+            }
 
         </DashboardAcreditacion>
 

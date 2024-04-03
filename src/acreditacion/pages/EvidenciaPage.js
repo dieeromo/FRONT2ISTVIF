@@ -36,7 +36,7 @@ const EvidenciaPage = () => {
                                         <td className='text-sm'>{item.subCriterio}</td>
                                         <td className='text-sm'>{item.indicador}  </td>
                                         <td className='text-sm'>{item.numeracion}  </td>
-                                        <td className='text-sm'>{item.evidencia}  </td>
+                                        <td className='text-xs'>{item.evidencia}  </td>
                                         <td className='text-sm'> <a href={`/acreditacion/documentos/${item.id}`}><GrLinkNext /></a></td>
                                     </tr>
                                 ))
