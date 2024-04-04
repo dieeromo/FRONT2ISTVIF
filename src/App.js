@@ -1,9 +1,11 @@
-
+import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom'
 import './App.css';
 import Dashboard from './pages/Dashboard';
 import Auth from './pages/Auth';
 import Salir from './pages/Salir'
 import Landing from './pages/Landing'
+
+
 
 //ACREDITACION
 import CriteriosPage from './acreditacion/pages/CriteriosPage';
@@ -15,7 +17,10 @@ import DocumentosTodos from './acreditacion/pages/DocumentosTodos'
 import DocumentosPage from './acreditacion/pages/DocumentosPage'
 import DocumentosCreatePage from './acreditacion/pages/DocumentosCreatePage'
 import PendientesDocumentos from './acreditacion/pages/PendientesDocumentos'
-import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom'
+///BIBLIOTECA
+import LandingBiblioteca from './Biblioteca/pages/LandingBiblioteca'
+import RegistroObras from './Biblioteca/pages/RegistroObras'
+
 
 
 
@@ -41,6 +46,14 @@ function App() {
           <Route path='/acreditacion/documentos/todos' element={<DocumentosTodos />} />
           <Route path='/acreditacion/documentos/create/:id' element={<DocumentosCreatePage />} />
           <Route path='/acreditacion/mispendientes' element={<PendientesDocumentos />} />
+
+
+          {/* BIBLIOTECA */}
+          <Route path='/biblioteca/landing' element={<LandingBiblioteca />} />
+          <Route path='/biblioteca/registro_obras' element={<RegistroObras />} />
+
+
+
 
           
         </Routes>

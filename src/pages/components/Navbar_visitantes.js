@@ -16,6 +16,7 @@ export default function Navbar_dashboard(){
     const logoutHandler = ()=>{
         dispatch(logout())
         navigate('/')
+        
     }
 
     return(
@@ -33,9 +34,9 @@ export default function Navbar_dashboard(){
             {/* Links de la navegación */}
             <div className="hidden md:block">
               <ul className="flex space-x-4">
-                <li><a href="/acreditacion/landing" className=" hover:text-gray-300">Acreditación</a></li>
-                <li><a href="/biblioteca/registro_obras" className=" hover:text-gray-300">Gestión Biblioteca</a></li>
-                <li><a href="#" className="hover:text-gray-300">Gestión Inventario</a></li>
+                
+                <li><a href="#" className=" hover:text-gray-300">Biblioteca</a></li>
+               
                 <li><a href="https://institutovicentefierro.edu.ec/" target="_blank" className=" hover:text-gray-300">Acerca de</a></li>
                 {userDatos.first_name ? 
                 < >

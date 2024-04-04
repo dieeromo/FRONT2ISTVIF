@@ -6,6 +6,7 @@ import { useLoginUserMutation } from '../services/authApi'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/authSlice'
 import { setUserDatos } from '../features/authDatosSlice'
+import { Link } from 'react-router-dom'
 
 
 const initialState = {
@@ -22,6 +23,7 @@ export const Auth = () => {
     const dispatch = useDispatch()
 
     const [loginUser, { data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError }] = useLoginUserMutation()
+    console.log(isLoginError)
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -38,13 +40,13 @@ export const Auth = () => {
 
     return (
         <div className="">
-            <div className=" flex  justify-center mt-20 ">
+            <div className=" flex  justify-center mt-10 mb-10">
              
                     <img src="https://institutovicentefierro.edu.ec/wp-content/uploads/2024/01/cropped-Sin-titulo-1.png"
                         alt="Logo"
                         className=" h-14 w-34 mt-30"/>
             </div>
-            <div className='fixed inset-0 flex items-center justify-center  bg-opacity-60'>
+            <div className='inset-0 flex items-center justify-center  bg-opacity-60'>
 
                 <form onSubmit={submitHandler}>
                     <div className="mb-4">
@@ -87,7 +89,7 @@ export const Auth = () => {
                     <div>
                         <button
                             type="submit"
-                            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+                            className="w-full bg-blue-500 text-white text-sm p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
                         >
                             Iniciar Sesión
                         </button>
@@ -96,11 +98,23 @@ export const Auth = () => {
                             {/* <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                     Registrarse
                   </Link> */}
+
+                        </p>
+                        <p className="text-sm font-light text-gray-500 dark:text-gray-400 mt-2">
+                           
+                           <Link to="/landing" className="font-medium  hover:underline dark:text-primary-500">
+                    Acceder como visitante
+                  </Link> 
+                  
                         </p>
                     </div>
                 </form>
 
+
             </div>
+            {isLoginError ? <p className='text-red-500  flex  justify-center'>Usuario o contraseña incorrectos</p>
+                :
+                <></>}
         </div>
     )
 }
