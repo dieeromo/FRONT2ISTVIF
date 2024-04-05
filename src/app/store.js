@@ -5,6 +5,8 @@ import authReducer from '../features/authSlice'
 import { authDatosApi } from '../services/authDatosApi'
 import authDatosReducer from '../features/authDatosSlice'
 
+import {bibliotecaApi} from '../biblioteca/services/bibliotecaApi'
+
 import {criteriosApi} from '../acreditacion/services/criteriosApi'
 
 import {usuariosApi} from '../usuarios/services/usuariosApi'
@@ -20,8 +22,9 @@ export const store = configureStore({
 
         auth: authReducer,
         [authDatosApi.reducerPath]:authDatosApi.reducer,
+
+       [bibliotecaApi.reducerPath]: bibliotecaApi.reducer,
         
-       // criterios : criteriosReducer, para acreditacion
         [criteriosApi.reducerPath]: criteriosApi.reducer,
       
         [usuariosApi.reducerPath]:usuariosApi.reducer,
@@ -32,6 +35,7 @@ export const store = configureStore({
     middleware:(getDefaultMiddleware) => getDefaultMiddleware().concat(
         authApi.middleware, 
         authDatosApi.middleware,
+        bibliotecaApi.middleware,
         criteriosApi.middleware,
         usuariosApi.middleware,
         generalApi.middleware,

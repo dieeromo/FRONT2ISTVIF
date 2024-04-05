@@ -18,8 +18,9 @@ import DocumentosPage from './acreditacion/pages/DocumentosPage'
 import DocumentosCreatePage from './acreditacion/pages/DocumentosCreatePage'
 import PendientesDocumentos from './acreditacion/pages/PendientesDocumentos'
 ///BIBLIOTECA
-import LandingBiblioteca from './Biblioteca/pages/LandingBiblioteca'
-import RegistroObras from './Biblioteca/pages/RegistroObras'
+import LandingBiblioteca from './biblioteca/pages/LandingBiblioteca'
+import RegistroObras from './biblioteca/pages/RegistroObras'
+import AutoresObra from './biblioteca/pages/AutoresObra'
 
 
 
@@ -51,6 +52,7 @@ function App() {
           {/* BIBLIOTECA */}
           <Route path='/biblioteca/landing' element={<LandingBiblioteca />} />
           <Route path='/biblioteca/registro_obras' element={<RegistroObras />} />
+          <Route path='/biblioteca/Autores' element={<AutoresObra />} />
 
 
 

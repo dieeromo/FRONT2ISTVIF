@@ -11,7 +11,7 @@ export default function FormCriterios() {
         const fecha_creacion = e.target.elements.fecha_creacion.value.trim()
         putCriterio([criterio,user.access, fecha_creacion])
 
-        console.log(criterio,fecha_creacion)
+       
     }
 
 
