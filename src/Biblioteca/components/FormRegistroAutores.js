@@ -22,6 +22,9 @@ export default function FormRegistroAutores() {
         const estado = 1
         const observacion = e.target.elements.observacion.value.trim()
         createAutor([user.access, nombres,estado,  observacion, userDatos.id ])
+        
+        e.target.elements.nombres.value = null
+        e.target.elements.observacion.value = null
   
     }
 

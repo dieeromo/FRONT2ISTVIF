@@ -2,26 +2,73 @@
 import Select from 'react-select'
 import { useGetCategoriaObraQuery, useGetTipoObraQuery, useGetMaterialObraQuery, useGetEstadoObraQuery, } from '../services/bibliotecaApi'
 import { useState } from 'react'
-import {useCreateObraMutation} from '../services/bibliotecaApi'
+import { useCreateObraMutation, useCreateObraAutorMutation } from '../services/bibliotecaApi'
+import { useNavigate } from 'react-router-dom'
+export default function FormRegistroObras({ autores }) {
+    const navigate = useNavigate()
 
-export default function FormRegistroObras() {
+
+
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
-
-    const [createObra,{data:dataCreate, isSuccess:isSuccessCreate} ] = useCreateObraMutation()
+    const [createObraAutor, { data: dataObraAction, isSuccess: isSuccessObraAction }] = useCreateObraAutorMutation()
+    const [createObra, { data: dataCreate, isSuccess: isSuccessCreate, isLoading:isLoadingAction }] = useCreateObraMutation()
 
     const { data: dataCategoria, isLoading: isLoadingCategoria } = useGetCategoriaObraQuery(user.access)
     const { data: dataTipoObra, isLoading: isLoadingTipoOnra } = useGetTipoObraQuery(user.access)
     const { data: dataMaterialObra, isLoading: isLoadingMaterialOnra } = useGetMaterialObraQuery(user.access)
     const { data: dataEstadoObra, isLoading: isLoadingEstadoOnra } = useGetEstadoObraQuery(user.access)
-   
+
     const [categoria, SetCategoria] = useState('')
     const [tipoObra, SetTipoObra] = useState('')
     const [tipoMaterial, SetTipoMaterial] = useState('')
     const [ubicacion, SetUbicacion] = useState('')
-   
 
-    const handleSubmit = (e) => {
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     const titulo = e.target.elements.titulo.value.trim()
+    //     const autor = e.target.elements.autor.value.trim()
+    //     const anio = e.target.elements.anio.value.trim()
+    //     const editorial = e.target.elements.editorial.value.trim()
+    //     const tomo = e.target.elements.tomo.value.trim()
+    //     const codigo = e.target.elements.codigo.value.trim()
+    //     const observacion = e.target.elements.observacion.value.trim()
+    //     createObra([
+    //         user.access,
+    //         codigo,
+    //         titulo,
+    //         editorial,
+    //         autor,
+    //         anio,
+    //         tomo,
+    //         ubicacion,
+    //         categoria,
+    //         tipoObra,
+    //         tipoMaterial,
+    //         dataEstadoObra[0].id,
+    //         observacion,
+    //         userDatos.id,
+    //     ])
+
+    //     setTimeout(function({dataCreate}) {
+    //         console.log('Han pasado 3 segundos');
+    //         console.log('data dentro',dataCreate)
+    //         if(isSuccessCreate){
+    //             console.log('dentro',autores)
+    //             const tempo = autores.map((item)=>(
+    //                 createObraAutor([user.access, item[0], dataCreate.id,   userDatos.id,observacion])
+    //             )) 
+    //         }
+    //       }, 3000); // 3000 milisegundos = 3 segundos
+
+
+    // }
+
+
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const titulo = e.target.elements.titulo.value.trim()
         const autor = e.target.elements.autor.value.trim()
@@ -30,28 +77,53 @@ export default function FormRegistroObras() {
         const tomo = e.target.elements.tomo.value.trim()
         const codigo = e.target.elements.codigo.value.trim()
         const observacion = e.target.elements.observacion.value.trim()
-        createObra([
-            user.access,
-            codigo,
-            titulo,
-            editorial,
-            autor,
-            anio,
-            tomo,
-            ubicacion,
-            categoria,
-            tipoObra,
-            tipoMaterial,
-            dataEstadoObra[0].id,
-            observacion,
-            userDatos.id,
-           
-          
-        ])
-       
-    
-    
+        try{
+            const obraGuardada = await createObra([
+                user.access,
+                codigo,
+                titulo,
+                editorial,
+                autor,
+                anio,
+                tomo,
+                ubicacion,
+                categoria,
+                tipoObra,
+                tipoMaterial,
+                dataEstadoObra[0].id,
+                observacion,
+                userDatos.id,
+            ]).unwrap()
+
+            //await Promise.all(
+                autores.map(async (autoresID)=>{
+                    console.log('autores',autoresID[0])
+                    await createObraAutor([user.access, parseInt(autoresID[0]), obraGuardada.id,   userDatos.id, observacion])
+                    
+                })
+               
+           // )
+            console.log('Obra guardada correctamente con id:', obraGuardada);
+            navigate('/biblioteca/lista/obras_autores')
+
+      
+        } catch(error){
+            console.error('Error al guardar la obra:', error);
+
+        }
+   
+
+
     }
+  
+
+
+
+
+
+
+
+
 
 
     return (
@@ -144,7 +216,7 @@ export default function FormRegistroObras() {
 
 
                     <h2 className="text-xl font-bold leading-7 text-gray-900 mt-10 border-t-2">Datos de registro</h2>
-                  
+
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-3">
                             <label htmlFor="codigo" className="block text-sm font-medium leading-6 text-gray-900 ">
@@ -167,8 +239,8 @@ export default function FormRegistroObras() {
                             </label>
                             <div className="mt-2">
                                 <select
-                                onChange={(e)=>(SetUbicacion(e.target.value))}
-                                
+                                    onChange={(e) => (SetUbicacion(e.target.value))}
+
                                     id="ubicacion"
                                     name="ubicacion"
                                     autoComplete="country-name"
@@ -200,10 +272,10 @@ export default function FormRegistroObras() {
                             <div className="mt-2">
                                 {isLoadingCategoria ? <></> :
                                     <select
-                                    onChange={(e)=>(SetCategoria(e.target.value))}
+                                        onChange={(e) => (SetCategoria(e.target.value))}
                                         id="categoria"
                                         name="categoria"
-                                        
+
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                     >
                                         <option>Selecione una categoria</option>
@@ -223,12 +295,12 @@ export default function FormRegistroObras() {
                             <div className="mt-2">
                                 {isLoadingTipoOnra ? <></> :
                                     <select
-                                        onChange={(e)=>(SetTipoObra(e.target.value))}
+                                        onChange={(e) => (SetTipoObra(e.target.value))}
                                         id="tipoObra"
                                         name="tipoObra"
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                     >
-                                         <option>Selecione el tipo de obra</option>
+                                        <option>Selecione el tipo de obra</option>
                                         {dataTipoObra.map((item) =>
                                             <option value={item.id} key={item.id}> {item.label}</option>
                                         )}
@@ -247,12 +319,12 @@ export default function FormRegistroObras() {
                             <div className="mt-2">
                                 {isLoadingMaterialOnra ? <></> :
                                     <select
-                                        onChange={(e)=>(SetTipoMaterial(e.target.value))}
+                                        onChange={(e) => (SetTipoMaterial(e.target.value))}
                                         id="tipoMaterial"
                                         name="tipoMaterial"
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                     >
-                                         <option>Selecione el tipo de material</option>
+                                        <option>Selecione el tipo de material</option>
                                         {dataMaterialObra.map((item) =>
                                             <option key={item.id} value={item.id}> {item.label}</option>
                                         )}
@@ -291,7 +363,7 @@ export default function FormRegistroObras() {
                         </button>
                         <button
                             type="submit"
-                            
+
                             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                             Save

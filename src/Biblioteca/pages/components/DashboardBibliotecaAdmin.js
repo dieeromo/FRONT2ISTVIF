@@ -14,8 +14,8 @@ const DashboardBibliotecaAdmin = ({children}) => {
                         <h1 className=" font-bold"><a href='/acreditacion/landing'>Biblioteca </a></h1>
                     </div>
                     <ul>
-                        <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="" >Registro obras</a></li>
-                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="" >Todas las obras</a></li>
+                        <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="/biblioteca/seleccion/autores" >Registro obras</a></li>
+                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/biblioteca/lista/obras_autores" >Todas las obras</a></li>
                         <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/biblioteca/Autores" >Autores</a></li>
                         <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="" >Prestamos</a></li>
                         

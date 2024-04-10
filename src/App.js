@@ -21,24 +21,32 @@ import PendientesDocumentos from './acreditacion/pages/PendientesDocumentos'
 import LandingBiblioteca from './biblioteca/pages/LandingBiblioteca'
 import RegistroObras from './biblioteca/pages/RegistroObras'
 import AutoresObra from './biblioteca/pages/AutoresObra'
+import SeleccionAutores from './biblioteca/pages/SeleccionAutores'
+import ListaObrasAutores from './biblioteca/pages/ListaObrasAutores'
+import FiltroObras from './biblioteca/pages/FiltroObras'
+import PresentacionObrasTitulo from './biblioteca/pages/PresentacionObrasTitulo'
+//  GENERAL
+import LandingServiciosAdmin from './general/pages/LandingServiciosAdmin'
+import BolsaEmpleoPublic from './general/pages/BolsaEmpleoPublic';
+import BolsaEmepleoAdmin from './general/pages/BolsaEmepleoAdmin';
 
 
 
 
 function App() {
-  
+
   return (
     <div >
       <BrowserRouter>
-      {/* < SessionExpirationNotifier/> */}
+        {/* < SessionExpirationNotifier/> */}
         <Routes>
           <Route path='/' element={<Navigate to='/auth' replace />} />
           <Route path='/auth' element={<Auth />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/landing' element={<Landing />} />
-          <Route path='/salir' element={<Salir/>} />
+          <Route path='/salir' element={<Salir />} />
 
-          <Route path='/acreditacion/landing' element={<LandingAcreditacion/>} />
+          <Route path='/acreditacion/landing' element={<LandingAcreditacion />} />
           <Route path='/acreditacion/criterios' element={<CriteriosPage />} />
           <Route path='/acreditacion/subcriterios/:id' element={<SubcriteriosPage />} />
           <Route path='/acreditacion/indicadores/:id' element={<IndicadoresPage />} />
@@ -52,12 +60,25 @@ function App() {
           {/* BIBLIOTECA */}
           <Route path='/biblioteca/landing' element={<LandingBiblioteca />} />
           <Route path='/biblioteca/registro_obras' element={<RegistroObras />} />
-          <Route path='/biblioteca/Autores' element={<AutoresObra />} />
+
+
+          {/* <Route path="/biblioteca/registro_obras/:autores" element={<RegistroObras animate={true} />} /> */}
+
+
+          <Route path='/biblioteca/autores' element={<AutoresObra />} />
+          <Route path='/biblioteca/seleccion/autores' element={<SeleccionAutores />} />
+          <Route path='/biblioteca/lista/obras_autores' element={<ListaObrasAutores />} />
+          <Route path='/biblioteca/filtro/obras' element={<FiltroObras />} />
+          <Route path='/biblioteca/presentacion/titulo/:id' element={< PresentacionObrasTitulo />} />
+
+          {/* GENERAL */}
+          <Route path='/general/admin/landing/servicios' element={< LandingServiciosAdmin />} />
+
+          <Route path='/general/public/bolsa' element={< BolsaEmpleoPublic />} />
+          <Route path='/general/admin/bolsa' element={< BolsaEmepleoAdmin />} />
 
 
 
-
-          
         </Routes>
       </BrowserRouter>
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 
 
-export default function Navbar_dashboard(){
+export default function Navbar_visitantes(){
 // traer el estado
   const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
 

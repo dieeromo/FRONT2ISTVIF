@@ -25,7 +25,7 @@ const Landing = () => {
                                 name={'Biblioteca'}
                                 imageSrc={'https://www.ute.edu.ec/wp-content/uploads/2023/12/biblioteca-rumi127.jpg'}
                                 imageAlt={'Biblioteca'}
-                                href_direccion={'/biblioteca/landing'}
+                                href_direccion={'/biblioteca/filtro/obras'}
                                 description={'Servicio de biblioteca del ISTVIF'}
                             />
 
@@ -40,7 +40,7 @@ const Landing = () => {
                                 name={'Bolsa de empleo'}
                                 imageSrc={'https://www.uexternado.edu.co/wp-content/uploads/2017/04/bolsaempleo.jpg'}
                                 imageAlt={'Bolsa de empleo'}
-                                href_direccion={'#'}
+                                href_direccion={'/general/public/bolsa'}
                                 description={'Accede a las oportunidades laborales'}
                             />
 

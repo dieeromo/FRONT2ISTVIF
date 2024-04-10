@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
-import Navbar_dashboard from '../../pages/components/Navbar_dashboard'
+
 import DashboardBibliotecaAdmin from './components/DashboardBibliotecaAdmin'
 
 import FormRegistroObras from '../components/FormRegistroObras'
-
+import { useLocation } from 'react-router-dom';
 
 
 
 const RegistroObras = () => {
-  
 
+    const location = useLocation();
+    const { data } = location.state;
+  
 
 
     return (
         <DashboardBibliotecaAdmin>
                         
-                <FormRegistroObras/>
+                <FormRegistroObras autores={data}/>
+
 
         </DashboardBibliotecaAdmin>
 

@@ -98,12 +98,14 @@ export const bibliotecaApi = createApi({
                         'estado': parametros[2],
                         'observacion': parametros[3],
                         'digitador': parametros[4],
-                        
+
                     },
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
+            invalidatesTags: ['getTodosAutores'],
         }),
+        /////
         getListAutores: builder.query({
             query: (access) => {
                 return {
@@ -112,9 +114,65 @@ export const bibliotecaApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
+            providesTags: ['getTodosAutores']
         }),
         ////////
-
+        createObraAutor: builder.mutation({
+            query: (parametros) => {
+                return {
+                    url: '/biblioteca/register/obraautor/',
+                    method: 'POST',
+                    body: {
+                        'autor_id': parametros[1],
+                        'obra_id': parametros[2],
+                        'digitador': parametros[3],
+                        'observacion': parametros[4],
+                    },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+        }),
+        /////
+        getListAutoresObras_todos: builder.query({
+            query: (access) => {
+                return {
+                    url: '/biblioteca/list/obras_autores/todos/',
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+        }),
+        /////
+        getListFilter_Titulos: builder.query({
+            query: (titulo) => {
+                return {
+                    url: `/biblioteca/filtro/titulo/${titulo}/`,
+                    method: 'GET',
+                    headers: { Authorization: `` },
+                }
+            },
+        }),
+        /////
+        getListFilter_Titulos_id: builder.query({
+            query: (id) => {
+                return {
+                    url: `/biblioteca/filtro/titulo/id/${id}/`,
+                    method: 'GET',
+                    headers: { Authorization: `` },
+                }
+            },
+        }),
+        /////
+        getListFilter_Autores_idObra: builder.query({
+            query: (id) => {
+                return {
+                    url: `/biblioteca/filtro/autor_por_obra/id/${id}/`,
+                    method: 'GET',
+                    headers: { Authorization: `` },
+                }
+            },
+        }),
+        /////
 
 
 
@@ -131,5 +189,13 @@ export const {
 
     useCreateAutorMutation,
     useGetListAutoresQuery,
+    useCreateObraAutorMutation,
+    useGetListAutoresObras_todosQuery,
+
+    useGetListFilter_TitulosQuery,
+    useGetListFilter_Titulos_idQuery,
+    useGetListFilter_Autores_idObraQuery,
+    
+
 
 } = bibliotecaApi
