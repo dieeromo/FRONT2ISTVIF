@@ -25,11 +25,19 @@ export default function Navbar_visitantes(){
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
-            <a href="/dashboard" className="flex items-center text-white font-bold text-xl">
-              <img src="https://institutovicentefierro.edu.ec/wp-content/uploads/2024/01/cropped-Sin-titulo-1.png" 
-              alt="Logo" 
-              className="w-30 h-10" />
-            </a>
+            {userDatos.id ?
+              <a href="/dashboard" className="flex items-center text-white font-bold text-xl">
+                <img src="https://institutovicentefierro.edu.ec/wp-content/uploads/2024/01/cropped-Sin-titulo-1.png"
+                  alt="Logo"
+                  className="w-30 h-10" />
+              </a>
+              :
+              <a href="/landing" className="flex items-center text-white font-bold text-xl">
+                <img src="https://institutovicentefierro.edu.ec/wp-content/uploads/2024/01/cropped-Sin-titulo-1.png"
+                  alt="Logo"
+                  className="w-30 h-10" />
+              </a>
+            }
           </div>
             {/* Links de la navegación */}
             <div className="hidden md:block">

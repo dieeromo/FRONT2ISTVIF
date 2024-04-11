@@ -7,7 +7,7 @@ const DashboardVisitante= ({children}) => {
     return (
         <div>
             <Navbar_dashboard />
-            <div className="flex h-screen bg-gray-100">
+            <div className="flex  bg-gray-100">
                 {/* Sidebar */}
                 <div className="bg-gray-800 text-white w-30 flex-shrink-0">
                     <div className="p-3">
@@ -25,7 +25,6 @@ const DashboardVisitante= ({children}) => {
                 {/* Main Content */}
                 <div className="flex-1">
                     <div className="p-4">
-                        
                         {children}
                     </div>
                 </div>

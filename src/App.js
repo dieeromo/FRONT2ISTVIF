@@ -40,7 +40,7 @@ function App() {
       <BrowserRouter>
         {/* < SessionExpirationNotifier/> */}
         <Routes>
-          <Route path='/' element={<Navigate to='/auth' replace />} />
+          <Route path='/' element={<Navigate to='/landing' replace />} />
           <Route path='/auth' element={<Auth />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/landing' element={<Landing />} />
