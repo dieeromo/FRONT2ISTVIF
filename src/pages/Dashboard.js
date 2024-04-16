@@ -35,7 +35,9 @@ const Dashboard = () => {
                 is_administrativo1 : data.is_administrativo1,
                 is_administrativo2: data.is_administrativo2,
                 is_administrativo3 : data.is_administrativo3,
-                id : data.id,
+                is_adminBolsa : data.is_adminBolsa,
+                is_adminBiblioteca :  data.is_adminBiblioteca,
+                
 
             }))
             setRender(true)

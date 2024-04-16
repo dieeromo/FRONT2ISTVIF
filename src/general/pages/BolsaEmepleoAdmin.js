@@ -7,7 +7,9 @@ import MUIDataTable from 'mui-datatables';
 export default function BolsaEmepleoAdmin() {
   const user = JSON.parse(localStorage.getItem('user') || "{}")
   const { data, isSuccess } = useGetBolsaEmpleo_allQuery(user.access)
-  console.log(data)
+  const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
+
+
   const columns = [
     {
       name: 'institutcion',
@@ -45,9 +47,15 @@ export default function BolsaEmepleoAdmin() {
 
   return (
     <DashboardServiciosAdmin>
-      <div>BolsaEmepleoAdmin</div>
-
+      <div>Administrador bolsa de empleo</div>
+      {userDatos.is_adminBolsa ?
       <FormBolsaEmpleo />
+      :
+      <p className='text-xs bg-red-100 w-1/4'>No estas autorizado para realizar registros</p>
+      
+      }
+
+      
       <MUIDataTable
         data={data}
         columns={columns}

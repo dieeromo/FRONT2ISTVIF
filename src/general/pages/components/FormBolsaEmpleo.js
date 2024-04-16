@@ -23,7 +23,7 @@ export default function FormBolsaEmpleo() {
     const url = e.target.elements.url.value.trim()
     const phone = e.target.elements.phone.value.trim()
     const email = e.target.elements.email.value.trim()
-    postBolsa([user.access, userDatos.id, institucion, descripcion, fecha_limite, url,phone, email])
+    postBolsa([user.access, userDatos.id, institucion, descripcion, fecha_limite, url, phone, email])
 
     e.target.elements.institucion.value = ''
     e.target.elements.fecha_limite.value = ''
@@ -94,46 +94,53 @@ export default function FormBolsaEmpleo() {
 
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <button
-                  className="text-xs bg-sky-700 hover:bg-sky-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="submit"
-                >
-                  Enviar
-                </button>
-              </div>
+           
+                <div className="flex items-center justify-between">
+                 
+                    <button
+                      className="text-xs bg-sky-700 hover:bg-sky-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                      type="submit"
+                    >
+                      Enviar
+                    </button>
+        
+
+
+                </div>
+             
+
             </div>
 
           </div>
           <div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-xs font-bold" htmlFor="descripcion">
-              Descripción
-            </label>
-            <textarea
-              className="text-xs shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="descripcion"
-              type="text"
-              name="descripcion"
-              placeholder="Descripción de la oferta"
-              rows={6}
-              value={descripcion}
-              onChange={handleChangeDescripcion}
-            />
-          </div>
-          <div className="mb-2 mx-4 ">
-                <label className="block text-gray-700 text-xs font-bold mb-2 " htmlFor="email">
-                  Email
-                </label>
-                <input
-                  className=" text-xs shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
+            <div className="mb-4">
+              <label className="block text-gray-700 text-xs font-bold" htmlFor="descripcion">
+                Descripción
+              </label>
+              <textarea
+                className="text-xs shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="descripcion"
+                type="text"
+                name="descripcion"
+                placeholder="Descripción de la oferta"
+                rows={6}
+                value={descripcion}
+                onChange={handleChangeDescripcion}
+              />
+            </div>
+            <div className="mb-2 mx-4 ">
+              <label className="block text-gray-700 text-xs font-bold mb-2 " htmlFor="email">
+                Email
+              </label>
+              <input
+                className=" text-xs shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email"
 
-                />
-              </div>
+              />
+            </div>
 
 
           </div>
