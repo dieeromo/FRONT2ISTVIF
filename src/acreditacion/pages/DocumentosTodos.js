@@ -115,7 +115,6 @@ export default function DocumentosTodos() {
                         </div>
                     )
                 },
-                filter: false,
             }
         },
         {
@@ -151,9 +150,9 @@ export default function DocumentosTodos() {
                                         id={tableMeta.rowData[10]}
                                     />
 
-                                    <DeleteEntradaDocTodosModal
+                                    {/* <DeleteEntradaDocTodosModal
                                         id={tableMeta.rowData[10]}
-                                    />
+                                    /> */}
                                 </div>
                                 :
                                 <></>
@@ -225,6 +224,13 @@ export default function DocumentosTodos() {
             label: 'id evidencia',
             options: {
                 filter: false,
+                display: false
+            }
+        },
+        {
+            name: 'digitador',
+            label: 'digitador',
+            options: {
                 display: false
             }
         },

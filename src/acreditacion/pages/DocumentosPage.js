@@ -14,8 +14,11 @@ const DocumentosPage = () => {
   const { id } = useParams()
   const user = JSON.parse(localStorage.getItem('user') || "{}")
   const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
+  
+
   const { data, isSuccess, isLoading, isError, error } = useGetDocumentos_evidenciaQuery([user.access, id])
-  console.log(data)
+  
+  
   const [deleteArchivo] = useDeleteArchivoMutation()
 
   return (
@@ -34,8 +37,15 @@ const DocumentosPage = () => {
 
         <div className='m-8'>
 
+          <>{data[0] ? 
+            <p className='text-sm'>{data[0].criterio} - {data[0].subCriterio} - {data[0].indicador}</p>
+           : 
+           <></>
+           }
+           </>
 
-          <p className='text-sm'>{data[0].criterio} - {data[0].subCriterio} - {data[0].indicador}</p>
+
+          
 
           <table className=" m-2 pt-10 shadow-md  " >
             <thead className='bg-gray-200  '>

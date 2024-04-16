@@ -6,9 +6,7 @@ export const bibliotecaApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: RUTA_SERVIDOR
     }),
-
     endpoints: (builder) => ({
-
 
         ////////
         getCategoriaObra: builder.query({
