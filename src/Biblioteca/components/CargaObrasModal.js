@@ -6,18 +6,13 @@ import { MdFileUpload } from "react-icons/md";
 import axios from 'axios'
 import { RUTA_SERVIDOR } from '../../ApiRoutes';
 import { useNavigate } from 'react-router-dom';
-
+import {useGetListAutoresObras_todosQuery} from '../services/bibliotecaApi'
 
 const CargaObrasModal = ({ id}) => {
     const navigate = useNavigate()
 
     const user = JSON.parse(localStorage.getItem('user') || "{}")  // para [asar las credenciales]
-
-
     const [isOpen, setIsOpen] = useState(false);
-
-
-
     const openModal = () => { setIsOpen(true) };
 
 
@@ -35,17 +30,18 @@ const CargaObrasModal = ({ id}) => {
             }
             const { data } = await axios.put(RUTA_SERVIDOR + `/biblioteca/carga/obras/`, formData, config);
             if (data) {
-                console.log('datos back',data)
+               
                 closeModal2()
             }
 
         } catch (error) {
-            console.log(error)
+            
         }
     };
 
     const closeModal2 = (e) => {
         setIsOpen(false)
+       
         navigate(`/biblioteca/lista/obras_autores`)
     };
     const closeModal = (e) => {

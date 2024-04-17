@@ -19,8 +19,10 @@ const AutoresObra = () => {
             <p className='text-xs bg-red-100 w-1/4'>No esta autorizado para realizar registros</p>
 
         }
+   
             
             <TableAutores/>
+            
         </DashboardBibliotecaAdmin>
     )
 }

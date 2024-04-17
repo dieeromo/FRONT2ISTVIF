@@ -1,9 +1,6 @@
 import Navbar_dashboard from '../../../pages/components/Navbar_dashboard'
 
 const DashboardAcreditacion = ({children}) => {
-
-
-
     return (
         <div>
             <Navbar_dashboard />

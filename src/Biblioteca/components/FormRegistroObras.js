@@ -4,6 +4,7 @@ import { useGetCategoriaObraQuery, useGetTipoObraQuery, useGetMaterialObraQuery,
 import { useState } from 'react'
 import { useCreateObraMutation, useCreateObraAutorMutation } from '../services/bibliotecaApi'
 import { useNavigate } from 'react-router-dom'
+
 export default function FormRegistroObras({ autores }) {
     const navigate = useNavigate()
 
@@ -12,7 +13,7 @@ export default function FormRegistroObras({ autores }) {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
     const [createObraAutor, { data: dataObraAction, isSuccess: isSuccessObraAction }] = useCreateObraAutorMutation()
-    const [createObra, { data: dataCreate, isSuccess: isSuccessCreate, isLoading:isLoadingAction }] = useCreateObraMutation()
+    const [createObra, { data: dataCreate, isSuccess: isSuccessCreate, isLoading: isLoadingAction }] = useCreateObraMutation()
 
     const { data: dataCategoria, isLoading: isLoadingCategoria } = useGetCategoriaObraQuery(user.access)
     const { data: dataTipoObra, isLoading: isLoadingTipoOnra } = useGetTipoObraQuery(user.access)
@@ -71,13 +72,14 @@ export default function FormRegistroObras({ autores }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const titulo = e.target.elements.titulo.value.trim()
-        const autor = e.target.elements.autor.value.trim()
+        //const autor = e.target.elements.autor.value.trim()
+        const autor = ''
         const anio = e.target.elements.anio.value.trim()
         const editorial = e.target.elements.editorial.value.trim()
         const tomo = e.target.elements.tomo.value.trim()
         const codigo = e.target.elements.codigo.value.trim()
         const observacion = e.target.elements.observacion.value.trim()
-        try{
+        try {
             const obraGuardada = await createObra([
                 user.access,
                 codigo,
@@ -96,26 +98,26 @@ export default function FormRegistroObras({ autores }) {
             ]).unwrap()
 
             //await Promise.all(
-                autores.map(async (autoresID)=>{
-                    console.log('autores',autoresID[0])
-                    await createObraAutor([user.access, parseInt(autoresID[0]), obraGuardada.id,   userDatos.id, observacion])
-                    
-                })
-               
-           // )
-            console.log('Obra guardada correctamente con id:', obraGuardada);
+            autores.map(async (autoresID) => {
+                //console.log('autores', autoresID[0])
+                await createObraAutor([user.access, parseInt(autoresID[0]), obraGuardada.id, userDatos.id, observacion])
+
+            })
+
+            // )
+           // console.log('Obra guardada correctamente con id:', obraGuardada);
             navigate('/biblioteca/lista/obras_autores')
 
-      
-        } catch(error){
+
+        } catch (error) {
             console.error('Error al guardar la obra:', error);
 
         }
-   
+
 
 
     }
-  
+
 
 
 
@@ -146,11 +148,12 @@ export default function FormRegistroObras({ autores }) {
                                 id="titulo"
                                 autoComplete="given-name"
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                required
                             />
                         </div>
                     </div>
 
-                    <div className="sm:col-span-4">
+                    {/* <div className="sm:col-span-4">
                         <label htmlFor="autor" className="block text-sm font-medium leading-6 text-gray-900">
                             Autor/es
                         </label>
@@ -163,7 +166,7 @@ export default function FormRegistroObras({ autores }) {
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
                         </div>
-                    </div>
+                    </div> */}
 
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -178,6 +181,7 @@ export default function FormRegistroObras({ autores }) {
                                     id="anio"
                                     autoComplete="given-name"
                                     className="block w-1/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    required
                                 />
                             </div>
                         </div>
@@ -193,6 +197,7 @@ export default function FormRegistroObras({ autores }) {
                                     id="editorial"
                                     autoComplete="family-name"
                                     className="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    required
                                 />
                             </div>
                         </div>
@@ -210,6 +215,7 @@ export default function FormRegistroObras({ autores }) {
                                 id="tomo"
                                 autoComplete="family-name"
                                 className="block w-1/8 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                required
                             />
                         </div>
                     </div>
@@ -229,6 +235,7 @@ export default function FormRegistroObras({ autores }) {
                                     id="codigo"
                                     autoComplete="given-name"
                                     className="block w-1/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    required
                                 />
                             </div>
                         </div>
@@ -312,7 +319,7 @@ export default function FormRegistroObras({ autores }) {
 
 
 
-                        <div className="mr-20">
+                        <div className="">
                             <label htmlFor="tipoMaterial" className="block text-sm font-medium leading-6 text-gray-900">
                                 Tipo de material
                             </label>
@@ -335,20 +342,28 @@ export default function FormRegistroObras({ autores }) {
 
                     </div>
 
-
-
-                    <div className="sm:col-span-4">
-                        <label htmlFor="observacion" className="block text-sm font-medium leading-6 text-gray-900">
-                            Observacion
-                        </label>
-                        <div className="mt-2 w-1/2">
-                            <input
-                                type="text"
-                                name="observacion"
-                                id="observacion"
-                                autoComplete="given-name"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
+                    <div className='grid grid-cols-2'>
+                        <div className="mt-2">
+                            <label htmlFor="observacion" className="block text-sm font-medium leading-6 text-gray-900">
+                                Observacion
+                            </label>
+                            <div className="">
+                                <input
+                                    type="text"
+                                    name="observacion"
+                                    id="observacion"
+                                    autoComplete="given-name"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div className="mt-8 ml-5">
+                            <button
+                                type="submit"
+                                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                Guardar
+                            </button>
                         </div>
                     </div>
 
@@ -357,18 +372,13 @@ export default function FormRegistroObras({ autores }) {
 
 
 
-                    <div className="mt-6 flex items-center justify-end gap-x-6">
-                        <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                            Cancel
-                        </button>
-                        <button
-                            type="submit"
 
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        >
-                            Save
-                        </button>
-                    </div>
+
+
+
+
+
+
                 </div>
             </div>
 

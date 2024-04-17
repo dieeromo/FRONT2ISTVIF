@@ -121,9 +121,7 @@ const ListaObrasAutores = () => {
 
     return (
         <DashboardBibliotecaAdmin>
-
-
-            LISTA DE OBRAS
+           {isLoading ? <> Cargando...</> : 
             <MUIDataTable
                 title={'Obras'}
                 data={data}
@@ -131,6 +129,7 @@ const ListaObrasAutores = () => {
                 options={options}
 
             />
+        }
 
         </DashboardBibliotecaAdmin>
 

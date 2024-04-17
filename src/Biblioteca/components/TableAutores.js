@@ -16,8 +16,6 @@ export default function TableAutores() {
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
 
     const { data, isSuccess, isLoading, isError, error } = useGetListAutoresQuery (user.access)
-    console.log(data)
-
 
     const columns = [
         {

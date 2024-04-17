@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 const SeleccionAutores = () => {
     const navigate = useNavigate()
 
-
     const user = JSON.parse(localStorage.getItem('user') || "{}")
  
 
@@ -43,10 +42,14 @@ const SeleccionAutores = () => {
         <DashboardBibliotecaAdmin>
 
             Seleccion autores
+            <div className='w-1/2'>
             <Select
                 options={data}
                 onChange={handleChance}
             />
+
+            </div>
+
             <button onClick={agregarAutor} className='bg-gray-800 text-white p-1 rounded mt-5'>
                 Agregar
             </button>
@@ -63,9 +66,9 @@ const SeleccionAutores = () => {
                 <tbody>
                     {listaAutores.map((item, index) => (
                         <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{item[1]}</td>
-                            <td>de</td>
+                            <td className='text-center'>{index + 1}</td>
+                            <td className='text-center'>{item[1]}</td>
+                            <td className='text-center'>-</td>
                         </tr>
 
                     ))}
@@ -73,8 +76,12 @@ const SeleccionAutores = () => {
 
                 </tbody>
             </table>
-            {listaAutores.length == 0 ? <>Seleccione al menos un autor</> : 
-            <button onClick={handleSiguiente} className='text-red-500 m-2' >Siguiente</button>
+
+            {listaAutores.length == 0 ? <p className='mt-5 bg-red-100 w-1/4'>Seleccione al menos un autor</p> : 
+            <button 
+            onClick={handleSiguiente} 
+            className=" mt-4 rounded-md bg-indigo-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700"
+            >Siguiente</button>
             }
 
             
