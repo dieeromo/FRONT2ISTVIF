@@ -30,6 +30,9 @@ import LandingServiciosAdmin from './general/pages/LandingServiciosAdmin'
 import BolsaEmpleoPublic from './general/pages/BolsaEmpleoPublic';
 import BolsaEmepleoAdmin from './general/pages/BolsaEmepleoAdmin';
 
+//INVENTARIO
+import LandingInventario from './inventario/pages/LandingInventario'
+
 
 
 
@@ -76,6 +79,11 @@ function App() {
 
           <Route path='/general/public/bolsa' element={< BolsaEmpleoPublic />} />
           <Route path='/general/admin/bolsa' element={< BolsaEmepleoAdmin />} />
+
+          {/* INVENTARIO */}
+          <Route path='/inventario/landing' element={< LandingInventario/>} />
+
+
 
 
 

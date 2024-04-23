@@ -12,6 +12,7 @@ import {criteriosApi} from '../acreditacion/services/criteriosApi'
 import {usuariosApi} from '../usuarios/services/usuariosApi'
 
 import {generalApi} from '../general/services/generalApi'
+import {inventarioApi} from '../inventario/services/inventarioApi'
 import {setupListeners} from '@reduxjs/toolkit/query/react'
 
 
@@ -30,6 +31,7 @@ export const store = configureStore({
         [usuariosApi.reducerPath]:usuariosApi.reducer,
 
         [generalApi.reducerPath]:generalApi.reducer,
+        [inventarioApi.reducerPath]:inventarioApi.reducer,
         
     },
     middleware:(getDefaultMiddleware) => getDefaultMiddleware().concat(
@@ -39,6 +41,7 @@ export const store = configureStore({
         criteriosApi.middleware,
         usuariosApi.middleware,
         generalApi.middleware,
+        inventarioApi.middleware,
         )
 })
 

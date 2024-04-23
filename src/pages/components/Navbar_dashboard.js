@@ -45,7 +45,7 @@ export default function Navbar_dashboard() {
               <li><a href="/general/admin/landing/servicios" className=" hover:text-gray-300">Servicios</a></li>
               <li><a href="/acreditacion/landing" className=" hover:text-gray-300">Acreditación</a></li>
               <li><a href="/biblioteca/seleccion/autores" className=" hover:text-gray-300">Gestión Biblioteca</a></li>
-              <li><a href="#" className="hover:text-gray-300">Gestión Inventario</a></li>
+              <li><a href="/inventario/landing" className="hover:text-gray-300">Gestión Inventario</a></li>
               <li><a href="https://institutovicentefierro.edu.ec/" target="_blank" className=" hover:text-gray-300">Acerca de</a></li>
               {userDatos.first_name ?
                 < >
