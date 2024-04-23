@@ -17,10 +17,10 @@ export const generalApi = createApi({
                     url: `/general/coordinaciones_carrera/list/`,
                     method: 'GET',
                     headers: { Authorization: `JWT ${access}` },
-                    
+
                 }
             },
-  
+
         }),
         //////
         getCoordinaciones: builder.query({
@@ -29,10 +29,10 @@ export const generalApi = createApi({
                     url: `/general/coordinaciones_institucionales/list/`,
                     method: 'GET',
                     headers: { Authorization: `JWT ${access}` },
-                    
+
                 }
             },
-         
+
         }),
         ////
         getOtrasComisiones: builder.query({
@@ -43,7 +43,7 @@ export const generalApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
-            
+
         }),
         /////
         postBolsaEmpleo: builder.mutation({
@@ -58,13 +58,13 @@ export const generalApi = createApi({
                         'fecha_limite': parametros[4],
                         'url': parametros[5],
                         'telefono': parametros[6],
-                        'email':parametros[7],
+                        'email': parametros[7],
 
                     },
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
-            invalidatesTags:['getBolsaEmpleo']
+            invalidatesTags: ['getBolsaEmpleo']
         }),
         //
         getBolsaEmpleo_all: builder.query({
@@ -75,9 +75,21 @@ export const generalApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
-           
-            providesTags:['getBolsaEmpleo']
+
+            providesTags: ['getBolsaEmpleo']
         }),
+        //
+        getBolsaEmpleo_all_public: builder.query({
+            query: () => {
+                return {
+                    url: `/general/be/lista/public/`,
+                    method: 'GET',
+                    //headers: { Authorization: `JWT ${access}` },
+                }
+            },
+
+        }),
+
 
 
 
@@ -85,12 +97,13 @@ export const generalApi = createApi({
 })
 
 
-export const { 
+export const {
     useGetCarreraQuery,
     useGetCoordinacionesQuery,
     useGetOtrasComisionesQuery,
     //bolsa
     usePostBolsaEmpleoMutation,
     useGetBolsaEmpleo_allQuery,
+    useGetBolsaEmpleo_all_publicQuery
 
 } = generalApi

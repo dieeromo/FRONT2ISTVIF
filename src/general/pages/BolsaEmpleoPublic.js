@@ -1,10 +1,10 @@
 import DashboardVisitante from "../../pages/components/DashboardVisitante"
-import { useGetBolsaEmpleo_allQuery } from '../services/generalApi'
+import { useGetBolsaEmpleo_all_publicQuery } from '../services/generalApi'
 import BolsaEmpleoCard from "./components/BolsaEmpleoCard"
 
 export default function BolsaEmpleoPublic() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
-    const { data ,isSuccess } = useGetBolsaEmpleo_allQuery(user.access)
+    const { data ,isSuccess } = useGetBolsaEmpleo_all_publicQuery()
     console.log(data)
     return (
         <DashboardVisitante>
