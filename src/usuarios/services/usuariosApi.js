@@ -14,18 +14,32 @@ export const usuariosApi = createApi({
                     url: `/account/list_usuarios/`,
                     method: 'GET',
                     headers: { Authorization: `JWT ${parametros[0]}` },
-                    transformResponse : (response) =>{
-                        return response.map((usuarios)=>({
-                            value:usuarios.id,
-                            label:'eee'
+                    transformResponse: (response) => {
+                        return response.map((usuarios) => ({
+                            value: usuarios.id,
+                            label: 'eee'
                         }))
                     }
                 }
             },
         }),
+
+        ////////
+        getUsuariosDocentes: builder.query({
+            query: (access) => {
+                return {
+                    url: `/account/list_docentes/`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+        }),
+
+
     })
 })
 
-export const { 
-    useGetUsuariosQuery, 
+export const {
+    useGetUsuariosQuery,
+    useGetUsuariosDocentesQuery
 } = usuariosApi

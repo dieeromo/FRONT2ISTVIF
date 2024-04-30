@@ -9,10 +9,11 @@ export default function DashboardInventario({children}) {
         {/* Sidebar */}
         <div className="bg-gray-800 text-white w-30 flex-shrink-0">
             <div className="p-3">
-                <h1 className=" font-bold"><a href='/acreditacion/landing'>Biblioteca </a></h1>
+                <h1 className=" font-bold"><a href='/acreditacion/landing'>Inventario </a></h1>
+                <h1 className=" font-bold"><a href='/acreditacion/landing'>ISTVIF </a></h1>
             </div>
             <ul>
-                <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="" >Registro</a></li>
+                <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="/inventario/register" >Registro</a></li>
                 <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="" >Todo</a></li>
         
                 

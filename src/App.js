@@ -32,7 +32,8 @@ import BolsaEmepleoAdmin from './general/pages/BolsaEmepleoAdmin';
 
 //INVENTARIO
 import LandingInventario from './inventario/pages/LandingInventario'
-
+import RegisterInventario from './inventario/pages/RegisterInventario';
+import ListInventario from './inventario/pages/ListInventario'
 
 
 
@@ -82,6 +83,9 @@ function App() {
 
           {/* INVENTARIO */}
           <Route path='/inventario/landing' element={< LandingInventario/>} />
+          <Route path='/inventario/register' element={< RegisterInventario/>} />
+          <Route path='/inventario/list' element={< ListInventario/>} />
+
 
 
 

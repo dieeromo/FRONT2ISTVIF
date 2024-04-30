@@ -26,47 +26,6 @@ export default function FormRegistroObras({ autores }) {
     const [ubicacion, SetUbicacion] = useState('')
 
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     const titulo = e.target.elements.titulo.value.trim()
-    //     const autor = e.target.elements.autor.value.trim()
-    //     const anio = e.target.elements.anio.value.trim()
-    //     const editorial = e.target.elements.editorial.value.trim()
-    //     const tomo = e.target.elements.tomo.value.trim()
-    //     const codigo = e.target.elements.codigo.value.trim()
-    //     const observacion = e.target.elements.observacion.value.trim()
-    //     createObra([
-    //         user.access,
-    //         codigo,
-    //         titulo,
-    //         editorial,
-    //         autor,
-    //         anio,
-    //         tomo,
-    //         ubicacion,
-    //         categoria,
-    //         tipoObra,
-    //         tipoMaterial,
-    //         dataEstadoObra[0].id,
-    //         observacion,
-    //         userDatos.id,
-    //     ])
-
-    //     setTimeout(function({dataCreate}) {
-    //         console.log('Han pasado 3 segundos');
-    //         console.log('data dentro',dataCreate)
-    //         if(isSuccessCreate){
-    //             console.log('dentro',autores)
-    //             const tempo = autores.map((item)=>(
-    //                 createObraAutor([user.access, item[0], dataCreate.id,   userDatos.id,observacion])
-    //             )) 
-    //         }
-    //       }, 3000); // 3000 milisegundos = 3 segundos
-
-
-    // }
-
-
 
 
     const handleSubmit = async (e) => {

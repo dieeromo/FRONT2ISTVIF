@@ -18,7 +18,7 @@ export default function DocumentosTodos() {
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
 
     const { data, isSuccess, isLoading, isError, error } = useGetDocumentosQuery(user.access)
-    console.log(data)
+ 
 
 
     const columns = [
