@@ -38,6 +38,7 @@ const Dashboard = () => {
                 is_adminBolsa : data.is_adminBolsa,
                 is_adminBiblioteca :  data.is_adminBiblioteca,
                 id : data.id,
+                is_adminInventario: data.is_adminInventario,
                 
 
             }))

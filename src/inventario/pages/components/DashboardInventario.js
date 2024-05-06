@@ -14,7 +14,7 @@ export default function DashboardInventario({children}) {
             </div>
             <ul>
                 <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="/inventario/register" >Registro</a></li>
-                <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="" >Todo</a></li>
+                <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/inventario/list" >Todo</a></li>
         
                 
                 {/* Agrega más elementos de menú según sea necesario */}

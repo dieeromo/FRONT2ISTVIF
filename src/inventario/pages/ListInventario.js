@@ -8,7 +8,8 @@ import ModalInventario from './components/ModalInventario'
 export default function ListInventario() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const { data, isSuccess, isLoading, isError, error } = useGetInventarioTodoQuery(user.access)
-    console.log(data)
+    const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
+
 
 
 
@@ -156,10 +157,18 @@ export default function ListInventario() {
             name: '',
             label: '',
             options: {
-                customBodyRender: (value,tableMeta) => {
-                    
+                customBodyRender: (value, tableMeta) => {
+
                     return (
-               <ModalInventario id= {parseInt(tableMeta.rowData[12])}/>
+                        <>
+                            {userDatos.is_adminInventario && userDatos.is_docente ?
+                                <ModalInventario id={parseInt(tableMeta.rowData[12])} />
+
+                                :
+                                <> </>
+                            }
+                        </>
+
                     )
                 }
             }
@@ -183,18 +192,22 @@ export default function ListInventario() {
 
     return (
         <DashboardInventario>
-            <button className='bg-blue-900 rounded text-white mb-2'>
-                <a href='/inventario/register'> Nuevo registro</a>  </button>
+            {userDatos.is_adminInventario ?
+                <button className='bg-blue-900 rounded text-white mb-2'>
+                    <a href='/inventario/register'> Nuevo registro</a>  </button>
+                :
+                <> </>
+            }
 
 
-                <MUIDataTable
-                    title={'Lista de assets'}
-                    data={data}
-                    columns={columns}
-                    options={options}
-                />
+            <MUIDataTable
+                title={'Lista de assets'}
+                data={data}
+                columns={columns}
+                options={options}
+            />
 
-    
+
 
 
 

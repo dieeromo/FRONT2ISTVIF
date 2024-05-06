@@ -76,6 +76,7 @@ export const inventarioApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
+            invalidatesTags: ['getAssets'],
          
         }),
         /////
@@ -87,18 +88,20 @@ export const inventarioApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
+            providesTags: ['getAssets']
         }),
 
         ////
         deleteAsset:builder.mutation({
             query:(parametros) => {
                 return {
-                    url : '/inventario/ist/inventario/',
+                    url : `/inventario/ist/inventario/${parametros[1]}`,
                     method: 'DELETE',
-                    body:{'id':parametros[1] },
+                 
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
+            invalidatesTags: ['getAssets'],
          
         }),
 

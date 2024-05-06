@@ -17,6 +17,7 @@ const initialState = {
     id:null,
     is_adminBolsa: null,
     is_adminBiblioteca: null,
+    is_adminInventario : null,
 };
 
 const authDatosSlice = createSlice({
@@ -43,6 +44,7 @@ const authDatosSlice = createSlice({
                     id : action.payload.id,
                     is_adminBolsa: action.payload.is_adminBolsa,
                     is_adminBiblioteca: action.payload.is_adminBiblioteca,
+                    is_adminInventario : action.payload.is_adminInventario
                 })
             );
             state.email = action.payload.email;
@@ -61,6 +63,7 @@ const authDatosSlice = createSlice({
             state.id = action.payload.id;
             state.is_adminBolsa = action.payload.is_adminBolsa;
             state.is_adminBiblioteca = action.payload.is_adminBiblioteca;
+            state.is_adminInventario = action.payload.is_adminInventario
         }
     }
 });
