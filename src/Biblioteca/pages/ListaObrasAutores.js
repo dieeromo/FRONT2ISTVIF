@@ -7,6 +7,7 @@ import MUIDataTable from 'mui-datatables';
 import CargaObrasModal from '../components/CargaObrasModal';
 import { RUTA_SERVIDOR } from '../../ApiRoutes';
 import { IoReaderOutline } from "react-icons/io5"
+import ModalListaBiblioteca from './components/ModalListaBiblioteca'
 
 const ListaObrasAutores = () => {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
@@ -61,7 +62,7 @@ const ListaObrasAutores = () => {
                         <div>
                             {value}
                             <div>
-                                {value == 'Digital' ? <CargaObrasModal id={tableMeta.rowData[6]} /> : <></>}
+                                {value === 'Digital' || value==='Digital-fisico' ? <CargaObrasModal id={tableMeta.rowData[6]} /> : <></>}
                             </div>
 
                         </div>
@@ -105,8 +106,20 @@ const ListaObrasAutores = () => {
                 filter: false,
             }
         },
+        {
+            name: '',
+            label: '',
+            options: {
+                customBodyRender: (value,tableMeta) => {
+                    console.log(value)
 
-
+                    return (
+                        <ModalListaBiblioteca id={tableMeta.rowData[6]}  />
+                    )
+                },
+                filter: false,
+            }
+        },
     ]
     const options = {
         selectableRows: 'none', // Deshabilita la selección en la primera fila
@@ -121,15 +134,15 @@ const ListaObrasAutores = () => {
 
     return (
         <DashboardBibliotecaAdmin>
-           {isLoading ? <> Cargando...</> : 
-            <MUIDataTable
-                title={'Obras'}
-                data={data}
-                columns={columns}
-                options={options}
+            {isLoading ? <> Cargando...</> :
+                <MUIDataTable
+                    title={'Obras biblioteca'}
+                    data={data}
+                    columns={columns}
+                    options={options}
 
-            />
-        }
+                />
+            }
 
         </DashboardBibliotecaAdmin>
 

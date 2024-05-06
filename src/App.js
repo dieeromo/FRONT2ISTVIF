@@ -25,6 +25,9 @@ import SeleccionAutores from './biblioteca/pages/SeleccionAutores'
 import ListaObrasAutores from './biblioteca/pages/ListaObrasAutores'
 import FiltroObras from './biblioteca/pages/FiltroObras'
 import PresentacionObrasTitulo from './biblioteca/pages/PresentacionObrasTitulo'
+import UbicacionObras from './biblioteca/pages/UbicacionObras'
+import CategoriaObra from './biblioteca/pages/CategoriaObra'
+import TipoObras from './biblioteca/pages/TipoObras'
 //  GENERAL
 import LandingServiciosAdmin from './general/pages/LandingServiciosAdmin'
 import BolsaEmpleoPublic from './general/pages/BolsaEmpleoPublic';
@@ -74,6 +77,9 @@ function App() {
           <Route path='/biblioteca/lista/obras_autores' element={<ListaObrasAutores />} />
           <Route path='/biblioteca/filtro/obras' element={<FiltroObras />} />
           <Route path='/biblioteca/presentacion/titulo/:id' element={< PresentacionObrasTitulo />} />
+          <Route path='/biblioteca/ubicacion/obras' element={< UbicacionObras />} />
+          <Route path='/biblioteca/categoria/obras' element={< CategoriaObra/>} />
+          <Route path='/biblioteca/tipo/obras' element={< TipoObras/>} />
 
           {/* GENERAL */}
           <Route path='/general/admin/landing/servicios' element={< LandingServiciosAdmin />} />

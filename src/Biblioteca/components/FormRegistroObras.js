@@ -1,6 +1,9 @@
 //import {usePutCriteriosMutation} from '../services/criteriosApi'
 import Select from 'react-select'
-import { useGetCategoriaObraQuery, useGetTipoObraQuery, useGetMaterialObraQuery, useGetEstadoObraQuery, } from '../services/bibliotecaApi'
+import { useGetCategoriaObraQuery, useGetTipoObraQuery, 
+    useGetMaterialObraQuery, useGetEstadoObraQuery, 
+    useGetListUbicacionObrasQuery } from '../services/bibliotecaApi'
+
 import { useState } from 'react'
 import { useCreateObraMutation, useCreateObraAutorMutation } from '../services/bibliotecaApi'
 import { useNavigate } from 'react-router-dom'
@@ -8,17 +11,17 @@ import { useNavigate } from 'react-router-dom'
 export default function FormRegistroObras({ autores }) {
     const navigate = useNavigate()
 
-
-
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
+
     const [createObraAutor, { data: dataObraAction, isSuccess: isSuccessObraAction }] = useCreateObraAutorMutation()
-    const [createObra, { data: dataCreate, isSuccess: isSuccessCreate, isLoading: isLoadingAction }] = useCreateObraMutation()
+    const [createObra, { data: dataCreate, isSuccess: isSuccessCreate, isLoading: isLoadingAction, isError: isErrorCreate, error:errorCreate }] = useCreateObraMutation()
 
     const { data: dataCategoria, isLoading: isLoadingCategoria } = useGetCategoriaObraQuery(user.access)
     const { data: dataTipoObra, isLoading: isLoadingTipoOnra } = useGetTipoObraQuery(user.access)
     const { data: dataMaterialObra, isLoading: isLoadingMaterialOnra } = useGetMaterialObraQuery(user.access)
     const { data: dataEstadoObra, isLoading: isLoadingEstadoOnra } = useGetEstadoObraQuery(user.access)
+    const { data: dataUbicacionObra, isLoading: isLoadingUbicacionObra } = useGetListUbicacionObrasQuery(user.access)
 
     const [categoria, SetCategoria] = useState('')
     const [tipoObra, SetTipoObra] = useState('')
@@ -204,18 +207,11 @@ export default function FormRegistroObras({ autores }) {
                                 Ubicacion de la obra
                             </label>
                             <div className="mt-2">
-                                <select
-                                    onChange={(e) => (SetUbicacion(e.target.value))}
-
-                                    id="ubicacion"
-                                    name="ubicacion"
-                                    autoComplete="country-name"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                >
-                                    <option>On line</option>
-                                    <option>Estante 1</option>
-                                    <option>Estante 2</option>
-                                </select>
+                                <Select
+                                    options = {dataUbicacionObra}
+                                    onChange={(selectedOption) => SetUbicacion(selectedOption.value)}
+                                    className='text-xs w-1/2'
+                                    />
                             </div>
                         </div>
 
@@ -323,6 +319,7 @@ export default function FormRegistroObras({ autores }) {
                             >
                                 Guardar
                             </button>
+                            {isErrorCreate ? <p className='bg-red-100 ml-5'>Error: revise los datos ingresados</p> : <></>}
                         </div>
                     </div>
 

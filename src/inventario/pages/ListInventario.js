@@ -2,6 +2,7 @@ import React from 'react'
 import DashboardInventario from './components/DashboardInventario'
 import { useGetInventarioTodoQuery } from '../services/inventarioApi'
 import MUIDataTable from 'mui-datatables';
+import ModalInventario from './components/ModalInventario'
 
 
 export default function ListInventario() {
@@ -147,6 +148,25 @@ export default function ListInventario() {
         {
             name: 'digitador_name',
             label: 'digitador',
+            options: {
+                display: false,
+            }
+        },
+        {
+            name: '',
+            label: '',
+            options: {
+                customBodyRender: (value,tableMeta) => {
+                    
+                    return (
+               <ModalInventario id= {parseInt(tableMeta.rowData[12])}/>
+                    )
+                }
+            }
+        },
+        {
+            name: 'id',
+            label: '',
             options: {
                 display: false,
             }

@@ -78,6 +78,7 @@ export const inventarioApi = createApi({
             },
          
         }),
+        /////
         getInventarioTodo: builder.query({
             query: (access) => {
                 return {
@@ -86,6 +87,19 @@ export const inventarioApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
+        }),
+
+        ////
+        deleteAsset:builder.mutation({
+            query:(parametros) => {
+                return {
+                    url : '/inventario/ist/inventario/',
+                    method: 'DELETE',
+                    body:{'id':parametros[1] },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+         
         }),
 
 
@@ -100,5 +114,6 @@ export const {
     useGetUbicacionAssetQuery,
     useCreateAssetMutation,
     useGetInventarioTodoQuery,
+    useDeleteAssetMutation,
 
 } = inventarioApi

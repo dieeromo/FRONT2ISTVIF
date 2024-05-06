@@ -8,7 +8,7 @@ import TableAutores from '../components/TableAutores'
 const AutoresObra = () => {
   
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
-    console.log(userDatos)
+
 
     return (
         <DashboardBibliotecaAdmin>

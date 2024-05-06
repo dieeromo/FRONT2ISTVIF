@@ -82,7 +82,8 @@ export const bibliotecaApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
-            invalidatesTags: ['getDocumetos_evidencia']
+            invalidatesTags: ['getAutoresObras_all']
+
         }),
 
         ////////
@@ -114,6 +115,25 @@ export const bibliotecaApi = createApi({
             },
             providesTags: ['getTodosAutores']
         }),
+        /////
+        putAutoresObras: builder.mutation({
+            query: (parametros) => {
+                return {
+                    url: `/biblioteca/obras/autores/${parametros[1]}/`,
+                    method: 'PUT',
+                    body: {
+                        'nombres': parametros[2],
+                        'estado':parametros[3],
+                        'observacion': parametros[4],
+                        'digitador':parametros[5]
+                    },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+            invalidatesTags: ['getTodosAutores']
+        }),
+
+        ////////
         ////////
         createObraAutor: builder.mutation({
             query: (parametros) => {
@@ -129,6 +149,7 @@ export const bibliotecaApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
+            invalidatesTags: ['getAutoresObras_all']
         }),
         /////
         getListAutoresObras_todos: builder.query({
@@ -139,7 +160,9 @@ export const bibliotecaApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
+            providesTags: ['getAutoresObras_all']  ///////////////////////
         }),
+
         /////
         getListFilter_Titulos: builder.query({
             query: (titulo) => {
@@ -171,6 +194,139 @@ export const bibliotecaApi = createApi({
             },
         }),
         /////
+        deleteObraEntrada: builder.mutation({  // 
+            query: (parametros) => {
+                return {
+                    url: '/biblioteca/delete/obra_entrada/',
+                    method: 'DELETE',
+                    body: { 'id': parametros[1] },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+            invalidatesTags: ['getAutoresObras_all']
+
+
+        }),
+        //
+        createUbicacionObra: builder.mutation({
+            query: (parametros) => {
+                return {
+                    url: '/biblioteca/obras/ubicacion/',
+                    method: 'POST',
+                    body: {
+                        'ubicacion': parametros[1],
+                    },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+            invalidatesTags:['ubicacionesObras']
+        }),
+        /////
+        getListUbicacionObras: builder.query({
+            query: (id) => {
+                return {
+                    url: `/biblioteca/obras/ubicacion/`,
+                    method: 'GET',
+                    headers: { Authorization: `` },
+                }
+            },
+            providesTags:['ubicacionesObras']
+        }),
+        //////
+        putUbicacionObras: builder.mutation({
+            query: (parametros) => {
+                return {
+                    url: `/biblioteca/obras/ubicacion/${parametros[1]}/`,
+                    method: 'PUT',
+                    body: {
+                        'ubicacion': parametros[2],
+                    },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+            invalidatesTags:['ubicacionesObras']
+        }),
+
+        ////
+        createCategoriaObra: builder.mutation({
+            query: (parametros) => {
+                return {
+                    url: '/biblioteca/obras/categorias/',
+                    method: 'POST',
+                    body: {
+                        'categoria': parametros[1],
+                    },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+            invalidatesTags: ['getCategoriaObras_all']
+        }),
+        /////
+        getListCategoriaObras: builder.query({
+            query: (id) => {
+                return {
+                    url: `/biblioteca/obras/categorias/`,
+                    method: 'GET',
+                    headers: { Authorization: `` },
+                }
+            },
+            providesTags: ['getCategoriaObras_all']  ///////////////////////
+        }),
+        //////
+        putCategoriaObras: builder.mutation({
+            query: (parametros) => {
+                return {
+                    url: `/biblioteca/obras/categorias/${parametros[1]}/`,
+                    method: 'PUT',
+                    body: {
+                        'categoria': parametros[2],
+                    },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+            invalidatesTags: ['getCategoriaObras_all']
+        }),
+        ////
+        createTipoObra: builder.mutation({
+            query: (parametros) => {
+                return {
+                    url: '/biblioteca/obras/tipo_obras/',
+                    method: 'POST',
+                    body: {
+                        'tipo': parametros[1],
+                    },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+            invalidatesTags: ['getTipoObras']
+        }),
+        /////
+        getListTipoObras: builder.query({
+            query: (id) => {
+                return {
+                    url: `/biblioteca/obras/tipo_obras/`,
+                    method: 'GET',
+                    headers: { Authorization: `` },
+                }
+            },
+            providesTags: ['getTipoObras']
+
+        }),
+        //////
+        //////
+        putTipoObras: builder.mutation({
+            query: (parametros) => {
+                return {
+                    url: `/biblioteca/obras/tipo_obras/${parametros[1]}/`,
+                    method: 'PUT',
+                    body: {
+                        'tipo': parametros[2],
+                    },
+                    headers: { Authorization: `JWT ${parametros[0]}` },
+                }
+            },
+            invalidatesTags: ['getTipoObras']
+        }),
 
 
 
@@ -189,11 +345,28 @@ export const {
     useGetListAutoresQuery,
     useCreateObraAutorMutation,
     useGetListAutoresObras_todosQuery,
+    usePutAutoresObrasMutation,
 
     useGetListFilter_TitulosQuery,
     useGetListFilter_Titulos_idQuery,
     useGetListFilter_Autores_idObraQuery,
-    
+
+    useDeleteObraEntradaMutation,
+
+    useCreateUbicacionObraMutation,
+    useGetListUbicacionObrasQuery,
+    usePutUbicacionObrasMutation,
+
+    useCreateCategoriaObraMutation,
+    useGetListCategoriaObrasQuery,
+    usePutCategoriaObrasMutation,
+
+
+    useCreateTipoObraMutation,
+    useGetListTipoObrasQuery,
+    usePutTipoObrasMutation,
+
+
 
 
 } = bibliotecaApi

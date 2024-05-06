@@ -6,6 +6,7 @@ import { RUTA_SERVIDOR } from '../../ApiRoutes';
 import { IoReaderOutline } from "react-icons/io5"
 import { MdUpload } from "react-icons/md"
 import { useGetListAutoresQuery } from '../services/bibliotecaApi';
+import ModalAutores from '../pages/components/ModalAutores'
 
 
 
@@ -15,19 +16,58 @@ export default function TableAutores() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
 
-    const { data, isSuccess, isLoading, isError, error } = useGetListAutoresQuery (user.access)
+    const { data, isSuccess, isLoading, isError, error } = useGetListAutoresQuery(user.access)
+    //console.log(data)
 
     const columns = [
         {
-            name:'nombres',
-            label:'nombre'
+            name: 'nombres',
+            label: 'nombre'
         },
         {
-            name:'observacion',
-            label:'observacion'
+            name: 'estado',
+            label: 'estado'
         },
-        
-    
+        {
+            name: 'observacion',
+            label: 'observacion'
+        },
+        {
+            name: 'id',
+            label: '  ',
+            options: {
+                customBodyRender: (value, tableMeta) => {
+                    return (
+                        <div>
+                            {userDatos.is_adminBiblioteca ?
+                            <ModalAutores
+                                id={value}
+                                nombres={tableMeta.rowData[0]}
+                                estado={tableMeta.rowData[1]}
+                                observacion={tableMeta.rowData[2]}
+                                digitador={tableMeta.rowData[4]}
+
+                            />
+                            :
+                            <> </>
+                }
+                        </div>
+
+
+
+
+                    )
+
+                }
+
+            }
+        },
+        {
+            name: 'digitador',
+            label: 'digitador'
+        },
+
+
 
 
     ]
