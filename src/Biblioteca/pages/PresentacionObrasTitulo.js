@@ -2,7 +2,7 @@
 import DashboardBibliotecaAdmin from './components/DashboardBibliotecaAdmin'
 import { useParams } from 'react-router-dom';
 import { useGetListFilter_Titulos_idQuery, useGetListFilter_Autores_idObraQuery } from '../services/bibliotecaApi'
-import {mostrar_abrir_pdf_conf} from '../../ConfiguracionApp'
+//import {mostrar_abrir_pdf_conf} from '../../ConfiguracionApp'
 import { RUTA_SERVIDOR } from '../../ApiRoutes';
 
 export default function PresentacionObrasTitulo() {
@@ -30,7 +30,7 @@ export default function PresentacionObrasTitulo() {
                         <p className="text-gray-600 text-sm mb-2">Tipo de obra: {data[0].tipo_obra} </p>
                         <p className="text-gray-600 text-sm mb-4">Tipo de material: {data[0].tipo_material} </p>
                      {
-                        data[0].tipo_material == mostrar_abrir_pdf_conf ?
+                        data[0].tipo_material == '' ?
                         <a href={RUTA_SERVIDOR + `/${data[0].archivo}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 text-sm hover:text-blue-700">Abrir PDF</a>
                         :
                         <
