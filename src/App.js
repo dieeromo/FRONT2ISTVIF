@@ -38,6 +38,20 @@ import LandingInventario from './inventario/pages/LandingInventario'
 import RegisterInventario from './inventario/pages/RegisterInventario';
 import ListInventario from './inventario/pages/ListInventario'
 
+//PEDI
+
+import RegistroPedi2 from './pedi/pages/RegistroPedi2'
+import TablaPedi from './pedi/pages/TablaPedi'
+import Poa from './pedi/pages/Poa'
+import RegistroObjetivosEst from './pedi/pages/RegistroObjetivosEst'
+import RegistroObjetivosEsp from './pedi/pages/RegistroObjetivosEsp'
+import RegistroMetas from './pedi/pages/RegistroMetas'
+import RegistroActividades from './pedi/pages/RegistroActividades'
+import RegistroMediosVer from './pedi/pages/RegistroMediosVer'
+import RegistroIndicador from './pedi/pages/RegistroIndicador'
+import Poa2 from './pedi/pages/Poa2'
+import SeguimientoPoa from './pedi/pages/SeguimientoPoa'
+
 
 
 function App() {
@@ -91,6 +105,26 @@ function App() {
           <Route path='/inventario/landing' element={< LandingInventario/>} />
           <Route path='/inventario/register' element={< RegisterInventario/>} />
           <Route path='/inventario/list' element={< ListInventario/>} />
+
+            {/* PEDI */}
+            
+            <Route path='/pedi/registro2' element={< RegistroPedi2/>} />
+            <Route path='/pedi' element={< TablaPedi/>} />
+            <Route path='/pedi/poa' element={< Poa/>} />
+            <Route path='/pedi/poa2' element={< Poa2/>} />
+            <Route path='/pedi/seguimiento/poa' element={< SeguimientoPoa/>} />
+            <Route path='/pedi/registro/objetivos/:pedi_id' element={< RegistroObjetivosEst/>} />
+            <Route path='/pedi/registro/objetivos/especificos/:estrategico_id' element={< RegistroObjetivosEsp/>} />
+            <Route path='/pedi/registro/metas/:especifico_id' element={< RegistroMetas/>} />
+            <Route path='/pedi/registro/actividades/:meta_id' element={< RegistroActividades/>} />
+            <Route path='/pedi/registro/medios/:actividad_id' element={< RegistroMediosVer/>} />
+            <Route path='/pedi/registro/indicador/:medio_id' element={< RegistroIndicador/>} />
+           
+
+
+
+
+
 
 
 

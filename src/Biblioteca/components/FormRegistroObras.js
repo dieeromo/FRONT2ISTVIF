@@ -28,7 +28,7 @@ export default function FormRegistroObras({ autores }) {
     const [tipoMaterial, SetTipoMaterial] = useState('')
     const [ubicacion, SetUbicacion] = useState('')
 
-
+    
 
 
     const handleSubmit = async (e) => {

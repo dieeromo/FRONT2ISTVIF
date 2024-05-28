@@ -89,6 +89,17 @@ export const generalApi = createApi({
             },
 
         }),
+        ///
+        getDependencias_all: builder.query({
+            query: (access) => {
+                return {
+                    url: `/general/be/dependencias/`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+
+        }),
 
 
 
@@ -104,6 +115,9 @@ export const {
     //bolsa
     usePostBolsaEmpleoMutation,
     useGetBolsaEmpleo_allQuery,
-    useGetBolsaEmpleo_all_publicQuery
+    useGetBolsaEmpleo_all_publicQuery,
+
+    //dependencias
+    useGetDependencias_allQuery,
 
 } = generalApi

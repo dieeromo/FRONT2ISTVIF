@@ -42,6 +42,7 @@ export default function Navbar_dashboard() {
           {/* Links de la navegación */}
           <div className="hidden md:block">
             <ul className="flex space-x-4">
+            <li><a href="/pedi/poa2" className=" hover:text-gray-300">PEI</a></li>
               <li><a href="/general/admin/landing/servicios" className=" hover:text-gray-300">Servicios</a></li>
               <li><a href="/acreditacion/landing" className=" hover:text-gray-300">Acreditación</a></li>
               <li><a href="/biblioteca/seleccion/autores" className=" hover:text-gray-300">Gestión Biblioteca</a></li>
