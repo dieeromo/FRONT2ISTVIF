@@ -10,7 +10,7 @@ import { AiFillEdit } from "react-icons/ai";
 import {enableSeguimientoPoa} from '../../../ConfiguracionApp'
 
 export default function ModalSeguimientoCreate({ indicadorPedi, info_poa }) {
-    console.log(info_poa)
+    
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
 

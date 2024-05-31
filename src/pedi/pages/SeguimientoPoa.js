@@ -18,7 +18,7 @@ import { useGetDependencias_allQuery } from '../../general/services/generalApi'
 import ModalPoaEdit from './components/ModalPoaEdit'
 import ModalSeguimientoCreate from './components/ModalSeguimientoCreate'
 import { RiProjector2Fill } from 'react-icons/ri';
-import { EnablenumeroPoaConfig, enableCreateSeguimiento} from '../../ConfiguracionApp'
+import { EnablenumeroPoaConfig, enableCreateSeguimiento } from '../../ConfiguracionApp'
 import { GiConsoleController } from 'react-icons/gi';
 
 
@@ -152,13 +152,42 @@ export default function SeguimientoPoa() {
 
                 }
             })
-            
+
         })
-       // mostrartabla = true
-       // mostrartabla2 = false
+        // mostrartabla = true
+        // mostrartabla2 = false
 
     }
-  //  console.log('detalle',detalle)
+    //  console.log('detalle',detalle)
+
+    const rowSpanMap = {}
+    const rowSpanMap_esp = {}
+    const rowSpanMap_meta = {}
+    detalle.forEach((item) => {
+        if (rowSpanMap[item.objetivoEstrategico]) {
+            rowSpanMap[item.objetivoEstrategico] += 1
+        } else {
+            rowSpanMap[item.objetivoEstrategico] = 1
+        }
+
+
+        if (rowSpanMap_esp[item.objetivoEspecifico]) {
+            rowSpanMap_esp[item.objetivoEspecifico] += 1
+        } else {
+            rowSpanMap_esp[item.objetivoEspecifico] = 1
+        }
+
+        if (rowSpanMap_meta[item.metaObjetivoEspecifico]) {
+            rowSpanMap_meta[item.metaObjetivoEspecifico] += 1
+        } else {
+            rowSpanMap_meta[item.metaObjetivoEspecifico] = 1
+        }
+
+
+
+    })
+
+    console.log('row span', rowSpanMap)
 
 
 
@@ -170,50 +199,76 @@ export default function SeguimientoPoa() {
             <div className=" inset-0 flex items-center justify-center  focus:outline-none">
 
 
-                    <table className="shadow-md">
-                        <thead >
-                            <tr className="bg-lime-900 text-white text-sm  py-2 px-8 text-center">
-                                <td>#</td>
-                                <td>Pedi</td>
-                                <td>O. Estratégico</td>
-                                <td>O. Específico</td>
-                                <td>Meta</td>
-                                <td>Actividad</td>
-                                <td>Medio verificación</td>
-                                <td>Indicador</td>
-                                <td>Total PEDI</td>
-                               
-                                <td>Año</td>
-                                <td>Total año</td>
-                                <td>Resp</td>
-                                <td>m1</td>
-                                <td>m2</td>
-                                <td>m3</td>
-                                <td>m4</td>
-                                <td>m5</td>
-                                <td>m6</td>
-                                <td>m7</td>
-                                <td>m8</td>
-                                <td>m9</td>
-                                <td>m10</td>
-                                <td>m11</td>
-                                <td>m12</td>
-                                <td></td>
+                <table className="shadow-md">
+                    <thead >
+                        <tr className="bg-lime-900 text-white text-sm  py-2 px-8 text-center">
+                            <td>#</td>
+                            <td>Pedi</td>
+                            <td>O. Estratégico</td>
+                            <td>O. Específico</td>
+                            <td>Meta</td>
+                            <td>Actividad</td>
+                            <td>Medio verificación</td>
+                            <td>Indicador</td>
+                            <td>Total PEDI</td>
+
+                            <td>Año</td>
+                            <td>Total año</td>
+                            <td>Resp</td>
+                            <td>m1</td>
+                            <td>m2</td>
+                            <td>m3</td>
+                            <td>m4</td>
+                            <td>m5</td>
+                            <td>m6</td>
+                            <td>m7</td>
+                            <td>m8</td>
+                            <td>m9</td>
+                            <td>m10</td>
+                            <td>m11</td>
+                            <td>m12</td>
+                            <td></td>
 
 
-                            </tr>
-                        </thead>
+                        </tr>
+                    </thead>
 
-                        <tbody>
+                    <tbody>
 
 
-                            {detalle.reverse().map((item, index) => (
+                        {detalle.map((item, index) => {
+
+                            const isFirstOccurrence = index === 0 || detalle[index - 1].objetivoEstrategico !== item.objetivoEstrategico;
+
+                            const isFirst_esp = index === 0 || detalle[index - 1].objetivoEspecifico !== item.objetivoEspecifico;
+                            const isFirst_meta = index === 0 || detalle[index - 1].metaObjetivoEspecifico !== item.metaObjetivoEspecifico;
+
+                            return (
                                 <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 py-1' : 'bg-gray-100 py-1'}>
                                     <td className="border border-gray-400 text-xs px-2">{index + 1}</td>
                                     <td className="border border-gray-400 text-xs px-2">{item.pedi}</td>
-                                    <td className="border border-gray-400 text-xs px-2">{item.objetivoEstrategico}</td>
-                                    <td className="border border-gray-400 text-xs px-2">{item.objetivoEspecifico}</td>
-                                    <td className="border border-gray-400 text-xs px-2">{item.metaObjetivoEspecifico}</td>
+                                    {isFirstOccurrence &&
+                                        <td rowSpan={rowSpanMap[item.objetivoEstrategico]} className="border border-gray-400 text-xs px-2">
+                                            {item.objetivoEstrategico}
+                                        </td>
+                                    }
+                                    
+                                    {/* <td className="border border-gray-400 text-xs px-2">{item.objetivoEspecifico}</td> */}
+                                    {isFirst_esp &&
+                                        <td rowSpan={rowSpanMap_esp[item.objetivoEspecifico]} className="border border-gray-400 text-xs px-2">
+                                            {item.objetivoEspecifico}
+                                        </td>
+                                    }
+
+                                    {/* <td className="border border-gray-400 text-xs px-2">{item.metaObjetivoEspecifico}</td> */}
+                                    {isFirst_meta &&
+                                        <td rowSpan={rowSpanMap_meta[item.metaObjetivoEspecifico]} className="border border-gray-400 text-xs px-2">
+                                            {item.metaObjetivoEspecifico}
+                                        </td>
+                                    }
+
+
+
                                     <td className="border border-gray-400 text-xs px-2">{item.actividad}</td>
                                     <td className="border border-gray-400 text-xs px-2"> {item.medio_verificacion}</td>
                                     <td className="border border-gray-400 text-xs px-2"> {item.indicadorPedi}</td>
@@ -221,43 +276,45 @@ export default function SeguimientoPoa() {
                                     <td className="border border-gray-400 text-xs px-2">{item.anio}</td>
                                     <td className="border border-gray-400 text-xs px-2">{item.totalAnio}</td>
                                     <td className="border border-gray-400 text-xs px-2">{item.entidad}</td>
-                                    <td className= {item.eje1 >= item.pro1 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro1}</div> <div>{item.eje1}</div></td>
-                                    <td className= {item.eje2 >= item.pro2 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'} ><div className=' border-b-2 border-gray-500'>{item.pro2}</div> <div>{item.eje2}</div></td>
-                                    <td className= {item.eje3 >= item.pro3 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro3}</div> <div>{item.eje3}</div></td>
-                                    <td className= {item.eje4 >= item.pro4 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro4}</div> <div>{item.eje4}</div></td>
-                                    <td className= {item.eje5 >= item.pro5 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro5}</div> <div>{item.eje5}</div></td>
-                                    <td className= {item.eje6 >= item.pro6 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro6}</div> <div>{item.eje6}</div></td>
-                                    <td className= {item.eje7 >= item.pro7 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro7}</div> <div>{item.eje7}</div></td>
-                                    <td className= {item.eje8 >= item.pro8 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro8}</div> <div>{item.eje8}</div></td>
-                                    <td className= {item.eje9 >= item.pro9 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro9}</div> <div>{item.eje9}</div></td>
-                                    <td className= {item.eje10 >= item.pro10 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro10}</div> <div>{item.eje10}</div></td>
-                                    <td className= {item.eje11 >= item.pro11 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro11}</div> <div>{item.eje11}</div></td>
-                                    <td className= {item.eje12 >= item.pro12 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro12}</div> <div>{item.eje12}</div></td>
+                                    <td className={item.eje1 >= item.pro1 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro1}</div> <div>{item.eje1}</div></td>
+                                    <td className={item.eje2 >= item.pro2 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'} ><div className=' border-b-2 border-gray-500'>{item.pro2}</div> <div>{item.eje2}</div></td>
+                                    <td className={item.eje3 >= item.pro3 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro3}</div> <div>{item.eje3}</div></td>
+                                    <td className={item.eje4 >= item.pro4 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro4}</div> <div>{item.eje4}</div></td>
+                                    <td className={item.eje5 >= item.pro5 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro5}</div> <div>{item.eje5}</div></td>
+                                    <td className={item.eje6 >= item.pro6 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro6}</div> <div>{item.eje6}</div></td>
+                                    <td className={item.eje7 >= item.pro7 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro7}</div> <div>{item.eje7}</div></td>
+                                    <td className={item.eje8 >= item.pro8 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro8}</div> <div>{item.eje8}</div></td>
+                                    <td className={item.eje9 >= item.pro9 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro9}</div> <div>{item.eje9}</div></td>
+                                    <td className={item.eje10 >= item.pro10 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro10}</div> <div>{item.eje10}</div></td>
+                                    <td className={item.eje11 >= item.pro11 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro11}</div> <div>{item.eje11}</div></td>
+                                    <td className={item.eje12 >= item.pro12 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro12}</div> <div>{item.eje12}</div></td>
                                     <td >
-                                        { item.representanteDependencia_id == userDatos.id  && enableCreateSeguimiento ?
-                                    <ModalSeguimientoCreate
-                                      info_poa={item}
-                                      indicadorPedi={[item.indicadorPedi, item.total]}
+                                        {item.representanteDependencia_id == userDatos.id && enableCreateSeguimiento ?
+                                            <ModalSeguimientoCreate
+                                                info_poa={item}
+                                                indicadorPedi={[item.indicadorPedi, item.total]}
                                             />
-                                            : 
+                                            :
                                             <></>
                                         }
-                                  
+
 
 
                                     </td>
 
                                 </tr>
+                            )
 
 
+                        }
 
-                            ))}
+                        )}
 
 
-                        </tbody>
+                    </tbody>
 
-                    </table>
-         
+                </table>
+
 
             </div>
 

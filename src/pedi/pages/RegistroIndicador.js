@@ -26,6 +26,7 @@ export default function RegistroIndicador() {
       <p className='text-xs'>Meta: {metaNombre}</p>
       <p className='text-xs'>Actividad: {actividadNombre}</p>
       <p className='text-xs'>Medio de verificacion: {medioNombre }</p>
+      <p>3333333</p>
       <ModalIndicadorPedi 
       id_medio={medio_id}
       />
