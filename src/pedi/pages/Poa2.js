@@ -173,13 +173,13 @@ export default function Poa2() {
                         <tr className="bg-lime-900 text-white text-sm  py-2 px-8 text-center">
                             <td>#</td>
                             <td>Pedi</td>
-                            <td>O. Estrategico</td>
-                            <td>O. Especifico</td>
+                            <td>O. Estratégico</td>
+                            <td>O. Específico</td>
                             <td>Meta</td>
                             <td>Actividad</td>
-                            <td>Medio verificacion</td>
+                            <td>Medio verificación</td>
                             <td>T pedi</td>
-                            <td>indicador</td>
+                            <td>Indicador</td>
                             <td>Año</td>
                             <td>total</td>
                             <td>Resp</td>
@@ -242,7 +242,7 @@ export default function Poa2() {
                                         </>
                                     }
                                     <div>
-                                        {enableEditPoa ? <ModalPoaEdit
+                                        {enableEditPoa && item.representanteDependencia_id == userDatos.id ? <ModalPoaEdit
 
                                             info_poa={item}
                                             indicadorPedi={[item.indicadorPedi, item.total]}
