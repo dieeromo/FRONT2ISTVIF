@@ -53,7 +53,6 @@ export default function RegistroActividades() {
                                 <td className="border border-gray-400 text-xs px-2">{especificoNombre}</td>
                                 <td className="border border-gray-400 text-xs px-2">{metaNombre}</td>
                                 <td className="border border-gray-400 text-xs px-2">{item.nombre}</td>
-
                                 <td><Link to={`/pedi/registro/medios/${item.id}`} state={{ pediNombre: pediNombre, estrategicoNombre: estrategicoNombre, especificoNombre:especificoNombre, metaNombre:metaNombre,actividadNombre:item.nombre }}><AiFillCaretRight /></Link> </td>
                             </tr>
 
