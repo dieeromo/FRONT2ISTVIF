@@ -204,7 +204,7 @@ export default function Poa2() {
                     <tbody>
 
 
-                        {detalle.map((item, index) => (
+                        {detalle.reverse().map((item, index) => (
                             <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 py-1' : 'bg-gray-100 py-1'}>
                                 <td className="border border-gray-400 text-xs px-2">{index + 1}</td>
                                 <td className="border border-gray-400 text-xs px-2">{item.pedi}</td>
