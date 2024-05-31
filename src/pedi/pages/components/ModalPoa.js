@@ -46,29 +46,42 @@ export default function ModalPoa({ indicadorPedi, indicador_id, info_ind}) {
     };
 
 
-    const guardarCambios = (e) => {
-        createPoa([user.access, indicador_id,anioPoaConfig,total,mes1, mes2,mes3,mes4,mes5,mes6,mes7,mes8,mes9,mes10,mes11,mes12, observacion, userDatos.id])
-        updateIndicadorPedi([
-            user.access,
-            info_ind.nombre,
-            info_ind.total,
-            info_ind.anio1, 
-            info_ind.anio2,
-            info_ind.anio3, 
-            info_ind.anio4, 
-            info_ind.anio5,
-            info_ind.medio_verificacion_id,
-            info_ind.entidad_id,
-          
-            
-            info_ind.activo,
-            info_ind.cumple,
-            info_ind.observacion,
-            info_ind.digitador,
-            
-           
-            numeroPoaConfig,
-            info_ind.id_indicador ])
+    const guardarCambios = async(e) => {
+        try{
+            const poaCreado = await createPoa([user.access, indicador_id,anioPoaConfig,total,mes1, mes2,mes3,mes4,mes5,mes6,mes7,mes8,mes9,mes10,mes11,mes12, observacion, userDatos.id]).unwrap()
+           const indicadorActualizado = await updateIndicadorPedi([
+                user.access,
+                info_ind.nombre,
+                info_ind.total,
+                info_ind.anio1, 
+                info_ind.anio2,
+                info_ind.anio3, 
+                info_ind.anio4, 
+                info_ind.anio5,
+                info_ind.medio_verificacion_id,
+                info_ind.entidad_id,
+              
+                
+                info_ind.activo,
+                info_ind.cumple,
+                info_ind.observacion,
+                info_ind.digitador,
+                
+               
+                numeroPoaConfig,
+                info_ind.id_indicador ]).unwrap()
+
+                if(poaCreado && indicadorActualizado){
+              
+                        window.location.reload();
+                
+                      
+                }
+
+        }catch(error){
+
+        }
+
 
         setIndicador('')
         setObservacion('')

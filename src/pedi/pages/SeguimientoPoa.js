@@ -180,11 +180,11 @@ export default function SeguimientoPoa() {
                                 <td>Meta</td>
                                 <td>Actividad</td>
                                 <td>Medio verificación</td>
-                                <td>indicador</td>
-                                <td>T pedi</td>
+                                <td>Indicador</td>
+                                <td>Total PEDI</td>
                                
                                 <td>Año</td>
-                                <td>Total</td>
+                                <td>Total año</td>
                                 <td>Resp</td>
                                 <td>m1</td>
                                 <td>m2</td>
@@ -221,7 +221,6 @@ export default function SeguimientoPoa() {
                                     <td className="border border-gray-400 text-xs px-2">{item.anio}</td>
                                     <td className="border border-gray-400 text-xs px-2">{item.totalAnio}</td>
                                     <td className="border border-gray-400 text-xs px-2">{item.entidad}</td>
-                                    {/* <td className="border border-gray-400 text-xs px-2">{item.pro1}</td> */}
                                     <td className= {item.eje1 >= item.pro1 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro1}</div> <div>{item.eje1}</div></td>
                                     <td className= {item.eje2 >= item.pro2 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'} ><div className=' border-b-2 border-gray-500'>{item.pro2}</div> <div>{item.eje2}</div></td>
                                     <td className= {item.eje3 >= item.pro3 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro3}</div> <div>{item.eje3}</div></td>
