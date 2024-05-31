@@ -2,10 +2,6 @@ import React from 'react'
 import { useState, } from 'react';
 import { useUpdatePoaMutation} from '../../services/pediApi'
 import { useGetDependencias_allQuery,  } from '../../../general/services/generalApi'
-//import Select from 'react-select'
-//import { AiOutlineForm } from "react-icons/ai";
-//import {numeroPoaConfig} from '../../../ConfiguracionApp'
-//import { AiOutlinePlusSquare } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 
 export default function ModalPoaEdit({indicadorPedi,info_poa}) {
@@ -102,6 +98,7 @@ export default function ModalPoaEdit({indicadorPedi,info_poa}) {
         setObservacion('')
 
         closeModal()
+        
 
     };
 

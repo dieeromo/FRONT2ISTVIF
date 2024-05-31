@@ -4,7 +4,7 @@ import { useCreatePoaMutation,  useUpdateIndicador_pediMutation} from '../../ser
 import { useGetDependencias_allQuery,  } from '../../../general/services/generalApi'
 import Select from 'react-select'
 import { AiOutlineForm } from "react-icons/ai";
-import {numeroPoaConfig} from '../../../ConfiguracionApp'
+import {numeroPoaConfig, anioPoaConfig} from '../../../ConfiguracionApp'
 import { AiOutlinePlusSquare } from "react-icons/ai";
 
 export default function ModalPoa({ indicadorPedi, indicador_id, info_ind}) {
@@ -44,30 +44,10 @@ export default function ModalPoa({ indicadorPedi, indicador_id, info_ind}) {
         //updDocumento([user.access,id, documento])
         setIsOpen(false)
     };
-    // console.log([
-    //     user.access,
-    //     info_ind.nombre,
-    //     info_ind.total,
-    //     info_ind.anio1, 
-    //     info_ind.anio2,
-    //     info_ind.anio3, 
-    //     info_ind.anio4, 
-    //     info_ind.anio5,
-    //     info_ind.medio_verificacion_id, 
-    //     info_ind.entidad_id,
-      
-        
-    //     info_ind.activo,
-    //     info_ind.cumple,
-    //     info_ind.observacion,
-    //     info_ind.digitador,
-        
-       
-    //     numeroPoaConfig,
-    //     info_ind.id_indicador ])
+
 
     const guardarCambios = (e) => {
-        createPoa([user.access, indicador_id,anio,total,mes1, mes2,mes3,mes4,mes5,mes6,mes7,mes8,mes9,mes10,mes11,mes12, observacion, userDatos.id])
+        createPoa([user.access, indicador_id,anioPoaConfig,total,mes1, mes2,mes3,mes4,mes5,mes6,mes7,mes8,mes9,mes10,mes11,mes12, observacion, userDatos.id])
         updateIndicadorPedi([
             user.access,
             info_ind.nombre,
@@ -94,6 +74,12 @@ export default function ModalPoa({ indicadorPedi, indicador_id, info_ind}) {
         setObservacion('')
 
         closeModal()
+
+        if(isSuccess && isSuccessIndicador)
+            {
+                window.location.reload();  
+            }
+       
 
     };
 
@@ -126,8 +112,9 @@ export default function ModalPoa({ indicadorPedi, indicador_id, info_ind}) {
                                     <label className="block text-xs font-bold mb-2">Planificación operativa anual:</label>
                                     <p className='text-xs'>Indicador: {indicadorPedi[0]}</p>
                                     <p className='text-xs'>Total ped: {indicadorPedi[1]}</p>
+                                    <p className='text-xs'>Año: {anioPoaConfig}</p>
                                 </div>
-                                <div className="mb-4">
+                                {/* <div className="mb-4">
                                     <label className="block text-xs font-bold mb-2">Año:</label>
                                     <input
                                         type="number"
@@ -135,7 +122,7 @@ export default function ModalPoa({ indicadorPedi, indicador_id, info_ind}) {
                                         onChange={(e) => setAnio(parseInt(e.target.value))}
                                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     />
-                                </div>
+                                </div> */}
 
                                 <div className="mb-4">
                                     <label className="block text-xs font-bold mb-2">Total al año:</label>

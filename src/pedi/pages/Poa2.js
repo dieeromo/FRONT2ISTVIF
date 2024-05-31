@@ -157,7 +157,7 @@ export default function Poa2() {
         // mostrartabla2 = false
 
     }
-      console.log('detalle',detalle)
+
 
 
 
