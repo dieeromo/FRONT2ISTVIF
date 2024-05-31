@@ -18,7 +18,7 @@ import { useGetDependencias_allQuery } from '../../general/services/generalApi'
 import ModalPoaEdit from './components/ModalPoaEdit'
 import ModalSeguimientoCreate from './components/ModalSeguimientoCreate'
 import { RiProjector2Fill } from 'react-icons/ri';
-import { EnablenumeroPoaConfig} from '../../ConfiguracionApp'
+import { EnablenumeroPoaConfig, enableCreateSeguimiento} from '../../ConfiguracionApp'
 import { GiConsoleController } from 'react-icons/gi';
 
 
@@ -175,17 +175,17 @@ export default function SeguimientoPoa() {
                             <tr className="bg-lime-900 text-white text-sm  py-2 px-8 text-center">
                                 <td>#</td>
                                 <td>Pedi</td>
-                                <td>O. Estrategico</td>
-                                <td>O. Especifico</td>
+                                <td>O. Estratégico</td>
+                                <td>O. Específico</td>
                                 <td>Meta</td>
                                 <td>Actividad</td>
-                                <td>Medio verificacion</td>
+                                <td>Medio verificación</td>
                                 <td>indicador</td>
                                 <td>T pedi</td>
                                
                                 <td>Año</td>
-                                <td>total</td>
-                                <td>Ent</td>
+                                <td>Total</td>
+                                <td>Resp</td>
                                 <td>m1</td>
                                 <td>m2</td>
                                 <td>m3</td>
@@ -235,11 +235,14 @@ export default function SeguimientoPoa() {
                                     <td className= {item.eje11 >= item.pro11 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro11}</div> <div>{item.eje11}</div></td>
                                     <td className= {item.eje12 >= item.pro12 ? 'border border-gray-400 text-xs px-2' : 'border border-gray-400 text-xs px-2 bg-red-200'}><div className=' border-b-2 border-gray-500 '>{item.pro12}</div> <div>{item.eje12}</div></td>
                                     <td >
+                                        { item.representanteDependencia_id == userDatos.id  && enableCreateSeguimiento ?
                                     <ModalSeguimientoCreate
-                                                // indicadorPedi={[item.indicadorPedi, item.total]}
                                       info_poa={item}
                                       indicadorPedi={[item.indicadorPedi, item.total]}
                                             />
+                                            : 
+                                            <></>
+                                        }
                                   
 
 

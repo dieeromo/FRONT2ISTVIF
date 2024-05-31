@@ -157,7 +157,7 @@ export default function Poa2() {
         // mostrartabla2 = false
 
     }
-    //  console.log('detalle',detalle)
+      console.log('detalle',detalle)
 
 
 
@@ -204,7 +204,7 @@ export default function Poa2() {
                     <tbody>
 
 
-                        {detalle.reverse().map((item, index) => (
+                        {detalle.sort((a,b)=> a.medio_verificacion_id - b.medio_verificacion_id).map((item, index) => (
                             <tr key={index} className={index % 2 === 0 ? 'bg-gray-200 py-1' : 'bg-gray-100 py-1'}>
                                 <td className="border border-gray-400 text-xs px-2">{index + 1}</td>
                                 <td className="border border-gray-400 text-xs px-2">{item.pedi}</td>

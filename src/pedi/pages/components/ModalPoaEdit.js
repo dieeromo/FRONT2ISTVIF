@@ -9,7 +9,7 @@ import { useGetDependencias_allQuery,  } from '../../../general/services/general
 import { AiFillEdit } from "react-icons/ai";
 
 export default function ModalPoaEdit({indicadorPedi,info_poa}) {
-    console.log('id poa edit', info_poa)
+    
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
 
@@ -31,7 +31,7 @@ export default function ModalPoaEdit({indicadorPedi,info_poa}) {
     const [mes11, setMes11] = useState(info_poa.pro11)
     const [mes12, setMes12] = useState(info_poa.pro12)
 
-    console.log('mes,',mes1)
+
 
     const [observacion, setObservacion] = useState('')
 
@@ -113,7 +113,7 @@ export default function ModalPoaEdit({indicadorPedi,info_poa}) {
             </button>
             {isOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-                    <div className="relative w-96 mx-auto my-6">
+                    <div className="relative w-1/2 mx-auto my-6">
                         {/* Contenido del modal */}
                         <div className="bg-white rounded-lg shadow-lg outline-none focus:outline-none">
                             {/* Encabezado del modal */}
