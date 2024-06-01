@@ -87,10 +87,10 @@ export default function DocumentosTodos() {
             //label: <span className='text-xs font-bold'>Key</span>,
             label: 'Key Evi',
             options: {
-                customBodyRender: (value) => {
+                customBodyRender: (value,) => {
                     return (
                         <div >
-                            <p className='text-red-700 text-xs text-center w-10'>{value}</p>
+                            <p className='text-red-700 text-xs text-center w-10'> {value}</p>
                         </div>
                     )
                 },
@@ -101,19 +101,28 @@ export default function DocumentosTodos() {
             //label: <span className='text-xs font-bold'>Evidencia</span>,
             label: 'Evidencia',
             options: {
-                customBodyRender: (value, tableMeta) => {
-                    return (
-                        <div className='w-40 '>
-                            {tableMeta.rowData[11] == userDatos.id ?
-                                <div className=''>
-                                    <a href={`/acreditacion/documentos/${tableMeta.rowData[12]}`} className='text-green-700 text-[9px]'>{value}</a>
-                                </div>
-                                :
-                                <p className='text-red-700 text-[9px]'>{value}</p>
-                            }
+                customBodyRender: (value, tableMeta, updateValue) => {
+                    const {rowIndex, columnIndex} = tableMeta
+                    if(columnIndex === 0){
+                        if(rowIndex === 0 || data[rowIndex-1].evidencia !== value){
+                            
+                        }
 
-                        </div>
-                    )
+                    }else{
+
+                    }
+                    // return (
+                    //     <div className='w-40 '>
+                    //         {tableMeta.rowData[11] == userDatos.id ?
+                    //             <div className=''>
+                    //                 <a href={`/acreditacion/documentos/${tableMeta.rowData[12]}`} className='text-green-700 text-[9px]'>{value}</a>
+                    //             </div>
+                    //             :
+                    //             <p className='text-red-700 text-[9px]'>{value}</p>
+                    //         }
+
+                    //     </div>
+                    // )
                 },
             }
         },
