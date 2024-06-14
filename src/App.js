@@ -51,6 +51,10 @@ import RegistroMediosVer from './pedi/pages/RegistroMediosVer'
 import RegistroIndicador from './pedi/pages/RegistroIndicador'
 import Poa2 from './pedi/pages/Poa2'
 import SeguimientoPoa from './pedi/pages/SeguimientoPoa'
+// PEA
+import Asignatura from './pea/pages/Asignatura'
+import Curso from './pea/pages/Curso'
+import GeneralidadesPEA from './pea/pages/GeneralidadesPEA'
 
 
 
@@ -61,6 +65,13 @@ function App() {
       <BrowserRouter>
         {/* < SessionExpirationNotifier/> */}
         <Routes>
+          {/* Pea */}
+          <Route path='/pea/asignatura' element={<Asignatura />} />
+          <Route path='/pea/curso' element={<Curso />} />
+          <Route path='/pea/generalidades' element={<GeneralidadesPEA />} />
+
+
+          {/* Acreditacion */}
           <Route path='/' element={<Navigate to='/landing' replace />} />
           <Route path='/auth' element={<Auth />} />
           <Route path='/dashboard' element={<Dashboard />} />
