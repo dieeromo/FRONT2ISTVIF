@@ -166,7 +166,7 @@ export const pediApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
-            providesTags : ['medioVerificacion_actividad']
+            providesTags: ['medioVerificacion_actividad']
         }),
 
         ////////
@@ -178,7 +178,7 @@ export const pediApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
-            providesTags : ['indicadorPedi_medio']
+            providesTags: ['indicadorPedi_medio']
         }),
         ///
         ///
@@ -308,13 +308,13 @@ export const pediApi = createApi({
                         'anio5': parametros[7],
                         'medio_verificacion': parametros[8],
                         'entidadResponsable': parametros[9],
-                        'activo':parametros[10],
-                        'cumple':parametros[11],
+                        'activo': parametros[10],
+                        'cumple': parametros[11],
 
 
                         'observacion': parametros[12],
                         'digitador': parametros[13],
-                        
+
                         'numeroPoa': parametros[14],
 
                     },
@@ -350,13 +350,13 @@ export const pediApi = createApi({
                         'pro12': parametros[15],
                         'observacion': parametros[16],
                         'digitador': parametros[17],
-                    
+
 
                     },
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
-            invalidatesTags: ['indicadorPedi_medio','poa_all']
+            invalidatesTags: ['indicadorPedi_medio', 'poa_all']
 
         }),
         /////
@@ -368,9 +368,9 @@ export const pediApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
-            providesTags : ['poa_all']
+            providesTags: ['poa_all']
         }),
-        
+
         /////
         getPoa_indicador: builder.query({
             query: (parametros) => {
@@ -380,20 +380,20 @@ export const pediApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
-            providesTags : ['poa_indicador']
+            providesTags: ['poa_indicador']
         }),
 
         ////
         updatePoa: builder.mutation({
             query: (parametros) => {
-                console.log('parametros',parametros)
-                
+                console.log('parametros', parametros)
+
 
                 return {
                     url: `/pedi/pedi/poa/${parametros[32]}/`,
                     method: 'PUT',
                     body: {
-                       
+
                         "anio": parametros[1],
                         "totalAnio": parametros[2],
                         "pro1": parametros[3],
@@ -425,14 +425,25 @@ export const pediApi = createApi({
                         "NumeroSeguimiento": parametros[29],
                         "indicadorPedi": parametros[30],
                         "digitador": parametros[31]
-                    
+
 
                     },
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
-            invalidatesTags: ['indicadorPedi_medio','poa_all']
+            invalidatesTags: ['indicadorPedi_medio', 'poa_all']
 
+        }),
+        /////
+        getPediData: builder.query({
+            query: (access) => {
+                return {
+                    url: `/pedi/pedidata/`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+            providesTags: ['pedidata']
         }),
 
 
@@ -482,6 +493,7 @@ export const {
     useGetPoa_indicadorQuery,
     useGetPoaAllQuery,
     useUpdatePoaMutation,
+    useGetPediDataQuery,
 
 
 } = pediApi

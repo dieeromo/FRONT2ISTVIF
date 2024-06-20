@@ -51,6 +51,7 @@ import RegistroMediosVer from './pedi/pages/RegistroMediosVer'
 import RegistroIndicador from './pedi/pages/RegistroIndicador'
 import Poa2 from './pedi/pages/Poa2'
 import SeguimientoPoa from './pedi/pages/SeguimientoPoa'
+import PediData from './pedi/pages/PediData'
 // PEA
 import Asignatura from './pea/pages/Asignatura'
 import Curso from './pea/pages/Curso'
@@ -130,6 +131,7 @@ function App() {
             <Route path='/pedi/registro/actividades/:meta_id' element={< RegistroActividades/>} />
             <Route path='/pedi/registro/medios/:actividad_id' element={< RegistroMediosVer/>} />
             <Route path='/pedi/registro/indicador/:medio_id' element={< RegistroIndicador/>} />
+            <Route path='/pedi/pedidata' element={< PediData/>} />
            
 
 
