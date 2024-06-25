@@ -445,6 +445,18 @@ export const pediApi = createApi({
             },
             providesTags: ['pedidata']
         }),
+        /////
+        getPoaData: builder.query({
+            query: (access) => {
+                return {
+                    url: `/pedi/poadata/`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+            providesTags: ['poadata']
+        }),
+
 
 
 
@@ -494,6 +506,7 @@ export const {
     useGetPoaAllQuery,
     useUpdatePoaMutation,
     useGetPediDataQuery,
+    useGetPoaDataQuery,
 
 
 } = pediApi
