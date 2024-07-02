@@ -88,7 +88,8 @@ export default function PoaData() {
                                     <td className="border border-gray-400 text-xs px-2">{item.pro12}</td>
                                     <td>
                                          <div>
-                                            {EnablenumeroPoaConfig === item.numeroPoa && enableCreatePoa && item.coordinador_entidad === userDatos.id ?
+                                            {EnablenumeroPoaConfig === item.numeroPoa && enableCreatePoa  ?
+                                            //EnablenumeroPoaConfig === item.numeroPoa && enableCreatePoa && item.coordinador_entidad === userDatos.id
                                                 <ModalPoa2
                                                     indicadorPedi={item.indicadorID}
                                                 />
@@ -98,7 +99,8 @@ export default function PoaData() {
                                         </div> 
                                     
                                         <div>
-                                            {item.coordinador_entidad == userDatos.id  && enableEditPoa && EnablenumeroPoaConfig < item.numeroPoa  ?
+                                            {item.coordinador_entidad == userDatos.id    ?
+                                            // && enableEditPoa && EnablenumeroPoaConfig < item.numeroPoa
                                                 <ModalPoaEdit2
                                                     id={item.idPoa}
                                                 />
