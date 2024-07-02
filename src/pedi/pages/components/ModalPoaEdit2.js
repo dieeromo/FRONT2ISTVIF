@@ -11,12 +11,6 @@ export default function ModalPoaEdit2({ id }) {
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
     const [updatePoa] = usePutPoaDataIDMutation()
     const { data: dataPoaID, isSuccess: isSuccessPoaID } = useGetPoaDataIDQuery({ access: user.access, id: id })
-    console.log(dataPoaID)
-
-
-
-
-
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -26,11 +20,6 @@ export default function ModalPoaEdit2({ id }) {
     const closeModal = (e) => {
         setIsOpen(false)
     };
-
-
-
-
-
 
 
 
@@ -88,7 +77,7 @@ export default function ModalPoaEdit2({ id }) {
                         <div className="bg-white rounded-lg shadow-lg outline-none focus:outline-none">
                             {/* Encabezado del modal */}
                             <div className="flex items-center justify-between p-5 border-b border-gray-300 border-solid rounded-t">
-                                <h3 className="text-lg font-semibold"> Seguimiento Planificación operativa anual</h3>
+                                <h3 className="text-lg font-semibold"> Planificación operativa anual</h3>
                                 <button
                                     onClick={closeModal}
                                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -117,7 +106,7 @@ export default function ModalPoaEdit2({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro1:</label>
+                                            <label className="block text-xs  mb-2">Pro1:</label>
                                             <input
 
                                                 type="number"
@@ -128,7 +117,7 @@ export default function ModalPoaEdit2({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro2:</label>
+                                            <label className="block text-xs mb-2">Pro2:</label>
                                             <input
                                                 type="number"
                                                 name="pro2"
@@ -139,7 +128,7 @@ export default function ModalPoaEdit2({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro3:</label>
+                                            <label className="block text-xs mb-2">Pro3:</label>
                                             <input
                                                 type="number"
                                                 name="pro3"
@@ -150,7 +139,7 @@ export default function ModalPoaEdit2({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro4:</label>
+                                            <label className="block text-xs mb-2">Pro4:</label>
                                             <input
                                                 type="number"
                                                 name="pro4"
@@ -160,7 +149,7 @@ export default function ModalPoaEdit2({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro5:</label>
+                                            <label className="block text-xs mb-2">Pro5:</label>
                                             <input
                                                 type="number"
                                                 name="pro5"
@@ -171,7 +160,7 @@ export default function ModalPoaEdit2({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro6:</label>
+                                            <label className="block text-xs mb-2">Pro6:</label>
                                             <input
                                                 type="number"
                                                 name="pro6"
@@ -181,7 +170,7 @@ export default function ModalPoaEdit2({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro7:</label>
+                                            <label className="block text-xs mb-2">Pro7:</label>
                                             <input
                                                 type="number"
                                                 name="pro7"
@@ -191,7 +180,7 @@ export default function ModalPoaEdit2({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro8:</label>
+                                            <label className="block text-xs  mb-2">Pro8:</label>
                                             <input
                                                 type="number"
                                                 name="pro8"
@@ -201,7 +190,7 @@ export default function ModalPoaEdit2({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro9:</label>
+                                            <label className="block text-xs mb-2">Pro9:</label>
                                             <input
                                                 type="number"
                                                 name="pro9"
@@ -212,7 +201,7 @@ export default function ModalPoaEdit2({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro10:</label>
+                                            <label className="block text-xs  mb-2">Pro10:</label>
                                             <input
                                                 type="number"
                                                 name="pro10"
@@ -223,7 +212,7 @@ export default function ModalPoaEdit2({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro11:</label>
+                                            <label className="block text-xs  mb-2">Pro11:</label>
                                             <input
                                                 type="number"
                                                 name="pro11"
@@ -233,7 +222,7 @@ export default function ModalPoaEdit2({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs font-bold mb-2">pro12:</label>
+                                            <label className="block text-xs mb-2">Pro12:</label>
                                             <input
                                                 type="number"
                                                 name="pro12"

@@ -77,8 +77,6 @@ export default function ModalPoa2({ indicadorPedi }) {
         console.log('error')
        }
    
-        console.log('tempo',tempo)
-
         closeModal()
 
     }
@@ -120,7 +118,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro1:</label>
+                                        <label className="block text-xs mb-2">Pro1:</label>
                                         <input
 
                                             type="number"
@@ -130,7 +128,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro2:</label>
+                                        <label className="block text-xs  mb-2">Pro2:</label>
                                         <input
                                             type="number"
                                             name="pro2"
@@ -140,7 +138,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro3:</label>
+                                        <label className="block text-xs mb-2">Pro3:</label>
                                         <input
                                             type="number"
                                             name="pro3"
@@ -150,7 +148,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro4:</label>
+                                        <label className="block text-xs mb-2">Pro4:</label>
                                         <input
                                             type="number"
                                             name="pro4"
@@ -159,7 +157,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro5:</label>
+                                        <label className="block text-xs mb-2">Pro5:</label>
                                         <input
                                             type="number"
                                             name="pro5"
@@ -169,7 +167,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro6:</label>
+                                        <label className="block text-xs  mb-2">Pro6:</label>
                                         <input
                                             type="number"
                                             name="pro6"
@@ -178,7 +176,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro7:</label>
+                                        <label className="block text-xs mb-2">Pro7:</label>
                                         <input
                                             type="number"
                                             name="pro7"
@@ -187,7 +185,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro8:</label>
+                                        <label className="block text-xs mb-2">Pro8:</label>
                                         <input
                                             type="number"
                                             name="pro8"
@@ -196,7 +194,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro9:</label>
+                                        <label className="block text-xs  mb-2">Pro9:</label>
                                         <input
                                             type="number"
                                             name="pro9"
@@ -206,7 +204,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro10:</label>
+                                        <label className="block text-xs mb-2">Pro10:</label>
                                         <input
                                             type="number"
                                             name="pro10"
@@ -216,7 +214,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro11:</label>
+                                        <label className="block text-xs mb-2">Pro11:</label>
                                         <input
                                             type="number"
                                             name="pro11"
@@ -225,7 +223,7 @@ export default function ModalPoa2({ indicadorPedi }) {
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">pro12:</label>
+                                        <label className="block text-xs mb-2">Pro12:</label>
                                         <input
                                             type="number"
                                             name="pro12"

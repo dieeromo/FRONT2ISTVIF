@@ -10,6 +10,7 @@ export default function SeguimientoPoadata() {
 
 
     const { data: dataPoa, isSuccess: isSuccessPoa } = useGetPoaDataQuery(user.access)
+    console.log('data poaaa', dataPoa)
 
     return (
         <DashboardPedi>
@@ -67,7 +68,7 @@ export default function SeguimientoPoadata() {
                                     <td className="border border-gray-400 text-xs px-2">{item.responsable_sigla}</td>
 
                                     <td className="border border-gray-400 text-xs px-2">{item.anioPoa}</td>
-                                    <td className="border border-gray-400 text-xs px-2"><div className=' border-b-2 border-gray-500 '>{item.eje1}</div> <div>{item.totalAnio}</div></td>
+                                    <td className="border border-gray-400 text-xs px-2"><div className=' border-b-2 border-gray-500 '>{item.totalAnioEje}</div> <div>{item.totalAnio}</div></td>
                                     <td className="border border-gray-400 text-xs px-2"> <div className=' border-b-2 border-gray-500 '>{item.eje1}</div>   <div>{item.pro1}</div> </td>
                                     <td className="border border-gray-400 text-xs px-2"> <div className=' border-b-2 border-gray-500 '> {item.eje2} </div>  <div>{item.pro2}</div> </td>
                                     <td className="border border-gray-400 text-xs px-2"> <div className=' border-b-2 border-gray-500 '>{item.eje3} </div>  <div>{item.pro3}</div>  </td>

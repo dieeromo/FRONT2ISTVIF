@@ -36,26 +36,29 @@ export default function ModalSeguimientoPoa({ id }) {
 
     const guardarCambios = async (e) => {
         e.preventDefault()
-        const eje1 = e.target.elements.eje1.value.trim()
-        const eje2 = e.target.elements.eje2.value.trim()
-        const eje3 = e.target.elements.eje3.value.trim()
+        const eje1 = parseInt( e.target.elements.eje1.value.trim())
+        const eje2 =parseInt( e.target.elements.eje2.value.trim())
+        const eje3 = parseInt( e.target.elements.eje3.value.trim() )
 
-        const eje4 = e.target.elements.eje4.value.trim()
-        const eje5 = e.target.elements.eje5.value.trim()
-        const eje6 = e.target.elements.eje6.value.trim()
+        const eje4 = parseInt( e.target.elements.eje4.value.trim())
+        const eje5 = parseInt( e.target.elements.eje5.value.trim() )
+        const eje6 =  parseInt( e.target.elements.eje6.value.trim() )
 
-        const eje7 = e.target.elements.eje7.value.trim()
-        const eje8 = e.target.elements.eje8.value.trim()
-        const eje9 = e.target.elements.eje9.value.trim()
+        const eje7 = parseInt( e.target.elements.eje7.value.trim() )
+        const eje8 =parseInt ( e.target.elements.eje8.value.trim() )
+        const eje9 = parseInt( e.target.elements.eje9.value.trim() )
 
-        const eje10 = e.target.elements.eje10.value.trim()
-        const eje11 = e.target.elements.eje11.value.trim()
-        const eje12 = e.target.elements.eje12.value.trim()
-        const totalAnio = e.target.elements.totalAnio.value.trim()
+        const eje10 = parseInt( e.target.elements.eje10.value.trim())
+        const eje11 = parseInt( e.target.elements.eje11.value.trim() )
+        const eje12 =parseInt( e.target.elements.eje12.value.trim() )
+        const totalAnioEje = eje1 + eje2 + eje3 + eje4 + eje5 + eje6 + eje7 + eje8 + eje9 + eje10 + eje11 + eje12
+        console.log('total anio', totalAnioEje)
 
 
         const tempo = {
             ...dataPoaID,
+            totalAnioEje : totalAnioEje,
+        
             eje1: eje1,
             eje2: eje2,
             eje3: eje3,
@@ -88,7 +91,7 @@ export default function ModalSeguimientoPoa({ id }) {
                         <div className="bg-white rounded-lg shadow-lg outline-none focus:outline-none">
                             {/* Encabezado del modal */}
                             <div className="flex items-center justify-between p-5 border-b border-gray-300 border-solid rounded-t">
-                                <h3 className="text-lg font-semibold"> Seguimiento Planificación operativa anual</h3>
+                                <h3 className="text-lg font-semibold"> Seguimiento Planificación operativa anual...</h3>
                                 <button
                                     onClick={closeModal}
                                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"

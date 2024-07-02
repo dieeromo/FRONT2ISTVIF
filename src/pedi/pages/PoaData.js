@@ -12,9 +12,6 @@ export default function PoaData() {
 
 
     const { data: dataPoa, isSuccess: isSuccessPoa } = useGetPoaDataQuery(user.access)
-    console.log('datapoa',dataPoa)
-
-
 
 
     return (
@@ -73,7 +70,7 @@ export default function PoaData() {
                                     <td className="border border-gray-400 text-xs px-2">{item.responsable_sigla}</td>
 
                                     <td className="border border-gray-400 text-xs px-2">{item.anioPoa}</td>
-                                    <td className="border border-gray-400 text-xs px-2">{item.totalAnio}</td>
+                                    <td className="border border-gray-400 text-xs px-2 font-bold">{item.totalAnio}</td>
                                     <td className="border border-gray-400 text-xs px-2">{item.pro1}</td>
                                     <td className="border border-gray-400 text-xs px-2">{item.pro2}</td>
                                     <td className="border border-gray-400 text-xs px-2">{item.pro3}</td>
