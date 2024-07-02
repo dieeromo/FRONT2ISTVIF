@@ -94,6 +94,16 @@ export default function ModalPoa2({ indicadorPedi }) {
                         {/* Contenido del modal */}
                         <div className="bg-white rounded-lg shadow-lg outline-none focus:outline-none">
                             {/* Encabezado del modal */}
+                            <div className="flex items-center justify-between p-5 border-b border-gray-300 border-solid rounded-t">
+                                <h3 className="text-lg font-semibold"> Registro Planificación operativa anual</h3>
+                                <button
+                                    onClick={closeModal}
+                                    className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                >
+                                    <span className="text-black h-6 w-6 text-2xl block outline-none focus:outline-none bg-gray">x</span>
+                                </button>
+                            </div>
+                            
 
                             <form onSubmit={guardarCambios} method='PUT'>
 
