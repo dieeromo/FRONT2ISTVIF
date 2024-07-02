@@ -39,7 +39,7 @@ export default function Poa2() {
 
     const { data: dataDependencias, isSuccess: isSuccessDependencias, } = useGetDependencias_allQuery(user.access)
 
-    //console.log('****', dataIndicadorMedioPedi)
+
 
     let detalle = []
 

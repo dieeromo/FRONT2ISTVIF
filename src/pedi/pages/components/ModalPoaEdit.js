@@ -85,7 +85,7 @@ export default function ModalPoaEdit({indicadorPedi,info_poa}) {
 
             info_poa.observacion,
             info_poa.NumeroSeguimiento,
-            info_poa.id_indicador,
+            info_poa.indicadorID,
             info_poa.digitador,
 
             info_poa.idPoa,

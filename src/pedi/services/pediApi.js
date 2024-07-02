@@ -294,6 +294,7 @@ export const pediApi = createApi({
 
         updateIndicador_pedi: builder.mutation({
             query: (parametros) => {
+                console.log('paras', parametros)
 
                 return {
                     url: `/pedi/pedi/indicador_medio_pedi/${parametros[15]}/`,
@@ -356,7 +357,7 @@ export const pediApi = createApi({
                     headers: { Authorization: `JWT ${parametros[0]}` },
                 }
             },
-            invalidatesTags: ['indicadorPedi_medio', 'poa_all']
+            invalidatesTags: ['poadata']
 
         }),
         /////
@@ -457,6 +458,72 @@ export const pediApi = createApi({
             providesTags: ['poadata']
         }),
 
+        /////
+        getPoaDataID: builder.query({
+            query: ({ access, id }) => {
+                return {
+                    url: `/pedi/pedi/poa/${id}`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+            providesTags: ['poadata']
+        }),
+        /////
+        putPoaDataID: builder.mutation({
+            query: ({ access, id, rest }) => {
+                return {
+                    url: `/pedi/pedi/poa/${id}/`,
+                    method: 'PUT',
+                    headers: { Authorization: `JWT ${access}` },
+                    body: rest,
+                }
+            },
+            invalidatesTags: ['poadata']
+
+        }),
+        ///////
+        createPoa2: builder.mutation({
+            query: ({ access, rest }) => {
+
+                return {
+                    url: '/pedi/pedi/poa/',
+                    method: 'POST',
+                    body: rest,
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+            invalidatesTags: ['poadata']
+
+        }),
+
+        ///////
+        getIndicadorPediID: builder.query({
+            query: ({ access, id }) => {
+                return {
+                    url: `/pedi/pedi/indicador_medio_pedi/${id}/`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+            providesTags: ['IndicadorPedi']
+        }),
+
+        /////
+        putIndicadorPediID: builder.mutation({
+            query: ({ access, id, rest }) => {
+                return {
+                    url: `/pedi/pedi/indicador_medio_pedi/${id}/`,
+                    method: 'PUT',
+                    headers: { Authorization: `JWT ${access}` },
+                    body: rest,
+                }
+            },
+            invalidatesTags: ['IndicadorPedi']
+
+        }),
+        ///////
+
 
 
 
@@ -508,5 +575,10 @@ export const {
     useGetPediDataQuery,
     useGetPoaDataQuery,
 
+    useGetPoaDataIDQuery,
+    usePutPoaDataIDMutation,
+    useCreatePoa2Mutation,
+    useGetIndicadorPediIDQuery,
+    usePutIndicadorPediIDMutation,
 
 } = pediApi

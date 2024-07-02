@@ -14,14 +14,12 @@ const DashboardPedi = ({children}) => {
                         <h1 className=" font-bold"><a href='/acreditacion/landing'>PEDI </a></h1>
                     </div>
                     <ul>
-                        <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="/pedi" >Pedi</a></li>
+                      
                    
                         <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="/pedi/registro2" >Registro PEDI</a></li>
-                        
-                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/poa2" >POA</a></li>
-                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/seguimiento/poa" >Seg. POA</a></li>
                         <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/pedidata" >Pedi data</a></li>
                         <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/poadata" >Poa data</a></li>
+                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/poadata/seguimiento" >Seg. Poa data</a></li>
 
                         
                         {/* Agrega más elementos de menú según sea necesario */}
