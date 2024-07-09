@@ -58,6 +58,12 @@ import SeguimientoPoadata from './pedi/pages/SeguimientoPoadata'
 import Asignatura from './pea/pages/Asignatura'
 import Curso from './pea/pages/Curso'
 import GeneralidadesPEA from './pea/pages/GeneralidadesPEA'
+//EVALUACION
+import EvaluacionEvidencia from './evaluacion/pages/EvaluacionEvidencia'
+    import LandingCalidad from './evaluacion/pages/LandingCalidad'
+
+import DocumentosResponsable from './evaluacion/pages/DocumentosResponsable'
+import DocenteResponsable from './evaluacion/pages/DocenteResponsable'
 
 
 
@@ -136,6 +142,14 @@ function App() {
             <Route path='/pedi/pedidata' element={< PediData/>} />
             <Route path='/pedi/poadata' element={< PoaData/>} />
             <Route path='/pedi/poadata/seguimiento' element={< SeguimientoPoadata/>} />
+
+         {/* EVALUACION */}
+            <Route path='/evaluacion/evidencia' element={< EvaluacionEvidencia/>} />
+            <Route path='/evaluacion/landing' element={< LandingCalidad/>} />
+            <Route path='/evaluacion/documentos/responsable' element={< DocumentosResponsable/>} />
+            <Route path='/evaluacion/documentos/docente' element={< DocenteResponsable/>} />
+
+            
            
 
 

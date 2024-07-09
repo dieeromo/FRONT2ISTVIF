@@ -25,6 +25,9 @@ const DeleteArchivoModal = ({id}) => {
         setIsOpen(false)
     };
 
+
+
+
     return (
         <div className="relative">
             <button className="bg-blue-00 hover:bg-blue-700  text-xs font-bold py-1 px-1 rounded" onClick={openModal}>

@@ -16,6 +16,7 @@ const Dashboard = () => {
     //console.log(user)
 
    const {data, isSuccess, isError,isLoading} = useGetUserQuery(user.access)
+   console.log('datos user', data)
   
   
    const [render, setRender] = useState(false)
