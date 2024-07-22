@@ -38,6 +38,7 @@ import LandingInventario from './inventario/pages/LandingInventario'
 import RegisterInventario from './inventario/pages/RegisterInventario';
 import ListInventario from './inventario/pages/ListInventario'
 
+
 //PEDI
 
 import RegistroPedi2 from './pedi/pages/RegistroPedi2'
@@ -125,6 +126,8 @@ function App() {
           <Route path='/inventario/landing' element={< LandingInventario/>} />
           <Route path='/inventario/register' element={< RegisterInventario/>} />
           <Route path='/inventario/list' element={< ListInventario/>} />
+        
+
 
             {/* PEDI */}
             

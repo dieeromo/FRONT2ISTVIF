@@ -22,6 +22,8 @@ export default function RegisterInventario() {
     const { data: dataUbicacionAsset, isSuccess: isSuccessUbicacionAsset } = useGetUbicacionAssetQuery(user.access)
     const { data: dataDocentes, isSuccess: isSuccessDocentes } = useGetUsuariosDocentesQuery(user.access)
 
+
+
     const [tipoAs, setTipoAs] = useState('')
     const [estadoAs, setEstadoAs] = useState('')
     const [ubicacionAs, setUbicacionAs] = useState('')
@@ -43,17 +45,6 @@ export default function RegisterInventario() {
         const color = e.target.elements.color.value.trim()
         const observacion = e.target.elements.observacion.value.trim()
 
-        console.log('unico', cod_unico)
-        console.log('senes', cod_senescyt)
-        console.log('ist', cod_instituto)
-        console.log('descr', descripcion)
-        console.log('mate', materiales)
-        console.log('marca', marca)
-        console.log('tipo', tipoAs)
-        console.log('ubicacion', ubicacionAs)
-        console.log('dig', userDatos.id)
-        console.log('asig', asignado)
-        console.log('estado', estadoAs)
         try {
             const assetGuardado = await createAsset([
                 user.access,

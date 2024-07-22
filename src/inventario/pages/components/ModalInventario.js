@@ -7,7 +7,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import {useDeleteAssetMutation} from '../../services/inventarioApi'
 
 const ModalInventario = ({id}) => {
-    console.log('iddd',id)
+   
    
     const user = JSON.parse(localStorage.getItem('user') || "{}")  // para [asar las credenciales]
   

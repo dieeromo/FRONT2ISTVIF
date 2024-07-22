@@ -17,8 +17,6 @@ export default function EvaluacionEvidencia() {
     skip: selectedCriterioId === null,
   });
 
-  //const { data: dataEvaluacion, isLoading: isLoadingEvaluacion} = useGetEvaluacionEvidencia_modeloCriterioQuery({access:user.access, criterio_id:1, modelo_id:1})
- 
 
   const handleCriterioClick = (criterioId) => {
     setSelectedCriterioId(criterioId);

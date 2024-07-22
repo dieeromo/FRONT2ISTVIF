@@ -4,6 +4,8 @@ import { useGetInventarioTodoQuery } from "../services/inventarioApi";
 import MUIDataTable from "mui-datatables";
 import ModalInventario from "./components/ModalInventario";
 import reporte_inventario_banner from "../../assets/reporte_inventario_banner.png";
+import EditModal from './components/EditModal'
+
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
@@ -11,8 +13,22 @@ export default function ListInventario() {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const userDatos = JSON.parse(localStorage.getItem("userDatos") || "{}");
 
-  const { data, isSuccess, isLoading, isError, error } =
-    useGetInventarioTodoQuery(user.access);
+  const [openModal, setOpenModal] = useState({ abrirModal: false, invenID: null })
+
+
+
+  // const handleInventaroIDClick = ({abrir,id}) => {
+  //   setInventarioID(id);
+  //   setOpenModal(abrir)
+  // };
+
+  const handleButtonClick = (cerrarModal) => {
+    setOpenModal({ abrirModal: false, invenID: null });
+  };
+
+
+  const { data, isSuccess, isLoading, isError, error } = useGetInventarioTodoQuery(user.access);
+  console.log('data', data)
 
   const [filteredData, setFilteredData] = useState([]);
 
@@ -73,9 +89,16 @@ export default function ListInventario() {
       options: {
         customBodyRender: (value, tableMeta) => {
           return (
+            //onClick={ handleInventaroIDClick({abrir:true, id:5}) 
+            //onClick={(e)=>setOpenModal(true)}
             <>
               {userDatos.is_adminInventario && userDatos.is_docente ? (
-                <ModalInventario id={parseInt(tableMeta.rowData[12])} />
+                <>
+                  <ModalInventario id={parseInt(tableMeta.rowData[12])} />
+                  <button onClick={(e) => setOpenModal({ abrirModal: true, invenID: parseInt(tableMeta.rowData[12]) })}  >
+                    Edit</button>
+                </>
+
               ) : (
                 <> </>
               )}
@@ -91,6 +114,18 @@ export default function ListInventario() {
         display: false,
       },
     },
+    {
+      name:'materiales',
+      label:'materiales'
+    },
+    {
+      name:'estado_name',
+      label:'estado'
+    },
+    {
+      name:'tipo_name',
+      label:'tipo'
+    }
   ];
 
   const options = {
@@ -105,7 +140,7 @@ export default function ListInventario() {
   };
 
   const exportPDF = () => {
-    let dataToExport = filteredData; 
+    let dataToExport = filteredData;
 
     if (!filteredData || filteredData.length === 0) {
       dataToExport = data;
@@ -190,13 +225,17 @@ export default function ListInventario() {
       >
         Generar PDF
       </button>
-      {userDatos.is_adminInventario ? (
-        <button className="bg-blue-900 rounded text-white mb-2">
-          <a href="/inventario/register"> Nuevo registro</a>{" "}
-        </button>
-      ) : (
-        <> </>
-      )}
+      <div>
+        {userDatos.is_adminInventario ? (
+          <button className="bg-blue-900 rounded text-white mb-2">
+            <a href="/inventario/register"> Nuevo registro</a>{" "}
+          </button>
+        ) : (
+          <> </>
+        )}
+
+      </div>
+
 
       <div className="py-8">
         <MUIDataTable
@@ -206,6 +245,18 @@ export default function ListInventario() {
           options={options}
         />
       </div>
+
+      <div>
+        {openModal && (
+          <EditModal
+            isOpen1={openModal.abrirModal}
+            onClick1={handleButtonClick}
+            inventarioID={openModal.invenID}
+          />
+        )}
+      </div>
+
+
     </DashboardInventario>
   );
 }
