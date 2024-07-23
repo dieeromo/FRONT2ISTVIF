@@ -21,7 +21,9 @@ export default function DocumentosResponsable() {
                                 <th>#</th>
                                 <th>Criterio</th>
                                 <th>Subcriterio</th>
+                                <th>#Ind</th>
                                 <th>Indicador</th>
+                                <th>#Ev</th>
                                 <th>Evidencia</th>
                                 <th>Documento</th>
                                 <th></th>
@@ -35,7 +37,13 @@ export default function DocumentosResponsable() {
                                     <td className='text-xs border border-gray-400'> {index + 1}</td>
                                     <td className='text-xs border border-gray-400'>{item.criterio}</td>
                                     <td>{item.subcriterio}</td>
-                                    <td className='text-xs border border-gray-400'>{item.indicador}</td>
+                                    <td>{item.indicador_numeral}</td>
+                                    <td className='text-xs border border-gray-400'>
+                                        <div>{item.indicador}</div>
+                                        <div className='text-red-500 text-xs'>*{item.responsableIndicador}*</div>
+                                        
+                                        </td>
+                                    <td>{item.evidencia_numeral}</td>
                                     <td className='text-xs border border-gray-400'>{item.evidencia}</td>
                                     <td className={(item.archivo || item.link) ? 'border-t border-b border-l border-gray-400 bg-green-200' : 'border-t border-b border-l border-gray-400'}>
                                         {

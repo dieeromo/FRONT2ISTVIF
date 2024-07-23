@@ -13,6 +13,7 @@ export default function CriterioDataTable({ dataCriterios }) {
   const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
   //let datos = dataCriterios
   const rowSpanMapEvidencia = {}
+  const rowSpanMapIndicador = {}
 
   const esResponsable = (indicador, userID) => {
     return (
@@ -25,6 +26,12 @@ export default function CriterioDataTable({ dataCriterios }) {
       rowSpanMapEvidencia[item.evidencia] += 1
     } else {
       rowSpanMapEvidencia[item.evidencia] = 1
+    }
+
+    if(rowSpanMapIndicador[item.indicador]){
+      rowSpanMapIndicador[item.indicador] += 1
+    }else{
+      rowSpanMapIndicador[item.indicador] =1 
     }
   })
 
@@ -52,18 +59,19 @@ export default function CriterioDataTable({ dataCriterios }) {
       <tbody>
         {dataCriterios.map((item, index) => {
           const isFirstEvidencia = index === 0 || dataCriterios[index - 1].evidencia !== item.evidencia
+          const isFirstIndicador = index === 0 || dataCriterios[index-1].indicador !== item.indicador
           return (
             <tr key={index} className="border border-gray-400 text-xs px-2 text-center">
               <td className='border border-gray-400' >{index + 1}</td>
               <td className='border border-gray-400' >{item.subcriterio}</td>
 
               {
-                isFirstEvidencia &&
-                <td rowSpan={rowSpanMapEvidencia[item.evidencia]} className='border border-gray-400'> {item.indicador_numeral} </td>
+                isFirstIndicador &&
+                <td rowSpan={rowSpanMapIndicador[item.indicador]} className={index%2 === 0 ? "bg-gray-200" : ""}> {item.indicador_numeral} </td>
               }
               {
-                isFirstEvidencia &&
-                <td rowSpan={rowSpanMapEvidencia[item.evidencia]} className='border border-gray-400'>
+                isFirstIndicador &&
+                <td rowSpan={rowSpanMapIndicador[item.indicador]} className={index%2 ===0 ? 'border border-gray-400 bg-gray-200':'border border-gray-400'}>
                   <div>{item.indicador}</div>
                   <div className='text-red-500'>* {item.responsableIndicador} *</div>
                   <div className='text-xs'>{item.corresponsableIndicador1}</div>

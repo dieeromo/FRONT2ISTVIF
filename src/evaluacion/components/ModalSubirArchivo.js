@@ -4,6 +4,8 @@ import { useGetDocumentoIDQuery, usePutDocumentoMutation } from '../services/eva
 export default function ModalSubirArchivo({ documentoID }) {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
+    const [isLoadingArchivo, setIsLoadingArchivo] = useState(false)
+    const [errorArchivo, setErrorArchivo] = useState('')
 
     const { data: dataDocumento, isSuccess: isSuccessDocumento } = useGetDocumentoIDQuery({ access: user.access, documentoID: documentoID })
 
@@ -28,8 +30,10 @@ export default function ModalSubirArchivo({ documentoID }) {
     const [link, setLink] = useState('')
 
     const [subirArchivo] = usePutDocumentoMutation()
+
     const guardarCambios = async (e) => {
         e.preventDefault()
+        setIsLoadingArchivo(true)
         const formData = new FormData()
         formData.append('evidenciaEvaluacion', dataDocumento.evidenciaEvaluacion)
         formData.append('nombre', dataDocumento.nombre)
@@ -51,31 +55,34 @@ export default function ModalSubirArchivo({ documentoID }) {
             link: link,
         }
 
-    
-        
-        if(selectedOption==='Archivo'){
+
+
+        if (selectedOption === 'Archivo') {
             try {
                 await subirArchivo({ access: user.access, documentoID: documentoID, rest: formData }).unwrap()
-    
+
             } catch (error) {
                 console.log('error subida de archivo', error)
+                setErrorArchivo(error)
+            } finally {
+                closeModal()
             }
-        }else if(selectedOption==='Link'){
+        } else if (selectedOption === 'Link') {
             try {
                 await subirArchivo({ access: user.access, documentoID: documentoID, rest: tempo }).unwrap()
-    
+
             } catch (error) {
                 console.log('error de link', error)
-            } 
+                setErrorArchivo(error)
+            } finally {
+                closeModal()
+            }
 
         }
-
-
-
-
-        closeModal()
-
+        //closeModal()
     }
+
+
     return (
         <>
             <button className=" rounded" onClick={openModal}>
@@ -132,37 +139,36 @@ export default function ModalSubirArchivo({ documentoID }) {
                                                     name="link"
                                                     id='link'
                                                     value={link}
-                                                    onChange={(e)=>setLink(e.target.value)}
+                                                    onChange={(e) => setLink(e.target.value)}
                                                     className='bg-gray-200 w-3/4 pl-5 pr-5 text-sm'
                                                     placeholder='Ingrese la url'
                                                 />
                                             </div>
-                                    )}
+                                        )}
+                                    <div>
+                                        {isLoadingArchivo && <p className='font-bold mb-3'>Cargando archivo</p>}
+
+                                    </div>
 
                                 </div>
 
+                                {
+                                    (selectedOption === 'Link' || selectedOption === 'Archivo') && (
+                                        <div>
+                                                {!isLoadingArchivo && (
+                                                    <button
+                                                        type="submit"
+                                                        className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
+                                                        disabled={isLoadingArchivo}
+                                                    >
+                                                        Guardar
+                                                    </button>
+                                                )}
+                                        </div>
 
+                                    )
 
-
-             
-{
-                                ( selectedOption === 'Link' || selectedOption==='Archivo' )  &&(
-                                    <button
-                                    type="submit"
-                                    className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
-                                >
-                                    Guardar
-                                </button>
-                                ) 
-                        
-
-}
-
-
-
-
-
-
+                                }
                             </form>
 
                         </div>
