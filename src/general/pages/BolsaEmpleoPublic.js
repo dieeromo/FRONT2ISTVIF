@@ -5,7 +5,7 @@ import BolsaEmpleoCard from "./components/BolsaEmpleoCard"
 export default function BolsaEmpleoPublic() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const { data ,isSuccess } = useGetBolsaEmpleo_all_publicQuery()
-    console.log(data)
+    //console.log(data)
     return (
         <DashboardVisitante>
             {isSuccess ? 
