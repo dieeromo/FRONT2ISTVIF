@@ -16,8 +16,10 @@ const getBgColor = (estado) => {
       return 'bg-green-200';
     case 3: // corregir
       return 'bg-orange-300';
+    case 0: // sin subir
+      return 'bg-red-300';
     default:
-      return 'bg-red-200'; // Color de fondo por defecto si el estado_documento no es 1, 2 o 3
+      return 'bg-gray-200'; // Color de fondo por defecto si el estado_documento no es 1, 2 o 3
   }
 }
 

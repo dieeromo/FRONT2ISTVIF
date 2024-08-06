@@ -38,6 +38,7 @@ export default function ModalCreateDocumento({ evidenciaID }) {
             digitador: userDatos.id,
             responsable:responsable,
             periodoAcademico: periodo,
+        
 
         }
         crearDocumento({access:user.access, rest:rest})

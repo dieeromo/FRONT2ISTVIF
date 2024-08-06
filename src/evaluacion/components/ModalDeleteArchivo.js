@@ -20,7 +20,9 @@ export default function ModalDeleteArchivo({documentoID}) {
         
         let tempo = {
             ...dataDocumento,
-            link:''
+            
+            link:'',
+    
         }
 
         // try {
