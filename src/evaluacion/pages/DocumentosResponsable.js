@@ -6,6 +6,7 @@ import ModalDeleteArchivo from '../components/ModalDeleteArchivo'
 import { RUTA_SERVIDOR } from '../../ApiRoutes'
 
 import ModalRevisarDocumento from '../components/ModalRevisarDocumento'
+import { FaEye } from "react-icons/fa";
 
 const getBgColor = (estado) => {
     switch (estado) {
@@ -75,11 +76,11 @@ export default function DocumentosResponsable() {
                                     <td className='text-xs border border-gray-400'>{item.evidencia}</td>
                                     <td className={`px-6 py-4 ${getBgColor(item.estado_documento)}`} >
                                         {
-                                            item.archivo && (<a href={RUTA_SERVIDOR + `/media/${item.archivo}`} target="_blank"> {item.documento}</a>)
+                                            item.archivo && (<a href={RUTA_SERVIDOR + `/media/${item.archivo}`} target="_blank"> {item.documento} <FaEye /></a>)
                                         }
 
                                         {
-                                            item.link && (<a href={`${item.link}`} target="_blank"> {item.documento}</a>)
+                                            item.link && (<a href={`${item.link}`} target="_blank"> {item.documento} <FaEye /></a>)
                                         }
                                         {
                                             (!item.link && !item.archivo) && <>{item.documento}</>
