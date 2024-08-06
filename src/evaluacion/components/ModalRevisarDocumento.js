@@ -46,7 +46,7 @@ export default function ModalRevisarDocumento({ documentoID }) {
 
         const tempo = {
             ...dataDocumento,
-            estado: calificacion,
+            estado2: calificacion,
             observacion:observacion,
 
 

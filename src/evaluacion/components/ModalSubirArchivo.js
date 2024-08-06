@@ -53,7 +53,7 @@ export default function ModalSubirArchivo({ documentoID }) {
         const tempo = {
             ...dataDocumento,
             link: link,
-            estado:1,
+            estado2:1,
         }
 
 
