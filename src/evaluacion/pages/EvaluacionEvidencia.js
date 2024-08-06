@@ -17,6 +17,8 @@ export default function EvaluacionEvidencia() {
     skip: selectedCriterioId === null,
   });
 
+  console.log('data evaluacion', dataEvaluacion)
+
 
   const handleCriterioClick = (criterioId) => {
     setSelectedCriterioId(criterioId);
@@ -26,6 +28,7 @@ export default function EvaluacionEvidencia() {
   return (
     <div>
       <Navbar_dashboard />
+      ff
       <div>
         {isSuccessCriterios ?
           <div>

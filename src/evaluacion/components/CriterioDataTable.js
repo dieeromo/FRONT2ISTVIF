@@ -3,13 +3,33 @@ import ModalCreateDocumento from '../components/ModalCreateDocumento'
 import ModalSubirArchivo from '../components/ModalSubirArchivo'
 import ModalDeleteArchivo from '../components/ModalDeleteArchivo'
 import ModalEditDocumento from '../components/ModalEditDocumento'
+import ModalRevisarDocumento from './ModalRevisarDocumento'
 
 import { RUTA_SERVIDOR } from '../../ApiRoutes';
 
 
+const getBgColor = (estado) => {
+  switch (estado) {
+    case 1:  //por revisar
+      return 'bg-blue-200';
+    case 2: //aprobado
+      return 'bg-green-200';
+    case 3: // corregir
+      return 'bg-orange-300';
+    default:
+      return 'bg-red-200'; // Color de fondo por defecto si el estado_documento no es 1, 2 o 3
+  }
+}
+
+
 
 export default function CriterioDataTable({ dataCriterios }) {
-  console.log('dataCriterios', dataCriterios)
+
+  
+ 
+
+ 
+
   const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
   //let datos = dataCriterios
   const rowSpanMapEvidencia = {}
@@ -28,19 +48,23 @@ export default function CriterioDataTable({ dataCriterios }) {
       rowSpanMapEvidencia[item.evidencia] = 1
     }
 
-    if(rowSpanMapIndicador[item.indicador]){
+    if (rowSpanMapIndicador[item.indicador]) {
       rowSpanMapIndicador[item.indicador] += 1
-    }else{
-      rowSpanMapIndicador[item.indicador] =1 
+    } else {
+      rowSpanMapIndicador[item.indicador] = 1
     }
   })
 
-
-
-
-
   return (
-    <table className='m-5'>
+  <div>
+    <div className='grid grid-cols-4 w-3/4 mt-3'>
+
+      <div className='bg-red-200 text-center text-sm py-1'>Sin subir</div>
+      <div className='bg-blue-200 text-center text-sm py-1'>Subido por aprobar</div>
+      <div className='bg-green-200 text-center text-sm py-1'>Aprobado</div>
+      <div className='bg-orange-300 text-center text-sm py-1'>Realizar correciones y volver a subir</div>
+    </div>
+        <table className='m-5'>
       <thead>
         <tr className="bg-lime-900 text-white text-xs  py-2 px-8 text-center">
           <th>#</th>
@@ -54,12 +78,13 @@ export default function CriterioDataTable({ dataCriterios }) {
           <th></th>
 
           <th>Responsable</th>
+          <th>Obs.</th>
         </tr>
       </thead>
       <tbody>
         {dataCriterios.map((item, index) => {
           const isFirstEvidencia = index === 0 || dataCriterios[index - 1].evidencia !== item.evidencia
-          const isFirstIndicador = index === 0 || dataCriterios[index-1].indicador !== item.indicador
+          const isFirstIndicador = index === 0 || dataCriterios[index - 1].indicador !== item.indicador
           return (
             <tr key={index} className="border border-gray-400 text-xs px-2 text-center">
               <td className='border border-gray-400' >{index + 1}</td>
@@ -67,11 +92,11 @@ export default function CriterioDataTable({ dataCriterios }) {
 
               {
                 isFirstIndicador &&
-                <td rowSpan={rowSpanMapIndicador[item.indicador]} className={index%2 === 0 ? "bg-gray-200" : ""}> {item.indicador_numeral} </td>
+                <td rowSpan={rowSpanMapIndicador[item.indicador]} className={index % 2 === 0 ? "bg-gray-200" : ""}> {item.indicador_numeral} </td>
               }
               {
                 isFirstIndicador &&
-                <td rowSpan={rowSpanMapIndicador[item.indicador]} className={index%2 ===0 ? 'border border-gray-400 bg-gray-200':'border border-gray-400'}>
+                <td rowSpan={rowSpanMapIndicador[item.indicador]} className={index % 2 === 0 ? 'border border-gray-400 bg-gray-200' : 'border border-gray-400'}>
                   <div>{item.indicador}</div>
                   <div className='text-red-500'>* {item.responsableIndicador} *</div>
                   <div className='text-xs'>{item.corresponsableIndicador1}</div>
@@ -100,7 +125,7 @@ export default function CriterioDataTable({ dataCriterios }) {
               }
 
 
-              <td className={(item.archivo || item.link) ? 'border-t border-b border-l border-gray-400 bg-green-200' : 'border-t border-b border-l border-gray-400'}>
+              <td className={`px-6 py-4 ${getBgColor(item.estado_documento)}`}>
                 {
                   item.archivo && (<a href={RUTA_SERVIDOR + `/media/${item.archivo}`} target="_blank"> {item.documento}</a>)
                 }
@@ -142,7 +167,7 @@ export default function CriterioDataTable({ dataCriterios }) {
 
               <td className='border border-gray-400 text-xs'> {item.responsable}
                 <div>
-                  {(userDatos.id === item.responsableID || userDatos.is_rectora || userDatos.is_coor_estrategico) && (
+                  {((userDatos.id === item.responsableID || userDatos.is_rectora || userDatos.is_coor_estrategico)&&item.estado_documento != 2) && (
                     <div>
                       {(item.archivo || item.link) ?
                         <ModalDeleteArchivo documentoID={item.documentoID} />
@@ -153,7 +178,18 @@ export default function CriterioDataTable({ dataCriterios }) {
 
                   )
                   }
-                </div> </td>
+                </div>
+              </td>
+
+              <td>
+                {userDatos.is_rectora && (
+                  <ModalRevisarDocumento
+                    documentoID={item.documentoID}
+                  />
+                )}
+
+                {item.observacion_documento}
+              </td>
 
 
 
@@ -167,6 +203,8 @@ export default function CriterioDataTable({ dataCriterios }) {
         }
       </tbody>
     </table>
+  </div>
+
 
     //   <table className='m-5'>
     //   <thead>

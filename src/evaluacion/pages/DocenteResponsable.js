@@ -6,6 +6,11 @@ import ModalDeleteArchivo from '../components/ModalDeleteArchivo'
 import { RUTA_SERVIDOR } from '../../ApiRoutes'
 import Select from "react-select"
 import { useGetUsuariosDocentesQuery } from '../../usuarios/services/usuariosApi'
+
+
+
+
+
 export default function DocenteResponsable() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
@@ -22,6 +27,7 @@ export default function DocenteResponsable() {
     return (
 
         <div>
+           
             <Navbar_dashboard />
             <div className="mb-4 gap-4 w-1/4">
                 <label htmlFor="responsable" className="block text-sm font-semibold text-gray-500  " >Docente responsable:</label>
