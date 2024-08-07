@@ -47,6 +47,7 @@ export default function ModalSubirArchivo({ documentoID }) {
 
         formData.append('archivo', archivo)
         formData.append('link', dataDocumento.link)
+        formData.append('estado2', 1)
 
 
 

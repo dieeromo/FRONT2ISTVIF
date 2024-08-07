@@ -92,6 +92,14 @@ export const evaluacionApi = createApi({
 
         }),
         ///////
+        updateEstado2: builder.mutation({
+            query: ({ access,documentoID, estado2 }) => ({
+              url: `/evaluacion/evaluacion/documentos/${documentoID}/`,
+              method: 'PATCH',
+              body: { estado2 },
+            }),
+            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID','getDocumentosResponsable']
+          }),
         /////
         deleteArchivoEvaluacion: builder.mutation({
             query: ({ access, documentoID }) => {
@@ -130,7 +138,9 @@ export const evaluacionApi = createApi({
             providesTags:['getDocumentosResponsable']
 
         }),
-        ////////
+
+
+        ////
 
 
     })
@@ -150,6 +160,7 @@ export const {
     useDeleteArchivoEvaluacionMutation,
     useGetPeriodoAcademicoQuery,
     useGetDocumentosResponsableQuery,
+    useUpdateEstado2Mutation,
 
 
 } = evaluacionApi

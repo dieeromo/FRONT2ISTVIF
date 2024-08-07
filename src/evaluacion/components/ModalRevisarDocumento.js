@@ -1,7 +1,10 @@
 import React from 'react'
 import Select from "react-select"
 import { useState, useEffect } from 'react';
-import { useGetDocumentoIDQuery, usePutDocumentoMutation, useGetPeriodoAcademicoQuery } from '../services/evaluacionApi'
+import { useGetDocumentoIDQuery, usePutDocumentoMutation, useGetPeriodoAcademicoQuery,
+    useUpdateEstado2Mutation 
+
+} from '../services/evaluacionApi'
 import { useGetUsuariosDocentesQuery } from '../../usuarios/services/usuariosApi'
 
 import { FiCheckSquare } from "react-icons/fi";
@@ -39,20 +42,22 @@ export default function ModalRevisarDocumento({ documentoID }) {
 
 
     const [revisarDocumento] = usePutDocumentoMutation()
+    const [updateEstado2] = useUpdateEstado2Mutation()
     const guardarCambios = async (e) => {
         const observacion = e.target.elements.observacion.value.trim()
         e.preventDefault()
 
 
-        const tempo = {
-            ...dataDocumento,
-            estado2: calificacion,
-            observacion:observacion,
+        // const tempo = {
+        //     ...dataDocumento,
+        //     estado2: calificacion,
+        //     observacion:observacion,
+        // }
+   
 
 
-        }
         try {
-            await revisarDocumento({ access: user.access, documentoID: documentoID, rest: tempo }).unwrap()
+            await updateEstado2({ access: user.access, documentoID: documentoID, estado2: calificacion }).unwrap()
 
         } catch (error) {
             console.log('error subida', error)
