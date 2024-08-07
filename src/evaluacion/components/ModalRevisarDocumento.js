@@ -48,13 +48,6 @@ export default function ModalRevisarDocumento({ documentoID }) {
         e.preventDefault()
 
 
-        // const tempo = {
-        //     ...dataDocumento,
-        //     estado2: calificacion,
-        //     observacion:observacion,
-        // }
-   
-
 
         try {
             await updateEstado2({ access: user.access, documentoID: documentoID, estado2: calificacion }).unwrap()

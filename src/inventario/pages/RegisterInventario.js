@@ -34,7 +34,8 @@ export default function RegisterInventario() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const cod_unico = e.target.elements.cod_unico.value.trim()
+        //const cod_unico = e.target.elements.cod_unico.value.trim()
+        const cod_unico = ''
         const cod_senescyt = e.target.elements.cod_senescyt.value.trim()
         const cod_instituto = e.target.elements.cod_instituto.value.trim()
         const descripcion = e.target.elements.descripcion.value.trim()
@@ -85,7 +86,7 @@ export default function RegisterInventario() {
                             <h2 className="text-xl font-bold leading-7 text-gray-900 ">Registro Inventario</h2>
 
                             <div className='grid grid-cols-3'>
-                                <div className="">
+                                {/* <div className="">
                                     <label htmlFor="titulo" className="block text-sm font-medium leading-6 text-gray-900">
                                         Cod único
                                     </label>
@@ -99,7 +100,7 @@ export default function RegisterInventario() {
                                             required
                                         />
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="">
                                     <label htmlFor="titulo" className="block text-sm font-medium leading-6 text-gray-900">

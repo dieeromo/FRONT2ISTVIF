@@ -1,6 +1,7 @@
 import React from 'react'
 import ModalCreateDocumento from '../components/ModalCreateDocumento'
 import ModalSubirArchivo from '../components/ModalSubirArchivo'
+import ModalSubirArchivo2 from '../components/ModalSubirArchivo2'
 import ModalDeleteArchivo from '../components/ModalDeleteArchivo'
 import ModalEditDocumento from '../components/ModalEditDocumento'
 import ModalRevisarDocumento from './ModalRevisarDocumento'
@@ -174,7 +175,7 @@ export default function CriterioDataTable({ dataCriterios }) {
                       {(item.archivo || item.link) ?
                         <ModalDeleteArchivo documentoID={item.documentoID} />
                         :
-                        <ModalSubirArchivo documentoID={item.documentoID} />
+                        <ModalSubirArchivo2 documentoID={item.documentoID} />
                       }
                     </div>
 
