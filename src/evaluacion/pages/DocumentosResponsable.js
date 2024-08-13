@@ -32,7 +32,7 @@ export default function DocumentosResponsable() {
         <div>
 
             <Navbar_dashboard />
-            Documentos pendientes
+            Mis documentos pendientes
             <div className='grid grid-cols-4 w-3/4 mt-3'>
 
                 <div className='bg-red-200 text-center text-sm py-1'>Sin subir</div>
@@ -103,7 +103,14 @@ export default function DocumentosResponsable() {
                                         </div>
 
                                     </td>
-                                    <td>{item.observacion_documento}</td>
+                                    <td>
+                                        {userDatos.is_rectora &&(
+                                            <ModalRevisarDocumento
+                                            documentoID={item.documentoID}
+                                            />
+                                        )}
+                                        {item.observacion_documento}
+                                        </td>
                                 </tr>
                             ))}
                         </tbody>

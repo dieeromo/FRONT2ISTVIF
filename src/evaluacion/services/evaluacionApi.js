@@ -93,10 +93,10 @@ export const evaluacionApi = createApi({
         }),
         ///////
         updateEstado2: builder.mutation({
-            query: ({ access,documentoID, estado2 }) => ({
+            query: ({ access,documentoID, estado2, observacion }) => ({
               url: `/evaluacion/evaluacion/documentos/${documentoID}/`,
               method: 'PATCH',
-              body: { estado2 },
+              body: { estado2,observacion },
             }),
             invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID','getDocumentosResponsable']
           }),

@@ -45,12 +45,13 @@ export default function ModalRevisarDocumento({ documentoID }) {
     const [updateEstado2] = useUpdateEstado2Mutation()
     const guardarCambios = async (e) => {
         const observacion = e.target.elements.observacion.value.trim()
+        console.log('observacion', observacion)
         e.preventDefault()
 
 
 
         try {
-            await updateEstado2({ access: user.access, documentoID: documentoID, estado2: calificacion }).unwrap()
+            await updateEstado2({ access: user.access, documentoID: documentoID, estado2: calificacion, observacion:observacion }).unwrap()
 
         } catch (error) {
             console.log('error subida', error)
