@@ -184,13 +184,13 @@ export default function ModalSubirArchivo2({ documentoID }) {
                                 {
                                     (selectedOption === 'Link' || selectedOption === 'Archivo') && (
                                         <div>
-                                            {!boleanError && (
+                                            {(!boleanError || selectedOption==='Link' )&&(
                                                 <>
-                                                    {enableSubir && (
+                                                    {(enableSubir || selectedOption==='Link' ) &&(
                                                         <button
                                                             type="submit"
                                                             className="bg-indigo-500 mt-3 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
-                                                            disabled={isLoadingArchivo}
+                                                            // disabled={isLoadingArchivo}
                                                         >
                                                             Guardar
                                                         </button>
