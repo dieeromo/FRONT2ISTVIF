@@ -6,22 +6,36 @@ import ModalDeleteArchivo from '../components/ModalDeleteArchivo'
 import { RUTA_SERVIDOR } from '../../ApiRoutes'
 import Select from "react-select"
 import { useGetUsuariosDocentesQuery } from '../../usuarios/services/usuariosApi'
+import { FaEye } from "react-icons/fa";
+import ModalRevisarDocumento from '../components/ModalRevisarDocumento'
+const getBgColor = (estado) => {
+    switch (estado) {
+        case 1:  //por revisar
+            return 'bg-blue-200';
+        case 2: //aprobado
+            return 'bg-green-200';
+        case 3: // corregir
+            return 'bg-orange-300';
+        default:
+            return 'bg-red-200'; // Color de fondo por defecto si el estado_documento no es 1, 2 o 3
+    }
+}
 
 
-
-
-
+//DOCUMENTOS POR DOCENTE RESPONSABLE
 export default function DocenteResponsable() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
     const [docenteSeleccionado, setDocenteSeleccionado] = useState(null);
-    console.log(docenteSeleccionado)
+   
 
 
     const { data: dataDocumentos, isSuccess: isSuccessDocumentos } = useGetDocumentosResponsableQuery({
         access: user.access,
         responsableID: docenteSeleccionado ? docenteSeleccionado : null
     })
+
+    console.log(dataDocumentos)
 
     const { data: dataDocentes, isSuccess: isSuccessDocentes } = useGetUsuariosDocentesQuery(user.access)
     return (
@@ -51,6 +65,7 @@ export default function DocenteResponsable() {
                                 <th>Evidencia</th>
                                 <th>Documento</th>
                                 <th></th>
+                                <th>Observacion</th>
                             </tr>
 
 
@@ -66,13 +81,13 @@ export default function DocenteResponsable() {
                                         <div className='text-red-500 text-xs'>*{item.responsableIndicador}*</div>
                                     </td>
                                     <td className='text-xs border border-gray-400'>{item.evidencia}</td>
-                                    <td className={(item.archivo || item.link) ? 'border-t border-b border-l border-gray-400 bg-green-200' : 'border-t border-b border-l border-gray-400'}>
+                                    <td className={`px-6 py-4 ${getBgColor(item.estado_documento)}`} >
                                         {
-                                            item.archivo && (<a href={RUTA_SERVIDOR + `/media/${item.archivo}`} target="_blank"> {item.documento}</a>)
+                                            item.archivo && (<a href={RUTA_SERVIDOR + `/media/${item.archivo}`} target="_blank"> {item.documento} <FaEye /></a>)
                                         }
 
                                         {
-                                            item.link && (<a href={`${item.link}`} target="_blank"> {item.documento}</a>)
+                                            item.link && (<a href={`${item.link}`} target="_blank"> {item.documento} <FaEye /></a>)
                                         }
                                         {
                                             (!item.link && !item.archivo) && <>{item.documento}</>
@@ -94,6 +109,14 @@ export default function DocenteResponsable() {
                                             }
                                         </div>
 
+                                    </td>
+                                    <td>
+                                    {userDatos.is_rectora &&(
+                                            <ModalRevisarDocumento
+                                            documentoID={item.documentoID}
+                                            />
+                                        )}
+                                        {item.observacion_documento}
                                     </td>
                                 </tr>
                             ))}
