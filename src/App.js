@@ -61,10 +61,11 @@ import Curso from './pea/pages/Curso'
 import GeneralidadesPEA from './pea/pages/GeneralidadesPEA'
 //EVALUACION
 import EvaluacionEvidencia from './evaluacion/pages/EvaluacionEvidencia'
-    import LandingCalidad from './evaluacion/pages/LandingCalidad'
+import LandingCalidad from './evaluacion/pages/LandingCalidad'
 
 import DocumentosResponsable from './evaluacion/pages/DocumentosResponsable'
 import DocenteResponsable from './evaluacion/pages/DocenteResponsable'
+import EstadisticaEvaluacion from './evaluacion/pages/EstadisticaEvaluacion'
 
 
 
@@ -151,6 +152,7 @@ function App() {
             <Route path='/evaluacion/landing' element={< LandingCalidad/>} />
             <Route path='/evaluacion/documentos/responsable' element={< DocumentosResponsable/>} />
             <Route path='/evaluacion/documentos/docente' element={< DocenteResponsable/>} />
+            <Route path='/evaluacion/estadistica' element={< EstadisticaEvaluacion/>} />
 
             
            

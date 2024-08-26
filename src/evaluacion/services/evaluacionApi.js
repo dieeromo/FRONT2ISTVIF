@@ -88,18 +88,18 @@ export const evaluacionApi = createApi({
                     body: rest,
                 }
             },
-            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID','getDocumentosResponsable']
+            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID', 'getDocumentosResponsable']
 
         }),
         ///////
         updateEstado2: builder.mutation({
-            query: ({ access,documentoID, estado2, observacion }) => ({
-              url: `/evaluacion/evaluacion/documentos/${documentoID}/`,
-              method: 'PATCH',
-              body: { estado2,observacion },
+            query: ({ access, documentoID, estado2, observacion }) => ({
+                url: `/evaluacion/evaluacion/documentos/${documentoID}/`,
+                method: 'PATCH',
+                body: { estado2, observacion },
             }),
-            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID','getDocumentosResponsable']
-          }),
+            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID', 'getDocumentosResponsable']
+        }),
         /////
         deleteArchivoEvaluacion: builder.mutation({
             query: ({ access, documentoID }) => {
@@ -110,7 +110,7 @@ export const evaluacionApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
-            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio','getDocumentosResponsable']
+            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentosResponsable']
 
         }),
         //////
@@ -128,14 +128,38 @@ export const evaluacionApi = createApi({
         }),
         ////////
         getDocumentosResponsable: builder.query({
-            query: ({access,responsableID}) => {
+            query: ({ access, responsableID }) => {
                 return {
                     url: `/evaluacion/evaluacion_documento_responsable/?responsable_id=${responsableID}`,
                     method: 'GET',
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
-            providesTags:['getDocumentosResponsable']
+            providesTags: ['getDocumentosResponsable']
+
+        }),
+        ////////
+        getEstadistica_total_documentos: builder.query({
+            query: ({ access}) => {
+                return {
+                    url: `/evaluacion/estadistica_total_documentos/`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+            providesTags: ['getEstadistica_total_documentos']
+
+        }),
+          ////////
+          getEstadistica_indicador_documentos: builder.query({
+            query: ({ access}) => {
+                return {
+                    url: `/evaluacion/estadistica_indicador_documentos/`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+            providesTags: [' getEstadistica_indicador_documentos']
 
         }),
 
@@ -161,6 +185,8 @@ export const {
     useGetPeriodoAcademicoQuery,
     useGetDocumentosResponsableQuery,
     useUpdateEstado2Mutation,
+    useGetEstadistica_total_documentosQuery,
+    useGetEstadistica_indicador_documentosQuery,
 
 
 } = evaluacionApi

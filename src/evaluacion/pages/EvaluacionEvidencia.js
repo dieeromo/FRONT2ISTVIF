@@ -36,8 +36,9 @@ export default function EvaluacionEvidencia() {
               <CriterioButton key={item.id} criterio={item} onClick={handleCriterioClick} />
             )
             )}
-             <a href='/evaluacion/documentos/responsable' className=''>Mis pendientes</a>
-             {userDatos.is_rectora && <a href='/evaluacion/documentos/docente' className='ml-4'>Por docente</a>}
+             <a href='/evaluacion/documentos/responsable' className='mr-4 text-xs'>Mis pendientes</a>
+             <a href='/evaluacion/estadistica' className='text-xs'>Estadistica</a>
+             {userDatos.is_rectora && <a href='/evaluacion/documentos/docente' className='ml-4 text-xs'>Por docente</a>}
           </div>
           :
           <>Cargando criterios</>
