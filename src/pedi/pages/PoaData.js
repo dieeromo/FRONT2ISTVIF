@@ -12,6 +12,7 @@ export default function PoaData() {
 
 
     const { data: dataPoa, isSuccess: isSuccessPoa } = useGetPoaDataQuery(user.access)
+   
 
 
     return (
@@ -99,7 +100,7 @@ export default function PoaData() {
                                             {item.coordinador_entidad == userDatos.id && enableEditPoa && EnablenumeroPoaConfig < item.numeroPoa   ?
                                             
                                                 <ModalPoaEdit2
-                                                    id={item.idPoa}
+                                                    dataPoaID={item}
                                                 />
                                                 :
                                                 <></>

@@ -16,8 +16,8 @@ const DashboardPedi = ({children}) => {
                     <ul>
                       
                    
-                        <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="/pedi/registro2" >Registro PEDI</a></li>
-                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/pedidata" >Pedi data</a></li>
+                        {/* <li className="p-4 hover:bg-gray-700 cursor-pointer  text-sm"><a href="/pedi/registro2" >Registro PEDI</a></li>
+                        <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/pedidata" >Pedi data</a></li> */}
                         <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/poadata" >Poa data</a></li>
                         <li className="p-4 hover:bg-gray-700 cursor-pointer text-sm"><a href="/pedi/poadata/seguimiento" >Seg. Poa data</a></li>
 

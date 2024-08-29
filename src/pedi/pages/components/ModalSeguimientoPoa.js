@@ -4,6 +4,15 @@ import { useGetPoaDataIDQuery, usePutPoaDataIDMutation } from '../../services/pe
 import { useGetDependencias_allQuery, } from '../../../general/services/generalApi'
 import { AiFillEdit } from "react-icons/ai";
 import { enableSeguimientoPoa } from '../../../ConfiguracionApp'
+
+function VerEjec(ejecu){
+    let ejecutado = 0
+    if (ejecu){
+
+        ejecutado = ejecu
+    }
+    return ejecutado
+}
 export default function ModalSeguimientoPoa({ id }) {
 
     const user = JSON.parse(localStorage.getItem('user') || "{}")
@@ -51,8 +60,8 @@ export default function ModalSeguimientoPoa({ id }) {
         const eje10 = parseInt( e.target.elements.eje10.value.trim())
         const eje11 = parseInt( e.target.elements.eje11.value.trim() )
         const eje12 =parseInt( e.target.elements.eje12.value.trim() )
-        const totalAnioEje = eje1 + eje2 + eje3 + eje4 + eje5 + eje6 + eje7 + eje8 + eje9 + eje10 + eje11 + eje12
-        console.log('total anio', totalAnioEje)
+        const totalAnioEje = VerEjec(eje1)+VerEjec(eje2)+VerEjec(eje3)+VerEjec(eje4)+VerEjec(eje5)+VerEjec(eje6)+VerEjec(eje7)+VerEjec(eje8)+VerEjec(eje9)+VerEjec(eje10)+VerEjec(eje11)+VerEjec(eje12)
+       
 
 
         const tempo = {
