@@ -99,7 +99,7 @@ export default function ModalPoa2({ indicadorPedi }) {
 
     return (
         <>
-            <button className=" rounded" onClick={openModal}>
+            <button className="bg-green-300 hover:bg-green-400  font-bold text-sm px-1 rounded" onClick={openModal}>
                 +
             </button>
             {isOpen && (

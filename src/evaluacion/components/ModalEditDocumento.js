@@ -51,7 +51,7 @@ export default function ModalEditDocumento({ documentoID, responsableName, respo
     }
     return (
         <>
-            <button className=" rounded" onClick={openModal}>
+            <button className="bg-gray-100 hover:bg-green-300  font-bold py-1 px-1 rounded" onClick={openModal}>
             <FiEdit3 />
             </button>
             {isOpen && (

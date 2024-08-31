@@ -17,7 +17,7 @@ export default function RegistroObjetivosEst() {
   const user = JSON.parse(localStorage.getItem('user') || "{}")
 
   const { data, isSuccess, isLoading, isError, error } = useGetObjetivosEstr_pediQuery([user.access, pedi_id])
-  console.log(data)
+
   const handleSiguiente = (e) => {
 
     navigate(`/pedi/registro/objetivos/especificos/${10}`, { state: { data_objetivosEstrategicos: { pediNombre: data.pediNombre } } })

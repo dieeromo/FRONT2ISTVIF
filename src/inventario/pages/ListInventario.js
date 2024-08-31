@@ -28,7 +28,7 @@ export default function ListInventario() {
 
 
   const { data, isSuccess, isLoading, isError, error } = useGetInventarioTodoQuery(user.access);
-  console.log('data', data)
+
 
   const [filteredData, setFilteredData] = useState([]);
 

@@ -82,7 +82,7 @@ export default function ModalPoaEdit2({dataPoaID} ) {
 
     return (
         <>
-            <button className=" rounded" onClick={openModal}>
+            <button className="bg-gray-100 hover:bg-green-300  font-bold py-1 px-1 rounded" onClick={openModal}>
                 <AiFillEdit />
             </button>
             {isOpen && (

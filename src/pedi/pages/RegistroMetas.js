@@ -10,11 +10,10 @@ export default function RegistroMetas() {
     const { especifico_id } = useParams()
     const location = useLocation();
     const { pediNombre, estrategicoNombre,especificoNombre } = location.state;
-    console.log('especifico id', especifico_id)
-    console.log('datos entrada metas', pediNombre, estrategicoNombre)
+    
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const { data, isSuccess } = useGetMetaEspecifico_EspecificoQuery([user.access, especifico_id])
-    console.log(data)
+
 
     return (
         <DashboardPedi>
