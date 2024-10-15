@@ -1,91 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import DashboardVisitante from '../../pages/components/DashboardVisitante'
-import {useGetListFilter_TitulosQuery} from '../services/bibliotecaApi'
-import MUIDataTable from 'mui-datatables';
+import {useGetListAutoresObras_filterAbiertoQuery} from '../services/bibliotecaApi'
+import LoadingSpinner from './components/LoadingSpinner'
+
+
 
 export default function FiltroObras() {
 
     const [searchOption, setSearchOption] = useState('titulo');
-    const user = JSON.parse(localStorage.getItem('user') || "{}")
-    const getFiltro = useGetListFilter_TitulosQuery()
 
-    // const {data} = useGetListFilter_TitulosQuery()
-    // console.log('datos',data)
-    // //const tempo = getFiltro()
+    const [autor, setAutor] = useState('');
+    const handleAutor = (event) => {
+        setAutor(event.target.value);
+        setTitulo('')
+    };
+
+    const [titulo, setTitulo] = useState('');
+    const handleTitulo = (event) => {
+        setTitulo(event.target.value);
+        setAutor('')
+    };
+
 
 
     const handleOptionChange = (e) => {
         setSearchOption(e.target.value);
     }
 
-    const [inputTitulo, setInputTitulo] = useState('')
-    const ManejarCambioTitulo = e => {
-        setInputTitulo(e.target.value) 
-    }
 
-
-    const { data, error, isLoading } = useGetListFilter_TitulosQuery(inputTitulo)
-
-     console.log(data)
-
-
-    const [inputAutor, setInputAutor] = useState('')
-    const manejarCambioAutor = e => {
-        setInputAutor(e.target.value) 
-    }
-
-    
-    const columns = [
-        {
-            name: 'titulo',
-            label: 'titulo',
-            options:{
-                customBodyRender:(value, tableMeta) =>{
-                    return(
-                        <div>
-                            <a href={`/biblioteca/presentacion/titulo/${tableMeta.rowData[3]}/`}>{value}</a>
-                        </div>
-                    )
-                }
-
-            }
-
-        },
-        {
-            name: 'anio_publicacion',
-            label: 'Año'
-
-        },
-        {
-            name: 'tipo_obra',
-            label: 'Tipo'
-        },
-        {
-            name: 'id',
-            label: 'id',
-            options: {
-                filter: false,
-                display: false
-            }
-        },
-        {
-            name: 'tipo_material',
-            label: 'material'
-        },
-        
-    ]
-
-    const options = {
-        selectableRows: 'none', // Deshabilita la selección en la primera fila
-
-        titleTextStyle: {
-            fontSize: '5px', // Establece el tamaño de fuente del título
-        },
-    };
-
-
-
-
+    const { data, isLoading, isFetching } = useGetListAutoresObras_filterAbiertoQuery({ autor: autor, obra: titulo })
+    console.log('datos filtrados', data)
 
 
     return (
@@ -120,30 +64,69 @@ export default function FiltroObras() {
                 </div>
                 <div className="mt-4">
                     {searchOption === 'titulo' && (
-                        <input
-                            onChange={ManejarCambioTitulo}
-                            value={inputTitulo}
-                            type="text" 
-                            name="titulo"
-                            id='titulo'
-                            placeholder="Buscar por título" className="px-4 py-2 border border-gray-300 rounded-md" />
+                        <div className="mx-2">
+                           
+                            <div className="mt-2 w-full">
+                                <input
+                                    value={titulo}
+                                    onChange={handleTitulo}
+                                    autoComplete="given-name"
+                                    placeholder='Búsqueda por título'
+                                    className="text-center"
+                                />
+                            </div>
+                        </div>
+
                     )}
                     {searchOption === 'autor' && (
-                        <input 
-                        onChange={manejarCambioAutor}
-                        value={inputAutor}
-                        type="text" placeholder="Buscar por autor" className="px-4 py-2 border border-gray-300 rounded-md" />
+
+                        <div className="mx-2">
+                       
+                            <div className="mt-2 w-full">
+                                <input
+                                    value={autor}
+                                    onChange={handleAutor}
+                                    autoComplete="given-name"
+                                    placeholder='Búsqueda por autor'
+                                    className="text-center"
+                                />
+                            </div>
+                        </div>
+
                     )}
                 </div>
             </div>
 
+            {(isLoading || isFetching) ? <LoadingSpinner/>:
+            <table className="min-w-full bg-white border border-gray-200">
+                <thead className="bg-gray-50">
+                    <tr>
+                        <th className="py-2 px-4 border-b text-xs text-center">#</th>
+                        <th className="py-2 px-4 border-b text-xs text-center">Autor</th>
+                        <th className="py-2 px-4 border-b text-xs text-center">Obra</th>
+                        <th className="py-2 px-4 border-b text-xs text-center">Año</th>
+                    
+                        <th></th>
 
-            <MUIDataTable
-                title={'Obras'}
-                data={data}
-                columns={columns}
-                options={options}
-            />
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {data?.results.map((item, index) => (
+                        <tr key={index}>
+                            <td className="py-2 px-4 border-b text-xs text-center">{index + 1}</td>
+                            <td className="py-2 px-4 border-b text-xs text-center">{item.autor}</td>
+                            <td className="py-2 px-4 border-b text-xs text-center">{item.obra}</td>
+                            <td className="py-2 px-4 border-b text-xs text-center">{item.anio_publicacion}</td>
+                  
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+}
+
+
 
         </DashboardVisitante>
 

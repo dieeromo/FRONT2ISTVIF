@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-
+import LoadingSpinner from './components/LoadingSpinner'
 import DashboardBibliotecaAdmin from './components/DashboardBibliotecaAdmin'
-import { useGetListAutoresObras_todosQuery } from '../services/bibliotecaApi'
+import {
+    useGetListAutoresObras_todosQuery,
+    useGetListAutoresObras_filterQuery
+} from '../services/bibliotecaApi'
 import CargaDocumentoModal from '../components/CargaObrasModal'
 import MUIDataTable from 'mui-datatables';
 import CargaObrasModal from '../components/CargaObrasModal';
@@ -11,137 +14,88 @@ import ModalListaBiblioteca from './components/ModalListaBiblioteca'
 
 const ListaObrasAutores = () => {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
-    const { data, isSuccess, isLoading, isError, error } = useGetListAutoresObras_todosQuery(user.access)
+    const [page, setPage] = useState(1)
+    const [page_size, sepPageSize] = useState(100)
+    const [autor, setAutor] = useState('')
+    const [obra, setObra] = useState('')
 
-    console.log(data)
-    const columns = [
-        {
-            name: 'autor',
-            label: 'Autor'
+    const handleAutor = (event) => {
+        setAutor(event.target.value);
+    };
 
-        },
-        {
-            name: 'obra',
-            label: 'titulo',
-            options: {
-                customBodyRender: (value, tableMeta) => {
-                    return (
-                        <div>
-                            {tableMeta.rowData[6] % 2 == 0
-
-                                ?
-                                <div className='bg-green-100'>
-                                    {value}
-                                </div>
-                                :
-                                <div className='bg-red-100'>
-                                    {value}
-                                </div>
-                            }
-
-                        </div>
-
-                    )
-                }
-            }
-        },
-        {
-            name: 'anio_publicacion',
-            label: 'Año'
-        },
-        {
-            name: 'tipo_obra',
-            label: 'Tipo'
-        },
-        {
-            name: 'tipo_material',
-            label: 'Material',
-            options: {
-                customBodyRender: (value, tableMeta) => {
-                    return (
-                        <div>
-                            {value}
-                            <div>
-                                {value === 'Digital' || value==='Digital-fisico' ? <CargaObrasModal id={tableMeta.rowData[6]} /> : <></>}
-                            </div>
-
-                        </div>
-                    )
-                }
-            }
-        },
-        {
-            name: 'digitador_name',
-            label: 'Digitador'
-        },
-        {
-            name: 'obra_id',
-            label: 'id',
-            options: {
-                filter: false,
-                display: false
-
-            }
-        },
-        {
-            name: 'archivo',
-            label: 'ver',
-            options: {
-                customBodyRender: (value) => {
-                    console.log(value)
-
-                    return (
-                        <div >
-                            {
-                                value ?
-                                    <a href={RUTA_SERVIDOR + `/media/${value}`} target="_blank"> < IoReaderOutline className='h-5 w-5' /> </a>
-                                    :
-                                    <div>
-
-                                    </div>
-                            }
-                        </div>
-                    )
-                },
-                filter: false,
-            }
-        },
-        {
-            name: '',
-            label: '',
-            options: {
-                customBodyRender: (value,tableMeta) => {
-                    console.log(value)
-
-                    return (
-                        <ModalListaBiblioteca id={tableMeta.rowData[6]}  />
-                    )
-                },
-                filter: false,
-            }
-        },
-    ]
-    const options = {
-        selectableRows: 'none', // Deshabilita la selección en la primera fila
-
-        titleTextStyle: {
-            fontSize: '5px', // Establece el tamaño de fuente del título
-        },
+    const handleObra = (event) => {
+        setObra(event.target.value);
     };
 
 
+    const { data: dataObras, isLoading: isLoadingObras, isFetching: isFetchingObras } = useGetListAutoresObras_filterQuery({ access: user.access, page: page, page_size: page_size, autor: autor, obra: obra })
 
 
     return (
         <DashboardBibliotecaAdmin>
-            {isLoading ? <> Cargando...</> :
-                <MUIDataTable
-                    title={'Obras biblioteca'}
-                    data={data}
-                    columns={columns}
-                    options={options}
 
+            <div className="mb-4">
+                <label className="mr-2 text-sm">Buscar por autor:</label>
+                <input
+                    type="text"
+
+                    value={autor}
+                    onChange={handleAutor}
+                    className="border border-neutral-700 "
+                    placeholder="Ingrese el nombre"
                 />
+            </div>
+
+            <div className="mb-4">
+                <label className="mr-2 text-sm">Buscar por obra:</label>
+                <input
+                    type="text"
+
+                    value={obra}
+                    onChange={handleObra}
+                    className="border border-neutral-700 "
+                    placeholder="Ingrese la obra"
+                />
+            </div>
+            {(isFetchingObras || isLoadingObras) ?
+                <LoadingSpinner />
+                :
+                <table className="min-w-full bg-white border border-gray-200">
+                    <thead className="bg-gray-50">
+                        <tr>
+                            <th className="py-2 px-4 border-b text-xs text-center">#</th>
+                            <th className="py-2 px-4 border-b text-xs text-center">Autor</th>
+                            <th className="py-2 px-4 border-b text-xs text-center">Titulo</th>
+                            <th className="py-2 px-4 border-b text-xs text-center">Año</th>
+                            <th className="py-2 px-4 border-b text-xs text-center">Tipo</th>
+                            <th className="py-2 px-4 border-b text-xs text-center">Material</th>
+                            <th className="py-2 px-4 border-b text-xs text-center">Digitador</th>
+                            <th className="py-2 px-4 border-b text-xs text-center">Cargar</th>
+                            <th className="py-2 px-4 border-b text-xs text-center">Eliminar</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {dataObras?.results.map((item, index) => (
+                            <tr key={index}>
+                                <td className="py-2 px-4 border-b text-xs text-center">{index + 1}</td>
+                                <td className="py-2 px-4 border-b text-xs text-center">{item.autor}</td>
+                                <td className="py-2 px-4 border-b text-xs text-center">{item.obra}</td>
+                                <td className="py-2 px-4 border-b text-xs text-center">{item.anio_publicacion}</td>
+                                <td className="py-2 px-4 border-b text-xs text-center">{item.tipo_obra}</td>
+                                <td className="py-2 px-4 border-b text-xs text-center">{item.tipo_material} {item.archivo && (<a href={RUTA_SERVIDOR + `/media/${item.archivo}`} target="_blank"> < IoReaderOutline className='h-5 w-5' /> </a>)}</td>
+                                <td className="py-2 px-4 border-b text-xs text-center">{item.digitador_name}</td>
+                                <td className="py-2 px-4 border-b text-xs text-center"> {item.id} <CargaObrasModal id={item.obra_id} /> </td>
+                                <td className="py-2 px-4 border-b text-xs text-center">  <ModalListaBiblioteca id={parseInt(item.obra_id)} /> </td>
+
+
+
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             }
 
         </DashboardBibliotecaAdmin>

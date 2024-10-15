@@ -106,9 +106,11 @@ export const bibliotecaApi = createApi({
         }),
         /////
         getListAutores: builder.query({
-            query: (access) => {
+            query: ({access, autor, page, page_size}) => {
+                let tempo = `/biblioteca/list/autor/?`
+                 if (autor) tempo += `autor=${autor}&`
                 return {
-                    url: `/biblioteca/list/autor/`,
+                    url: tempo,
                     method: 'GET',
                     headers: { Authorization: `JWT ${access}` },
                 }
@@ -163,6 +165,42 @@ export const bibliotecaApi = createApi({
             providesTags: ['getAutoresObras_all']  ///////////////////////
         }),
 
+        ////
+        getListAutoresObras_filter: builder.query({
+            query: ({access,page, page_size,autor, obra}) => {
+                let tempo = `/biblioteca/todas/obras/autores/?`
+                if (page) tempo += `page=${page}&`
+                if (autor) tempo += `autor=${autor}&`
+                if (obra) tempo += `titulo=${obra}&`
+
+
+                return {
+                    url: tempo,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+                }
+            },
+            providesTags: ['getAutoresObras_all']  ///////////////////////
+        }),
+        
+        ///
+
+        getListAutoresObras_filterAbierto: builder.query({
+            query: ({page, page_size,autor, obra}) => {
+                let tempo = `/biblioteca/todas/obras/autores/?`
+                if (page) tempo += `page=${page}&`
+                if (autor) tempo += `autor=${autor}&`
+                if (obra) tempo += `titulo=${obra}&`
+
+
+                return {
+                    url: tempo,
+                    method: 'GET',
+                    
+                }
+            },
+            providesTags: ['getAutoresObras_all']  ///////////////////////
+        }),
         /////
         getListFilter_Titulos: builder.query({
             query: (titulo) => {
@@ -195,12 +233,12 @@ export const bibliotecaApi = createApi({
         }),
         /////
         deleteObraEntrada: builder.mutation({  // 
-            query: (parametros) => {
+            query: ({access, id}) => {
                 return {
-                    url: '/biblioteca/delete/obra_entrada/',
+                    url: `/biblioteca/obras/obras_crud/${id}`,
                     method: 'DELETE',
-                    body: { 'id': parametros[1] },
-                    headers: { Authorization: `JWT ${parametros[0]}` },
+
+                    headers: { Authorization: `JWT ${access}` },
                 }
             },
             invalidatesTags: ['getAutoresObras_all']
@@ -343,6 +381,8 @@ export const {
 
     useCreateAutorMutation,
     useGetListAutoresQuery,
+    useGetListAutoresObras_filterQuery,
+    useGetListAutoresObras_filterAbiertoQuery,
     useCreateObraAutorMutation,
     useGetListAutoresObras_todosQuery,
     usePutAutoresObrasMutation,

@@ -5,8 +5,6 @@ import { FaRegTrashAlt } from "react-icons/fa";
 
 import {useDeleteObraEntradaMutation} from '../../services/bibliotecaApi'
 const ModalListaBiblioteca = ({id}) => {
-
-    console.log('iddd',id)
    
     const user = JSON.parse(localStorage.getItem('user') || "{}")  // para [asar las credenciales]
     const [deleteObra] = useDeleteObraEntradaMutation()
@@ -17,7 +15,7 @@ const ModalListaBiblioteca = ({id}) => {
     const openModal = () => { setIsOpen(true) };
     
     const deleteModal = (e) => {
-        deleteObra([user.access, id])
+        deleteObra({access:user.access, id:id})
         closeModal()
     };
 
