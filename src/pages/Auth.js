@@ -23,7 +23,7 @@ export const Auth = () => {
     const dispatch = useDispatch()
 
     const [loginUser, { data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError }] = useLoginUserMutation()
-    console.log(isLoginError)
+   
 
     const submitHandler = (e) => {
         e.preventDefault();

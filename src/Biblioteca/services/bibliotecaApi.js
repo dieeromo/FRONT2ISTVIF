@@ -189,6 +189,7 @@ export const bibliotecaApi = createApi({
             query: ({page, page_size,autor, obra}) => {
                 let tempo = `/biblioteca/todas/obras/autores/?`
                 if (page) tempo += `page=${page}&`
+                if (page_size) tempo += `page_size=${page_size}&`
                 if (autor) tempo += `autor=${autor}&`
                 if (obra) tempo += `titulo=${obra}&`
 
