@@ -11,7 +11,7 @@ const DashboardPedi = ({children}) => {
                 {/* Sidebar */}
                 <div className="bg-gray-800 text-white w-30 flex-shrink-0">
                     <div className="p-3">
-                        <h1 className=" font-bold"><a href='/acreditacion/landing'>PEDI </a></h1>
+                        <h1 className=" font-bold"><a href='/pedi/pedidata'>PEDI </a></h1>
                     </div>
                     <ul>
                       

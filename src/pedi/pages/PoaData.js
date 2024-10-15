@@ -23,6 +23,7 @@ export default function PoaData() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
     const [entidadResponsable, SetEntidadResponsable] = useState('')
+    const [anio, setAnio] = useState(2024)
 
 
     const { data: dataPoa, isSuccess: isSuccessPoa } = useGetPoaDataQuery({ access: user.access, entidadResponsable: entidadResponsable })

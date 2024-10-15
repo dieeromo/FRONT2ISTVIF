@@ -143,6 +143,7 @@ function App() {
             <Route path='/pedi/registro/actividades/:meta_id' element={< RegistroActividades/>} />
             <Route path='/pedi/registro/medios/:actividad_id' element={< RegistroMediosVer/>} />
             <Route path='/pedi/registro/indicador/:medio_id' element={< RegistroIndicador/>} />
+            
             <Route path='/pedi/pedidata' element={< PediData/>} />
             <Route path='/pedi/poadata' element={< PoaData/>} />
             <Route path='/pedi/poadata/seguimiento' element={< SeguimientoPoadata/>} />

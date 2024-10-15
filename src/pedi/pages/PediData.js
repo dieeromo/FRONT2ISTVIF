@@ -1,7 +1,7 @@
 import React from 'react'
 import { useGetPediDataQuery } from '../services/pediApi'
 import DashboardPedi from './components/DashboardPedi'
-
+import TablaPedi from './components/TablaPedi'
 
 
 
@@ -10,13 +10,20 @@ export default function PediData() {
 
     const { data: dataPediData, isSuccess: isSuccessPediData, } = useGetPediDataQuery(user.access)
 
+    console.log('pedi', dataPediData)
+
+
     return (
         <DashboardPedi>
             <div className=" inset-0 flex items-center justify-center  focus:outline-none">
                 {isSuccessPediData ?
                     <div>
                         <h1>Plan Estratégico de Desarrollo Institucional {dataPediData[0].pedi}</h1>
-                        <table className="shadow-md">
+                        <TablaPedi
+                            dataPediData={dataPediData}
+                        />
+
+                        {/* <table className="shadow-md">
                             <thead >
                                 <tr className="bg-lime-900 text-white text-sm  py-2 px-8 text-center">
                                     <td>#</td>
@@ -61,9 +68,6 @@ export default function PediData() {
                                         <td className="border border-gray-400 text-xs px-2">{item.anio3}</td>
                                         <td className="border border-gray-400 text-xs px-2">{item.anio4}</td>
                                         <td className="border border-gray-400 text-xs px-2">{item.anio5}</td>
-
-
-
                                     </tr>
 
 
@@ -73,7 +77,7 @@ export default function PediData() {
 
                             </tbody>
 
-                        </table>
+                        </table> */}
 
                     </div>
 

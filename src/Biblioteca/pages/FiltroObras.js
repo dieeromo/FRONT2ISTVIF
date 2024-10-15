@@ -30,15 +30,12 @@ export default function FiltroObras() {
     };
 
 
-
     const handleOptionChange = (e) => {
         setSearchOption(e.target.value);
     }
 
 
     const { data, isLoading, isFetching } = useGetListAutoresObras_filterAbiertoQuery({ autor: autor, obra: titulo, page:page, page_size:pageSize })
- 
-
 
     return (
         <DashboardVisitante>
