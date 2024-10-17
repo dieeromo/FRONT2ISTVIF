@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import DashboardPedi from './components/DashboardPedi'
 import { useGetPoaDataQuery, useGetPoaDataIDQuery, usePutPoaDataIDMutation } from '../services/pediApi'
-import ModalPoa from './components/ModalPoa'
-import ModalPoaEdit2 from './components/ModalPoaEdit2'
-import ModalPoa2 from './components/ModalPoa2'
+// import ModalPoa from './components/ModalPoa'
+// import ModalPoaEdit2 from './components/ModalPoaEdit2'
+// import ModalPoa2 from './components/ModalPoa2'
+import TablaPoa from './components/TablaPoa'
+import LoadingSpinner from './components/LoadingSpinner'
 
 
 import jsPDF from "jspdf";
@@ -21,117 +23,17 @@ function Verificacion(VariableMes){
 }
 export default function PoaData() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
-    const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
+ //   const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
     const [entidadResponsable, SetEntidadResponsable] = useState('')
     const [anio, setAnio] = useState(2024)
 
-
-    const { data: dataPoa, isSuccess: isSuccessPoa } = useGetPoaDataQuery({ access: user.access, entidadResponsable: entidadResponsable })
-    console.log(dataPoa)
+    const { data: dataPoa, isLoading, isFetching } = useGetPoaDataQuery({ access: user.access, entidadResponsable: entidadResponsable })
+  
     const handleSearch = (e) => {
         SetEntidadResponsable(e.target.value);
     };
 
-    const exportPDF = () => {
-        let dataToExport = dataPoa;
 
-
-
-        const unit = "pt";
-        const size = "A4";
-        const orientation = "portrait";
-
-        const doc = new jsPDF(orientation, unit, size);
-
-        doc.setFontSize(12);
-
-        const headers = [
-            [
-                "#",
-                "Obj estr",
-                "Obj espec",
-                "Meta",
-                "Actividad",
-                "Medio verificación",
-                "Indicador",
-                "Toatal PEDI",
-                "Resp",
-                "Año",
-                "En",
-                "Fe",
-                "Ma",
-                "Ab",
-                "Ma",
-                "Ju",
-                "Ju",
-                "Ag",
-                "Se",
-                "Oc",
-                "No",
-                "Di"
-
-
-            ],
-        ];
-
-        const content = {
-            startY: 150,
-            head: headers,
-            body: dataToExport.map((elt, index) => [
-                index + 1,
-                elt.oestrategico_sigla,
-                elt.oespecifico,
-                elt.meta,
-                elt.actividad,
-                elt.medio,
-                elt.indicadorPedi,
-                elt.totalPedi,
-                elt.responsable_sigla,
-                elt.anioPoa,
-                
-                elt.pro1,
-                elt.pro2,
-                elt.pro3,
-                elt.pro4,
-                elt.pro5,
-                elt.pro6,
-                elt.pro7,
-                elt.pro8,
-                elt.pro9,
-                elt.pro10,
-                elt.pro11,
-                elt.pro12
-
-
-
-
-
-            ]),
-            styles: { fontSize: 5 },
-        };
-
-        const img = new Image();
-        img.src = reporte_inventario_banner;
-        img.onload = function () {
-            doc.addImage(this, "PNG", 10, 10, 578, 90);
-            doc.autoTable(content);
-
-            const pageCount = doc.internal.getNumberOfPages();
-            const footerText = `Generado por: ${userDatos.first_name} ${userDatos.last_name}`;
-            for (let i = 1; i <= pageCount; i++) {
-                doc.setPage(i);
-                doc.setFontSize(7);
-                doc.text(
-                    footerText,
-                    doc.internal.pageSize.getWidth() / 2,
-                    doc.internal.pageSize.getHeight() - 30,
-                    { align: "center" }
-                );
-            }
-
-            doc.save("ReportePoa.pdf");
-        };
-    };
 
 
     return (
@@ -149,17 +51,17 @@ export default function PoaData() {
                     />
                 </div>
 
-                <button
+                {/* <button
 
                     onClick={exportPDF}
                     className="mb-4 bg-green-700 hover:bg-green-900 text-white font-semibold py px-2 rounded"
                 >
                     Generar pdf
-                </button>
+                </button> */}
 
             </div>
 
-
+{/* 
             {isSuccessPoa ?
                 <div>
                     <h1>Planificación operativa anual {dataPoa[0] && (dataPoa[0].anioPoa)}</h1>
@@ -275,6 +177,14 @@ export default function PoaData() {
 
                 :
                 <>Cargando</>
+            } */}
+
+            {(isLoading || isFetching)? 
+            <LoadingSpinner/>
+            :
+                <TablaPoa
+                dataPoa={dataPoa}
+                />
             }
 
 

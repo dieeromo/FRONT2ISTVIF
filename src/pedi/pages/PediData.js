@@ -2,23 +2,27 @@ import React from 'react'
 import { useGetPediDataQuery } from '../services/pediApi'
 import DashboardPedi from './components/DashboardPedi'
 import TablaPedi from './components/TablaPedi'
+import LoadingSpinner from './components/LoadingSpinner'
 
 
 
 export default function PediData() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
 
-    const { data: dataPediData, isSuccess: isSuccessPediData, } = useGetPediDataQuery(user.access)
+    const { data: dataPediData, isLoading, isFetching } = useGetPediDataQuery(user.access)
 
-    console.log('pedi', dataPediData)
+
 
 
     return (
         <DashboardPedi>
             <div className=" inset-0 flex items-center justify-center  focus:outline-none">
-                {isSuccessPediData ?
+                {(isLoading || isFetching) ?
+                <LoadingSpinner/>
+                :
                     <div>
                         <h1>Plan Estratégico de Desarrollo Institucional {dataPediData[0].pedi}</h1>
+
                         <TablaPedi
                             dataPediData={dataPediData}
                         />
@@ -84,8 +88,7 @@ export default function PediData() {
 
 
 
-                    :
-                    <p>Cargando...</p>
+                    
                 }
 
 

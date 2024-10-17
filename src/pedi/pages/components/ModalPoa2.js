@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { numeroPoaConfig, anioPoaConfig } from '../../../ConfiguracionApp'
-import {useCreatePoa2Mutation, useGetIndicadorPediIDQuery, usePutIndicadorPediIDMutation} from '../../services/pediApi'
+import { useCreatePoa2Mutation, useGetIndicadorPediIDQuery, usePutIndicadorPediIDMutation } from '../../services/pediApi'
 
 import { useState, } from 'react';
 
-function VerEjec(ejecu){
+function VerEjec(ejecu) {
     let ejecutado = 0
-    if (ejecu){
+    if (ejecu) {
 
         ejecutado = ejecu
     }
@@ -14,11 +14,12 @@ function VerEjec(ejecu){
 }
 
 export default function ModalPoa2({ indicadorPedi }) {
-    
+
     const user = JSON.parse(localStorage.getItem('user') || "{}")
 
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
-    const {data: dataIndicador, isSuccess:isSuccessIndicador} = useGetIndicadorPediIDQuery({access:user.access, id: indicadorPedi})
+    const { data: dataIndicador, isSuccess: isSuccessIndicador } = useGetIndicadorPediIDQuery({ access: user.access, id: indicadorPedi })
+
 
     const [mes1, setMes1] = useState();
     const [mes2, setMes2] = useState();
@@ -36,12 +37,12 @@ export default function ModalPoa2({ indicadorPedi }) {
 
     const handleInputChange = (e, setter) => {
         setter(Number(e.target.value));
-      };
+    };
 
-  
-      useEffect(() => {
-        setTotalAnio(VerEjec(mes1)+VerEjec(mes2)+VerEjec(mes3)+VerEjec(mes4)+VerEjec(mes5)+VerEjec(mes6)+VerEjec(mes7)+VerEjec(mes8)+VerEjec(mes9)+VerEjec(mes10)+VerEjec(mes11)+VerEjec(mes12));
-      }, [mes1,mes2,mes3,mes4,mes5,mes6,mes7,mes8,mes9,mes10,mes11,mes12]);
+
+    useEffect(() => {
+        setTotalAnio(VerEjec(mes1) + VerEjec(mes2) + VerEjec(mes3) + VerEjec(mes4) + VerEjec(mes5) + VerEjec(mes6) + VerEjec(mes7) + VerEjec(mes8) + VerEjec(mes9) + VerEjec(mes10) + VerEjec(mes11) + VerEjec(mes12));
+    }, [mes1, mes2, mes3, mes4, mes5, mes6, mes7, mes8, mes9, mes10, mes11, mes12]);
 
     const [createPoa, { data, isSuccess }] = useCreatePoa2Mutation()
     const [updateIndicadr] = usePutIndicadorPediIDMutation()
@@ -49,7 +50,7 @@ export default function ModalPoa2({ indicadorPedi }) {
     const [isOpen, setIsOpen] = useState(false);
     const openModal = () => { setIsOpen(true) };
 
-  
+
 
     const closeModal = (e) => {
         setIsOpen(false)
@@ -58,7 +59,7 @@ export default function ModalPoa2({ indicadorPedi }) {
 
     const guardarCambios = async (e) => {
         e.preventDefault()
-  
+
         const tempo = {
             indicadorPedi: indicadorPedi,
             anio: anioPoaConfig,
@@ -76,23 +77,24 @@ export default function ModalPoa2({ indicadorPedi }) {
             pro11: mes11,
             pro12: mes12,
             observacion: '',
-            digitador : userDatos.id,
+            digitador: userDatos.id,
         }
- 
-       //createPoa({access:user.access, rest:   tempo })
-       try{
-        const tempoIndicador = {
-            ...dataIndicador, numeroPoa : numeroPoaConfig }
 
-        const poaCreado = await createPoa({access:user.access, rest:   tempo }).unwrap()
- 
+        //createPoa({access:user.access, rest:   tempo })
+        try {
+            const tempoIndicador = {
+                ...dataIndicador, numeroPoa: numeroPoaConfig
+            }
 
-        const indicadorActualizado = await updateIndicadr({access: user.access, id:indicadorPedi, rest:tempoIndicador }).unwrap()
+            const poaCreado = await createPoa({ access: user.access, rest: tempo }).unwrap()
 
-       }catch(error){
-        console.log('error')
-       }
-   
+
+            const indicadorActualizado = await updateIndicadr({ access: user.access, id: indicadorPedi, rest: tempoIndicador }).unwrap()
+
+        } catch (error) {
+            console.log('error')
+        }
+
         closeModal()
 
     }
@@ -109,7 +111,13 @@ export default function ModalPoa2({ indicadorPedi }) {
                         <div className="bg-white rounded-lg shadow-lg outline-none focus:outline-none">
                             {/* Encabezado del modal */}
                             <div className="flex items-center justify-between p-5 border-b border-gray-300 border-solid rounded-t">
-                                <h3 className="text-lg font-semibold"> Registro Planificación operativa anual</h3>
+                                <h3 className="text-lg font-semibold"> Registro planificación operativa anual: </h3>
+                                <div className="text-lg text-gray-600 ml-3">
+                                    {isSuccessIndicador && (dataIndicador.nombre)}
+                                </div>
+
+
+
                                 <button
                                     onClick={closeModal}
                                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -117,159 +125,170 @@ export default function ModalPoa2({ indicadorPedi }) {
                                     <span className="text-black h-6 w-6 text-2xl block outline-none focus:outline-none bg-gray">x</span>
                                 </button>
                             </div>
-                            
+
+
 
                             <form onSubmit={guardarCambios} method='PUT'>
 
 
                                 <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs font-bold mb-2">Total :</label>
-                                        <div className='text-center bg-gray-200 mx-1 p-1 rounded'>{totalAnio}</div>
-                                        
-                                  
+                                        <label className="block text-sm font-bold mb-2">Total :</label>
+                                        <div className='text-center text-sm bg-gray-200 mx-1 p-1 rounded'>{totalAnio}</div>
+
+
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro1:</label>
+                                        <label className="block text-xs mb-2">Pro enero:</label>
                                         <input
 
                                             type="number"
                                             name="pro1"
-                                            
-                                            value={mes1} 
-                                            onChange={(e) => handleInputChange(e, setMes1)} 
+                                            required
+                                            value={mes1}
+                                            onChange={(e) => handleInputChange(e, setMes1)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs  mb-2">Pro2:</label>
+                                        <label className="block text-xs  mb-2">Pro febrero:</label>
                                         <input
                                             type="number"
                                             name="pro2"
-                                            value={mes2} 
-                                            onChange={(e) => handleInputChange(e, setMes2)} 
-                                            
+                                            value={mes2}
+                                            onChange={(e) => handleInputChange(e, setMes2)}
+                                            required
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro3:</label>
+                                        <label className="block text-xs mb-2">Pro marzo:</label>
                                         <input
                                             type="number"
                                             name="pro3"
-                                            value={mes3} 
-                                            onChange={(e) => handleInputChange(e, setMes3)} 
+                                            value={mes3}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes3)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro4:</label>
+                                        <label className="block text-xs mb-2">Pro abril:</label>
                                         <input
                                             type="number"
                                             name="pro4"
                                             id="pro4"
-                                            value={mes4} 
-                                            onChange={(e) => handleInputChange(e, setMes4)} 
+                                            value={mes4}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes4)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro5:</label>
+                                        <label className="block text-xs mb-2">Pro mayo:</label>
                                         <input
                                             type="number"
                                             name="pro5"
                                             id="pro5"
-                                            value={mes5} 
-                                            onChange={(e) => handleInputChange(e, setMes5)} 
+                                            value={mes5}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes5)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs  mb-2">Pro6:</label>
+                                        <label className="block text-xs  mb-2">Pro junio:</label>
                                         <input
                                             type="number"
                                             name="pro6"
                                             id="pro6"
-                                            value={mes6} 
-                                            onChange={(e) => handleInputChange(e, setMes6)} 
+                                            value={mes6}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes6)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro7:</label>
+                                        <label className="block text-xs mb-2">Pro julio:</label>
                                         <input
                                             type="number"
                                             name="pro7"
                                             id="pro7"
-                                            value={mes7} 
-                                            onChange={(e) => handleInputChange(e, setMes7)} 
+                                            value={mes7}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes7)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro8:</label>
+                                        <label className="block text-xs mb-2">Pro agosto:</label>
                                         <input
                                             type="number"
                                             name="pro8"
                                             id="pro8"
-                                            value={mes8} 
-                                            onChange={(e) => handleInputChange(e, setMes8)} 
+                                            value={mes8}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes8)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs  mb-2">Pro9:</label>
+                                        <label className="block text-xs  mb-2">Pro septiembre:</label>
                                         <input
                                             type="number"
                                             name="pro9"
                                             id="pro9"
-                                            value={mes9} 
-                                            onChange={(e) => handleInputChange(e, setMes9)} 
+                                            value={mes9}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes9)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro10:</label>
+                                        <label className="block text-xs mb-2">Pro octubre:</label>
                                         <input
                                             type="number"
                                             name="pro10"
                                             id="pro10"
-                                            value={mes10} 
-                                            onChange={(e) => handleInputChange(e, setMes10)} 
+                                            value={mes10}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes10)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
 
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro11:</label>
+                                        <label className="block text-xs mb-2">Pro noviembre:</label>
                                         <input
                                             type="number"
                                             name="pro11"
                                             id="pro11"
-                                            value={mes11} 
-                                            onChange={(e) => handleInputChange(e, setMes11)} 
+                                            value={mes11}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes11)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
                                     <div className="mb-4 mr-1">
-                                        <label className="block text-xs mb-2">Pro12:</label>
+                                        <label className="block text-xs mb-2">Pro diciembre:</label>
                                         <input
                                             type="number"
                                             name="pro12"
                                             id="pro12"
-                                            value={mes12} 
-                                            onChange={(e) => handleInputChange(e, setMes12)} 
+                                            value={mes12}
+                                            required
+                                            onChange={(e) => handleInputChange(e, setMes12)}
                                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         />
                                     </div>
 
                                     <button
                                         type="submit"
-                                        className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300"
+                                        className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300 mb-5"
                                     >
                                         Guardar
                                     </button>

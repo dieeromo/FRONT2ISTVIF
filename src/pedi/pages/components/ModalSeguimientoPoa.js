@@ -19,6 +19,7 @@ export default function ModalSeguimientoPoa({ id }) {
 
     const [updatePoa] = usePutPoaDataIDMutation()
     const { data: dataPoaID, isSuccess: isSuccessPoaID } = useGetPoaDataIDQuery({ access: user.access, id: id })
+  
 
 
 
@@ -100,7 +101,12 @@ export default function ModalSeguimientoPoa({ id }) {
                         <div className="bg-white rounded-lg shadow-lg outline-none focus:outline-none">
                             {/* Encabezado del modal */}
                             <div className="flex items-center justify-between p-5 border-b border-gray-300 border-solid rounded-t">
-                                <h3 className="text-lg font-semibold"> Seguimiento Planificación operativa anual...</h3>
+                                <h3 className="text-lg font-semibold"> Seguimiento Planificación operativa anual:</h3>
+                                {isSuccessPoaID &&
+                                    <div className="text-lg text-gray-600 ml-3">
+                                        {dataPoaID.indicadorNombre}
+                                    </div>
+                                }
                                 <button
                                     onClick={closeModal}
                                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -113,19 +119,19 @@ export default function ModalSeguimientoPoa({ id }) {
                             {isSuccessPoaID ?
 
                                 <form onSubmit={guardarCambios} method='PUT'>
-                                    <div className='grid grid-cols-2  border-b border-gray-300'>
-                                        <div className='text-sm'>Año : {dataPoaID.anio} </div>
-                                        <div className='text-sm'>Total : {dataPoaID.totalAnio}</div>
+                                    <div className='grid grid-cols-2  border-b border-gray-300 '>
+                                        <div className='text-sm mt-2 mb-2'>Año : {dataPoaID.anio} </div>
+                                        <div className='text-sm mt-2 mb-2'>Total programado : {dataPoaID.totalAnio}</div>
                                         
                                         
                                     </div>
 
 
-                                    <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+                                    <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-3">
 
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs  mb-2">Pro1: {dataPoaID.pro1}</label>
+                                            <label className="block text-xs  mb-2">Enero: {dataPoaID.pro1}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m1}
                                                 type="number"
@@ -136,7 +142,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs  mb-2">Pro2: {dataPoaID.pro2}</label>
+                                            <label className="block text-xs  mb-2">Febrero: {dataPoaID.pro2}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m2}
                                                 type="number"
@@ -148,7 +154,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs mb-2">Pro3: {dataPoaID.pro3}</label>
+                                            <label className="block text-xs mb-2">Marzo: {dataPoaID.pro3}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m3}
                                                 type="number"
@@ -160,7 +166,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs  mb-2">Pro4: {dataPoaID.pro4}</label>
+                                            <label className="block text-xs  mb-2">Abril: {dataPoaID.pro4}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m4}
                                                 type="number"
@@ -171,7 +177,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs mb-2">Pro5: {dataPoaID.pro5}</label>
+                                            <label className="block text-xs mb-2">Mayo: {dataPoaID.pro5}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m5}
                                                 type="number"
@@ -183,7 +189,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs mb-2">Pro6: {dataPoaID.pro6}</label>
+                                            <label className="block text-xs mb-2">Junio: {dataPoaID.pro6}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m6}
                                                 type="number"
@@ -194,7 +200,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs mb-2">Pro7: {dataPoaID.pro7}</label>
+                                            <label className="block text-xs mb-2">Julio: {dataPoaID.pro7}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m7}
                                                 type="number"
@@ -205,7 +211,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs  mb-2">Pro8: {dataPoaID.pro8}</label>
+                                            <label className="block text-xs  mb-2">Agosto: {dataPoaID.pro8}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m8}
                                                 type="number"
@@ -216,7 +222,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs mb-2">Pro9: {dataPoaID.pro9}</label>
+                                            <label className="block text-xs mb-2">Septiembre: {dataPoaID.pro9}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m9}
                                                 type="number"
@@ -228,7 +234,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs mb-2">Pro10: {dataPoaID.pro10}</label>
+                                            <label className="block text-xs mb-2">Octubre: {dataPoaID.pro10}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m10}
                                                 type="number"
@@ -240,7 +246,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                         </div>
 
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs mb-2">Pro11: {dataPoaID.pro11}</label>
+                                            <label className="block text-xs mb-2">Noviembre: {dataPoaID.pro11}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m11}
                                                 type="number"
@@ -251,7 +257,7 @@ export default function ModalSeguimientoPoa({ id }) {
                                             />
                                         </div>
                                         <div className="mb-4 mr-1">
-                                            <label className="block text-xs  mb-2">Pro12: {dataPoaID.pro12}</label>
+                                            <label className="block text-xs  mb-2">Diciembre: {dataPoaID.pro12}</label>
                                             <input
                                                 disabled={enableSeguimientoPoa.en_m12}
                                                 type="number"
@@ -263,11 +269,11 @@ export default function ModalSeguimientoPoa({ id }) {
                                         </div>
 
                                         <button
-                                            type="submit"
-                                            className="bg-green-500 text-xs " 
-                                        >
-                                            Guardar
-                                        </button>
+                                        type="submit"
+                                        className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300 mb-5"
+                                    >
+                                        Guardar
+                                    </button>
 
                                     </div>
 
