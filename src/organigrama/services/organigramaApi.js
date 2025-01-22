@@ -5,7 +5,7 @@ import { RUTA_SERVIDOR } from '../../ApiRoutes'
 
 
 export const organigramaApi = createApi({
-    reducerPath: 'evaluacionApi',
+    reducerPath: 'organigramaApi',
     baseQuery: fetchBaseQuery({
         baseUrl: RUTA_SERVIDOR
     }),
