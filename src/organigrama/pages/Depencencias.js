@@ -25,7 +25,7 @@ export default function Depencencias() {
             <h2 className='font-bold text-center mt-5'> Depencencias intitucionales</h2>
 
             <div className='m-5'>
-                {userDatos.is_secretaria && <ModalCreteDependencia />}
+                {(userDatos.is_secretaria || userDatos.is_rectora) &&  <ModalCreteDependencia />}
 
 
                 {(isLoading || isFetching) ?
@@ -67,7 +67,7 @@ export default function Depencencias() {
                                     </td>
 
                                     <td>
-                                        {userDatos.is_secretaria &&
+                                        {(userDatos.is_secretaria || userDatos.is_rectora) &&
                                             <ModalEditDependencia
                                                 id={item.id}
                                                 tipoID={item.tipo}
