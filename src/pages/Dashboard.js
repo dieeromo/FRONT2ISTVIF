@@ -16,6 +16,7 @@ const Dashboard = () => {
     //console.log(user)
 
    const {data, isSuccess, isError,isLoading} = useGetUserQuery(user.access)
+   console.log('datos user', data)
 
   
   
@@ -23,6 +24,7 @@ const Dashboard = () => {
     useEffect(()=>{
         if(isSuccess){
             dispatch(setUserDatos({
+
                 email:data.email, 
                 first_name:data.first_name, 
                 last_name:data.last_name, 
@@ -40,6 +42,7 @@ const Dashboard = () => {
                 is_adminBiblioteca :  data.is_adminBiblioteca,
                 id : data.id,
                 is_adminInventario: data.is_adminInventario,
+                is_secretaria: data.is_secretaria,
                 
 
             }))

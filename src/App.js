@@ -37,6 +37,9 @@ import BolsaEmepleoAdmin from './general/pages/BolsaEmepleoAdmin';
 import LandingInventario from './inventario/pages/LandingInventario'
 import RegisterInventario from './inventario/pages/RegisterInventario';
 import ListInventario from './inventario/pages/ListInventario'
+//ORGANIGRAMA
+import Depencencias from './organigrama/pages/Depencencias'
+import DependenciaDetalle from './organigrama/pages/DependenciaDetalle'
 
 
 //PEDI
@@ -155,8 +158,14 @@ function App() {
             <Route path='/evaluacion/documentos/docente' element={< DocenteResponsable/>} />
             <Route path='/evaluacion/estadistica' element={< EstadisticaEvaluacion/>} />
 
+
+         
+
             
            
+         {/* ORGANIGRAMA */}
+         <Route path='/organigrama/dependencias' element={< Depencencias/>} />
+         <Route path='/organigrama/dependencias/detalle/:id' element={< DependenciaDetalle />} />
 
 
 

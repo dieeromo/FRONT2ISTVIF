@@ -10,7 +10,7 @@ import * as echarts from 'echarts';
 export default function EstadisticaEvaluacion() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const { data: dataTotal, isSuccess: isSuccessTotal } = useGetEstadistica_total_documentosQuery({ access: user.access })
-    console.log('total',dataTotal)
+
     let totalDocumento = 0
     let porcentaje_sin_subir = 0
     let porcentaje_por_revisar = 0

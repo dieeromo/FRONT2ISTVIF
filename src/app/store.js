@@ -15,6 +15,10 @@ import {generalApi} from '../general/services/generalApi'
 import {inventarioApi} from '../inventario/services/inventarioApi'
 import {pediApi} from '../pedi/services/pediApi'
 import {evaluacionApi} from '../evaluacion/services/evaluacionApi'
+import {organigramaApi} from '../organigrama/services/organigramaApi'
+
+
+
 import {setupListeners} from '@reduxjs/toolkit/query/react'
 
 
@@ -37,6 +41,7 @@ export const store = configureStore({
         [pediApi.reducerPath]:pediApi.reducer,
 
         [evaluacionApi.reducerPath] : evaluacionApi.reducer,
+        [organigramaApi.reducerPath]:organigramaApi.reducer,
         
     },
     middleware:(getDefaultMiddleware) => getDefaultMiddleware().concat(
@@ -49,6 +54,7 @@ export const store = configureStore({
         inventarioApi.middleware,
         pediApi.middleware,
         evaluacionApi.middleware,
+        organigramaApi.middleware,
         )
 })
 
