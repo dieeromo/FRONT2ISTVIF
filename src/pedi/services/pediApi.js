@@ -448,9 +448,13 @@ export const pediApi = createApi({
         }),
         /////
         getPoaData: builder.query({
-            query: ({access,entidadResponsable}) => {
+            query: ({access,entidadResponsable,anio}) => {
+                let url1 = `/pedi/poadata/?`
+                if(entidadResponsable) url1 += `entidadSigla=${entidadResponsable}`
+
                 return {
-                    url: `/pedi/poadata/?entidadSigla=${entidadResponsable}`,
+                    url: `/pedi/poadata/?entidadSigla=${entidadResponsable}&anio=${anio}`,
+                    //url : url1,
                     method: 'GET',
                     headers: { Authorization: `JWT ${access}` },
                 }

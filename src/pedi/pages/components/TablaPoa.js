@@ -5,7 +5,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import reporte_inventario_banner from '../../../assets/reporte_inventario_banner.png'
 import encabezadoPlanificacion from '../../../assets/encabezadoPlanificacion.png'
-import { EnablenumeroPoaConfig, enableCreatePoa, enableEditPoa } from '../../../ConfiguracionApp'
+import { EnablenumeroPoaConfig, enableCreatePoa, enableEditPoa, anioPoaConfig } from '../../../ConfiguracionApp'
 
 export default function TablaPoa({ dataPoa }) {
     console.log('poa tabla', dataPoa)
@@ -215,7 +215,8 @@ export default function TablaPoa({ dataPoa }) {
                                     <div className='grid grid-cols-2'>
                                         <div className='pr-3'>{item.responsable_sigla}</div>
                                         <div>
-                                            {EnablenumeroPoaConfig === item.numeroPoa && enableCreatePoa && item.coordinador_entidad === userDatos.id ?
+                                            {/* Para crear el poa */}
+                                            {EnablenumeroPoaConfig === item.numeroPoa && enableCreatePoa && item.coordinador_entidad === userDatos.id && !item.anioPoa ?
 
                                                 <ModalPoa2
                                                     indicadorPedi={item.indicadorID}
@@ -224,7 +225,7 @@ export default function TablaPoa({ dataPoa }) {
                                                 <></>
                                             }
 
-                                            {item.coordinador_entidad == userDatos.id && enableEditPoa && EnablenumeroPoaConfig < item.numeroPoa ?
+                                            {item.coordinador_entidad == userDatos.id && enableEditPoa && EnablenumeroPoaConfig < item.numeroPoa && item.anioPoa === anioPoaConfig ?
 
                                                 <ModalPoaEdit2
                                                     dataPoaID={item}

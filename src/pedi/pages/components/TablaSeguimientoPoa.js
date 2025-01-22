@@ -260,7 +260,7 @@ export default function TablaSeguimientoPoa({ dataPoa }) {
                                     <td className="border border-gray-400 text-xs px-2"> <div className=' border-b-2 border-gray-500 '>{item.eje11} </div>  <div>{item.pro11} </div> </td>
                                     <td className="border border-gray-400 text-xs px-2"> <div className=' border-b-2 border-gray-500 '>{item.eje12} </div>  <div>{item.pro12}</div> </td>
                                     <td>
-                                        {item.coordinador_entidad == userDatos.id && enableCreateSeguimiento && EnablenumeroPoaConfig < item.numeroPoa ?
+                                        {item.coordinador_entidad == userDatos.id && enableCreateSeguimiento && item.anioPoa === 2024 ?
 
                                             <ModalSeguimientoPoa
                                                 id={item.idPoa}

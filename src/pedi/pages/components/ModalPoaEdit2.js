@@ -18,7 +18,7 @@ export default function ModalPoaEdit2({ dataPoaID }) {
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
     const [updatePoa] = usePutPoaDataIDMutation()
     const { data: dataPoaID2, isSuccess: isSuccessPoaID } = useGetPoaDataIDQuery({ access: user.access, id: dataPoaID.idPoa })
-   
+   console.log('data poa edit', dataPoaID2)
 
     const [mes1, setMes1] = useState(dataPoaID.pro1);
     const [mes2, setMes2] = useState(dataPoaID.pro2);
@@ -93,7 +93,7 @@ export default function ModalPoaEdit2({ dataPoaID }) {
                         <div className="bg-white rounded-lg shadow-lg outline-none focus:outline-none">
                             {/* Encabezado del modal */}
                             <div className="flex items-center justify-between p-5 border-b border-gray-300 border-solid rounded-t">
-                                <h3 className="text-lg font-semibold"> Planificación operativa anual:</h3>
+                                <h3 className="text-lg font-semibold"> Editar POA {isSuccessPoaID && <>{dataPoaID2.anio}</>}</h3>
                                 {isSuccessPoaID &&
                                     <div className="text-lg text-gray-600 ml-3">
                                         {dataPoaID2.indicadorNombre}

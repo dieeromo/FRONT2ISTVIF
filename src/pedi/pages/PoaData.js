@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Select from "react-select"
 import DashboardPedi from './components/DashboardPedi'
 import { useGetPoaDataQuery, useGetPoaDataIDQuery, usePutPoaDataIDMutation } from '../services/pediApi'
 // import ModalPoa from './components/ModalPoa'
@@ -14,23 +15,33 @@ import reporte_inventario_banner from "../../assets/reporte_inventario_banner.pn
 
 
 import { EnablenumeroPoaConfig, enableCreatePoa, enableEditPoa } from '../../ConfiguracionApp'
-function Verificacion(VariableMes){
+function Verificacion(VariableMes) {
     let retorno = 0
-    if(VariableMes){
+    if (VariableMes) {
         retorno = VariableMes
     }
     return retorno
 }
 export default function PoaData() {
     const user = JSON.parse(localStorage.getItem('user') || "{}")
- //   const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
+    //   const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
     const [entidadResponsable, SetEntidadResponsable] = useState('')
-    const [anio, setAnio] = useState(2024)
+    const [anio, SetAnio] = useState(2024)
 
-    const { data: dataPoa, isLoading, isFetching } = useGetPoaDataQuery({ access: user.access, entidadResponsable: entidadResponsable })
-  
+    const { data: dataPoa, isLoading, isFetching } = useGetPoaDataQuery({ access: user.access, entidadResponsable: entidadResponsable, anio: anio })
+
     const handleSearch = (e) => {
         SetEntidadResponsable(e.target.value);
+    };
+
+    const anios_poa = [
+        { value: 2024, label: '2024' },
+        { value: 2025, label: '2025' },
+    ];
+
+
+    const handleAnio = (selectedOption) => {
+        SetAnio(selectedOption.value);
     };
 
 
@@ -51,6 +62,17 @@ export default function PoaData() {
                     />
                 </div>
 
+
+                <div className="mb-4 mr-10">
+                
+                    <Select
+                        options={anios_poa}
+                        onChange={handleAnio}
+                        defaultValue={{ value: 2024, label: '2024' }}
+                        className='shadow-md'
+                    />
+                </div>
+
                 {/* <button
 
                     onClick={exportPDF}
@@ -61,7 +83,7 @@ export default function PoaData() {
 
             </div>
 
-{/* 
+            {/* 
             {isSuccessPoa ?
                 <div>
                     <h1>Planificación operativa anual {dataPoa[0] && (dataPoa[0].anioPoa)}</h1>
@@ -179,11 +201,11 @@ export default function PoaData() {
                 <>Cargando</>
             } */}
 
-            {(isLoading || isFetching)? 
-            <LoadingSpinner/>
-            :
+            {(isLoading || isFetching) ?
+                <LoadingSpinner />
+                :
                 <TablaPoa
-                dataPoa={dataPoa}
+                    dataPoa={dataPoa}
                 />
             }
 
