@@ -46,7 +46,7 @@ export const organigramaApi = createApi({
         getDependenciaIDhistorial: builder.query({
             query: ({ access, id}) => {
                 return {
-                    url: `/general/be/historial_dependencia/${id}/`,
+                    url: `general/historial_dependencia_por_dependencia/?dependenciaid=${id}`,
                     method: 'GET',
                     headers: { Authorization: `JWT ${access}` },
 
