@@ -24,6 +24,41 @@ export const evaluacionApi = createApi({
 
         }),
         ////////
+        getSubcriterio_por_criterio: builder.query({
+            query: ({access,criterio_id}) => {
+                return {
+                    url: `/evaluacion/evaluacion_subcriterio_criterio/?criterio_id=${criterio_id}`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+
+                }
+            },
+
+        }),
+        /////
+        getIndicador_por_Subcriterio: builder.query({
+            query: ({access,subcriterio_id}) => {
+                return {
+                    url: `/evaluacion/evaluacionindicador__subcriterio/?subcriterio_id=${subcriterio_id}`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+
+                }
+            },
+
+        }),
+        //////
+        getDocumento_por_indicador_all: builder.query({
+            query: ({access,criterio_id,subcriterio_id,indicador_id}) => {
+                return {
+                    url: `/evaluacion/evaluacion_documento__indicador_all/?criterio_id=${criterio_id}&subcriterio_id=${subcriterio_id}&indicador_id=${indicador_id}`,
+                    method: 'GET',
+                    headers: { Authorization: `JWT ${access}` },
+
+                }
+            },
+
+        }),
         ////////
         getEvaluacionEvidencia_modeloCriterio: builder.query({
             query: ({ access, criterio_id, modelo_id }) => {
@@ -50,6 +85,10 @@ export const evaluacionApi = createApi({
             },
 
         }),
+        /////////
+
+
+
         ////////
         createDocumentoEvaluacion: builder.mutation({
             query: ({ access, rest }) => {
@@ -174,7 +213,10 @@ export const evaluacionApi = createApi({
 
 
 export const {
+    useGetDocumento_por_indicador_allQuery,
     useGetEvaluacionEvidenciaQuery,
+    useGetSubcriterio_por_criterioQuery,
+    useGetIndicador_por_SubcriterioQuery,
     useGetEvaluacionEvidencia_modeloCriterioQuery,
     useGetCriteriosQuery,
     useCreateDocumentoEvaluacionMutation,

@@ -11,11 +11,11 @@ export default function Depencencias() {
 
     const user = JSON.parse(localStorage.getItem('user') || "{}")
     const userDatos = JSON.parse(localStorage.getItem('userDatos') || "{}")
-    console.log(userDatos)
+   
 
 
     const { data, isLoading, isFetching } = useGetDependenciasQuery({ access: user.access })
-
+    console.log('data',data)
 
     return (
 
