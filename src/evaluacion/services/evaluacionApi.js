@@ -45,6 +45,7 @@ export const evaluacionApi = createApi({
 
                 }
             },
+            providesTags: ['getIndicador_por_Subcriterio'],
 
         }),
         //////
@@ -57,6 +58,8 @@ export const evaluacionApi = createApi({
 
                 }
             },
+            providesTags: ['getEvaluacionEvidencia_modeloCriterio'],
+            invalidatesTags: ['getIndicador_por_Subcriterio']
 
         }),
         ////////
@@ -69,7 +72,7 @@ export const evaluacionApi = createApi({
 
                 }
             },
-            providesTags: ['getEvaluacionEvidencia_modeloCriterio']
+            providesTags: ['getDocumento_por_indicador_all']
 
         }),
         ////////
@@ -100,7 +103,7 @@ export const evaluacionApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
-            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio']
+            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio','getDocumento_por_indicador_all']
 
         }),
         ///////
@@ -127,7 +130,7 @@ export const evaluacionApi = createApi({
                     body: rest,
                 }
             },
-            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID', 'getDocumentosResponsable']
+            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID', 'getDocumentosResponsable','getDocumento_por_indicador_all']
 
         }),
         ///////
@@ -137,7 +140,7 @@ export const evaluacionApi = createApi({
                 method: 'PATCH',
                 body: { estado2, observacion },
             }),
-            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID', 'getDocumentosResponsable']
+            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentoID', 'getDocumentosResponsable','getDocumento_por_indicador_all']
         }),
         /////
         deleteArchivoEvaluacion: builder.mutation({
@@ -149,7 +152,7 @@ export const evaluacionApi = createApi({
                     headers: { Authorization: `JWT ${access}` },
                 }
             },
-            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentosResponsable']
+            invalidatesTags: ['getEvaluacionEvidencia_modeloCriterio', 'getDocumentosResponsable','getDocumento_por_indicador_all']
 
         }),
         //////
