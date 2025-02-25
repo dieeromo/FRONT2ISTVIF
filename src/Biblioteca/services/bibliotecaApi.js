@@ -172,6 +172,7 @@ export const bibliotecaApi = createApi({
                 if (page) tempo += `page=${page}&`
                 if (autor) tempo += `autor=${autor}&`
                 if (obra) tempo += `titulo=${obra}&`
+                if (page_size) tempo += `page_size=${page_size}&`
 
 
                 return {
