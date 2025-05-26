@@ -39,7 +39,7 @@ const ListaObrasAutores = () => {
 
 
     const { data: dataObras, isLoading: isLoadingObras, isFetching: isFetchingObras } = useGetListAutoresObras_filterQuery({ access: user.access, page: page, page_size: page_size, autor: autor, obra: obra })
-    console.log('data obras', dataObras)
+  
     const exportPDF = () => {
         let dataToExport = dataObras.results
 

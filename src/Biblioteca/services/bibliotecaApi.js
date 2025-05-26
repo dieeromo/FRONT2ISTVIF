@@ -206,8 +206,10 @@ export const bibliotecaApi = createApi({
         /////
         getListFilter_Titulos: builder.query({
             query: (titulo) => {
+                let tempo =`/biblioteca/filtro/titulo/`
+                if (titulo) tempo +=`${titulo}/`
                 return {
-                    url: `/biblioteca/filtro/titulo/${titulo}/`,
+                    url: tempo,
                     method: 'GET',
                     headers: { Authorization: `` },
                 }
@@ -368,6 +370,38 @@ export const bibliotecaApi = createApi({
             invalidatesTags: ['getTipoObras']
         }),
 
+        getListObras_filter: builder.query({
+            query: ({page, page_size,titulo,}) => {
+                let tempo = `/biblioteca/filtro/obras/?`
+                if (page) tempo += `page=${page}&`
+                if (page_size) tempo += `page_size=${page_size}&`
+                if (titulo) tempo += `titulo=${titulo}&`
+                return {
+                    url: tempo,
+                    method: 'GET',
+                    
+                }
+            },
+            providesTags: ['getListObras_filter']  ///////////////////////
+        }),
+
+
+        getListTitulos_filterNuevo: builder.query({
+            query: ({page, page_size,titulo,ubicacionid}) => {
+                let tempo = `/biblioteca/filtro/obras/nuevo/?`
+                if (page) tempo += `page=${page}&`
+                if (page_size) tempo += `page_size=${page_size}&`
+                if (titulo) tempo += `titulo=${titulo}&`
+                if (ubicacionid) tempo += `ubicacionid=${ubicacionid}&`
+                return {
+                    url: tempo,
+                    method: 'GET',
+                    
+                }
+            },
+            providesTags: ['getListObras_filterNuevo']  ///////////////////////
+        }),
+
 
 
     })
@@ -392,21 +426,28 @@ export const {
     useGetListFilter_TitulosQuery,
     useGetListFilter_Titulos_idQuery,
     useGetListFilter_Autores_idObraQuery,
+    useGetListObras_filterQuery,
 
     useDeleteObraEntradaMutation,
 
+    //ubicaciones
     useCreateUbicacionObraMutation,
     useGetListUbicacionObrasQuery,
     usePutUbicacionObrasMutation,
 
+    //categorias
     useCreateCategoriaObraMutation,
     useGetListCategoriaObrasQuery,
     usePutCategoriaObrasMutation,
 
-
+    //tipo obras
     useCreateTipoObraMutation,
     useGetListTipoObrasQuery,
     usePutTipoObrasMutation,
+
+    //obras
+    useGetListTitulos_filterNuevoQuery
+
 
 
 
