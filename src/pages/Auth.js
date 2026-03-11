@@ -95,10 +95,9 @@ export const Auth = () => {
                         </button>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400 mt-2">
                             No tienes una cuenta aún?{' '}
-                            {/* <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                    Registrarse
-                  </Link> */}
-
+                            <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                Registrarse
+                            </Link>
                         </p>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400 mt-2">
                            

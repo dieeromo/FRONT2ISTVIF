@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom'
 import './App.css';
 import Dashboard from './pages/Dashboard';
 import Auth from './pages/Auth';
+import { Register } from './pages/Register';
 import Salir from './pages/Salir'
 import Landing from './pages/Landing'
 
@@ -90,6 +91,7 @@ function App() {
           {/* Acreditacion */}
           <Route path='/' element={<Navigate to='/landing' replace />} />
           <Route path='/auth' element={<Auth />} />
+          <Route path='/register' element={<Register />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/landing' element={<Landing />} />
           <Route path='/salir' element={<Salir />} />
